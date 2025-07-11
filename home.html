@@ -7,20 +7,20 @@
     <meta content="index, follow" name="robots" />
     <meta content="" property="og:url" />
     <meta content="article" property="og:type" />
-    <meta content="MBgame.online - Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động" property="og:title" />
-    <link href="https://mbgame.online/" rel="canonical" />
+    <meta content="mbmmo.store - Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động" property="og:title" />
+    <link href="https://mbmmo.store/" rel="canonical" />
     <link rel="icon" href="./image/Favicon.png" type="image/x-icon" />
     <meta
         content="Tham gia mini game ngân hàng với hệ thống trả thưởng tự động, giúp bạn kiếm tiền nhanh chóng dễ dàng!"
         name="description" />
-    <meta content="MBgame.online, Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động" name="keywords" />
+    <meta content="mbmmo.store, Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động" name="keywords" />
     <meta
         content="Tham gia mini game ngân hàng với hệ thống trả thưởng tự động, giúp bạn kiếm tiền nhanh chóng dễ dàng!"
         property="og:description" />
     <meta content="default" name="theme-color" />
     <meta content="" property="og:image" />
     <title>
-        MBgame.online - Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động
+        mbmmo.store - Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động
     </title>
     <link href="./MBbank/simple-notify.min.css" rel="stylesheet" />
     <link href="./MBbank/app.css" rel="stylesheet" />
@@ -2170,7 +2170,7 @@
                                 </p>
                                 - Thật tuyệt vời ! Mỗi ngày chỉ cần chơi trên
                                 <strong>
-                                    Mbgame.online
+                                    mbmmo.store
                                 </strong>
                                 chắc chắn bạn sẽ nhận được tiền.
                                 <br />
@@ -2332,7 +2332,7 @@
             <div class="row align-items-center flex-row-reverse">
                 <div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
                     <b>
-                        Mbgame.online
+                        mbmmo.store
                     </b>
                     © 2021
                 </div>
@@ -2685,7 +2685,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        Mbgame.online QR
+                        mbmmo.store QR
                     </h5>
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                         <span aria-hidden="true">
@@ -4280,42 +4280,6 @@
                 return false;
             }
         };
-    </script>
-
-    <script>
-        const scrollBtn = document.getElementById('scrollTopBtn');
-        const threshold = 50;
-
-        window.addEventListener('scroll', () => {
-            const docHeight = document.documentElement.scrollHeight;
-            const scrolled = window.scrollY + window.innerHeight;
-            const atBottom = scrolled >= docHeight - threshold;
-            scrollBtn.style.display = atBottom ? 'block' : 'none';
-        });
-
-
-        scrollBtn.addEventListener('click', () => {
-            const duration = 800;
-            const start = window.scrollY;
-            const startTime = performance.now();
-
-            function animate(now) {
-                const elapsed = now - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                // easeInOutQuad
-                const ease = progress < 0.5
-                    ? 2 * progress * progress
-                    : -1 + (4 - 2 * progress) * progress;
-
-                window.scrollTo(0, start * (1 - ease));
-
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                }
-            }
-
-            requestAnimationFrame(animate);
-        });
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
