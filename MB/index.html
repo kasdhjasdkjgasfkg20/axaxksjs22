@@ -1,0 +1,3158 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width,initial-scale=1,user-scalable=0" name="viewport" />
+    <meta content="index, follow" name="robots" />
+    <meta content="" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="MBgame.online - Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động" property="og:title" />
+    <link href="https://mbgame.online" rel="canonical" />
+    <link rel="icon" href="https://mbbank.game/favicon.ico" type="image/x-icon" />
+    <meta content="MBgame.online, Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động" name="keywords" />
+    <meta content="Tham gia mini game MB Bank với hệ thống trả thưởng tự động, giúp bạn kiếm tiền nhanh chóng dễ dàng!"
+        property="og:description" />
+    <meta content="default" name="theme-color" />
+    <meta content="https://i.imgur.com/19hZ5WO.png" property="og:image" />
+    <title>MBgame.online - Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động</title>
+    <link href="./MBbank/simple-notify.min.css" rel="stylesheet" />
+    <link href="./MBbank/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="./MBbank/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --swal2-outline: 0 0 0 3px rgba(100, 150, 200, 0.5);
+            --swal2-container-padding: 0.625em;
+            --swal2-backdrop: rgba(0, 0, 0, 0.4);
+            --swal2-backdrop-transition: background-color 0.1s;
+            --swal2-width: 32em;
+            --swal2-padding: 0 0 1.25em;
+            --swal2-border: none;
+            --swal2-border-radius: 0.3125rem;
+            --swal2-background: white;
+            --swal2-color: #545454;
+            --swal2-footer-border-color: #eee;
+            --swal2-show-animation: swal2-show 0.3s;
+            --swal2-hide-animation: swal2-hide 0.15s forwards;
+            --swal2-icon-zoom: 1;
+            --swal2-icon-animations: true;
+            --swal2-title-padding: 0.8em 1em 0;
+            --swal2-html-container-padding: 1em 1.6em 0.3em;
+            --swal2-input-border-radius: 0.1875em;
+            --swal2-input-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px transparent;
+            --swal2-input-background: transparent;
+            --swal2-input-transition: border-color 0.2s, box-shadow 0.2s;
+            --swal2-progress-step-background: #add8e6;
+            --swal2-validation-message-background: #f0f0f0;
+            --swal2-validation-message-color: #666;
+            --swal2-close-button-position: initial;
+            --swal2-close-button-inset: auto;
+            --swal2-close-button-font-size: 2.5em;
+            --swal2-close-button-color: #ccc;
+            --swal2-close-button-transition: color 0.2s, box-shadow 0.2s;
+            --swal2-close-button-outline: initial;
+            --swal2-close-button-box-shadow: inset 0 0 0 3px transparent;
+            --swal2-close-button-focus-box-shadow: inset var(--swal2-outline);
+            --swal2-close-button-hover-transform: none;
+            --swal2-button-transition: background-color 0.2s, box-shadow 0.2s;
+            --swal2-confirm-button-border: 0;
+            --swal2-confirm-button-border-radius: 0.25em;
+            --swal2-confirm-button-background-color: #141ed2;
+            --swal2-confirm-button-color: #fff;
+            --swal2-deny-button-border: 0;
+            --swal2-deny-button-border-radius: 0.25em;
+            --swal2-deny-button-background-color: #dc3741;
+            --swal2-deny-button-color: #fff;
+            --swal2-cancel-button-border: 0;
+            --swal2-cancel-button-border-radius: 0.25em;
+            --swal2-cancel-button-background-color: #6e7881;
+            --swal2-cancel-button-color: #fff;
+            --swal2-toast-show-animation: swal2-toast-show 0.5s;
+            --swal2-toast-hide-animation: swal2-toast-hide 0.1s forwards;
+            --swal2-toast-border: none;
+            --swal2-toast-box-shadow: 0 0 1px hsl(0deg 0% 0% / 0.075), 0 1px 2px hsl(0deg 0% 0% / 0.075), 1px 2px 4px hsl(0deg 0% 0% / 0.075), 1px 3px 8px hsl(0deg 0% 0% / 0.075), 2px 4px 16px hsl(0deg 0% 0% / 0.075)
+        }
+
+        [data-swal2-theme=dark] {
+            --swal2-dark-theme-black: #19191a;
+            --swal2-dark-theme-white: #e1e1e1;
+            --swal2-background: var(--swal2-dark-theme-black);
+            --swal2-color: var(--swal2-dark-theme-white);
+            --swal2-footer-border-color: #555;
+            --swal2-input-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+            --swal2-validation-message-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+            --swal2-validation-message-color: var(--swal2-dark-theme-white)
+        }
+
+        @media(prefers-color-scheme: dark) {
+            [data-swal2-theme=auto] {
+                --swal2-dark-theme-black: #19191a;
+                --swal2-dark-theme-white: #e1e1e1;
+                --swal2-background: var(--swal2-dark-theme-black);
+                --swal2-color: var(--swal2-dark-theme-white);
+                --swal2-footer-border-color: #555;
+                --swal2-input-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+                --swal2-validation-message-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+                --swal2-validation-message-color: var(--swal2-dark-theme-white)
+            }
+        }
+
+        body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) {
+            overflow: hidden
+        }
+
+        body.swal2-height-auto {
+            height: auto !important
+        }
+
+        body.swal2-no-backdrop .swal2-container {
+            background-color: rgba(0, 0, 0, 0) !important;
+            pointer-events: none
+        }
+
+        body.swal2-no-backdrop .swal2-container .swal2-popup {
+            pointer-events: all
+        }
+
+        body.swal2-no-backdrop .swal2-container .swal2-modal {
+            box-shadow: 0 0 10px var(--swal2-backdrop)
+        }
+
+        body.swal2-toast-shown .swal2-container {
+            box-sizing: border-box;
+            width: 360px;
+            max-width: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            pointer-events: none
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top {
+            inset: 0 auto auto 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top-end,
+        body.swal2-toast-shown .swal2-container.swal2-top-right {
+            inset: 0 0 auto auto
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top-start,
+        body.swal2-toast-shown .swal2-container.swal2-top-left {
+            inset: 0 auto auto 0
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center-start,
+        body.swal2-toast-shown .swal2-container.swal2-center-left {
+            inset: 50% auto auto 0;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center {
+            inset: 50% auto auto 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center-end,
+        body.swal2-toast-shown .swal2-container.swal2-center-right {
+            inset: 50% 0 auto auto;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom-start,
+        body.swal2-toast-shown .swal2-container.swal2-bottom-left {
+            inset: auto auto 0 0
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom {
+            inset: auto auto 0 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom-end,
+        body.swal2-toast-shown .swal2-container.swal2-bottom-right {
+            inset: auto 0 0 auto
+        }
+
+        @media print {
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) {
+                overflow-y: scroll !important
+            }
+
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown)>[aria-hidden=true] {
+                display: none
+            }
+
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) .swal2-container {
+                position: static !important
+            }
+        }
+
+        div:where(.swal2-container) {
+            display: grid;
+            position: fixed;
+            z-index: 1060;
+            inset: 0;
+            box-sizing: border-box;
+            grid-template-areas: "top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";
+            grid-template-rows: minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);
+            height: 100%;
+            padding: var(--swal2-container-padding);
+            overflow-x: hidden;
+            transition: var(--swal2-backdrop-transition);
+            -webkit-overflow-scrolling: touch
+        }
+
+        div:where(.swal2-container).swal2-backdrop-show,
+        div:where(.swal2-container).swal2-noanimation {
+            background: var(--swal2-backdrop)
+        }
+
+        div:where(.swal2-container).swal2-backdrop-hide {
+            background: rgba(0, 0, 0, 0) !important
+        }
+
+        div:where(.swal2-container).swal2-top-start,
+        div:where(.swal2-container).swal2-center-start,
+        div:where(.swal2-container).swal2-bottom-start {
+            grid-template-columns: minmax(0, 1fr) auto auto
+        }
+
+        div:where(.swal2-container).swal2-top,
+        div:where(.swal2-container).swal2-center,
+        div:where(.swal2-container).swal2-bottom {
+            grid-template-columns: auto minmax(0, 1fr) auto
+        }
+
+        div:where(.swal2-container).swal2-top-end,
+        div:where(.swal2-container).swal2-center-end,
+        div:where(.swal2-container).swal2-bottom-end {
+            grid-template-columns: auto auto minmax(0, 1fr)
+        }
+
+        div:where(.swal2-container).swal2-top-start>.swal2-popup {
+            align-self: start
+        }
+
+        div:where(.swal2-container).swal2-top>.swal2-popup {
+            grid-column: 2;
+            place-self: start center
+        }
+
+        div:where(.swal2-container).swal2-top-end>.swal2-popup,
+        div:where(.swal2-container).swal2-top-right>.swal2-popup {
+            grid-column: 3;
+            place-self: start end
+        }
+
+        div:where(.swal2-container).swal2-center-start>.swal2-popup,
+        div:where(.swal2-container).swal2-center-left>.swal2-popup {
+            grid-row: 2;
+            align-self: center
+        }
+
+        div:where(.swal2-container).swal2-center>.swal2-popup {
+            grid-column: 2;
+            grid-row: 2;
+            place-self: center center
+        }
+
+        div:where(.swal2-container).swal2-center-end>.swal2-popup,
+        div:where(.swal2-container).swal2-center-right>.swal2-popup {
+            grid-column: 3;
+            grid-row: 2;
+            place-self: center end
+        }
+
+        div:where(.swal2-container).swal2-bottom-start>.swal2-popup,
+        div:where(.swal2-container).swal2-bottom-left>.swal2-popup {
+            grid-column: 1;
+            grid-row: 3;
+            align-self: end
+        }
+
+        div:where(.swal2-container).swal2-bottom>.swal2-popup {
+            grid-column: 2;
+            grid-row: 3;
+            place-self: end center
+        }
+
+        div:where(.swal2-container).swal2-bottom-end>.swal2-popup,
+        div:where(.swal2-container).swal2-bottom-right>.swal2-popup {
+            grid-column: 3;
+            grid-row: 3;
+            place-self: end end
+        }
+
+        div:where(.swal2-container).swal2-grow-row>.swal2-popup,
+        div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup {
+            grid-column: 1/4;
+            width: 100%
+        }
+
+        div:where(.swal2-container).swal2-grow-column>.swal2-popup,
+        div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup {
+            grid-row: 1/4;
+            align-self: stretch
+        }
+
+        div:where(.swal2-container).swal2-no-transition {
+            transition: none !important
+        }
+
+        div:where(.swal2-container)[popover] {
+            width: auto;
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup) {
+            display: none;
+            position: relative;
+            box-sizing: border-box;
+            grid-template-columns: minmax(0, 100%);
+            width: var(--swal2-width);
+            max-width: 100%;
+            padding: var(--swal2-padding);
+            border: var(--swal2-border);
+            border-radius: var(--swal2-border-radius);
+            background: var(--swal2-background);
+            color: var(--swal2-color);
+            font-family: inherit;
+            font-size: 1rem;
+            container-name: swal2-popup
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup):focus {
+            outline: none
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-loading {
+            overflow-y: hidden
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable {
+            cursor: grab
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable div:where(.swal2-icon) {
+            cursor: grab
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging {
+            cursor: grabbing
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging div:where(.swal2-icon) {
+            cursor: grabbing
+        }
+
+        div:where(.swal2-container) h2:where(.swal2-title) {
+            position: relative;
+            max-width: 100%;
+            margin: 0;
+            padding: var(--swal2-title-padding);
+            color: inherit;
+            font-size: 1.875em;
+            font-weight: 600;
+            text-align: center;
+            text-transform: none;
+            word-wrap: break-word;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) div:where(.swal2-actions) {
+            display: flex;
+            z-index: 1;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            margin: 1.25em auto 0;
+            padding: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-loader) {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.2em;
+            height: 2.2em;
+            margin: 0 1.875em;
+            animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
+            border-width: .25em;
+            border-style: solid;
+            border-radius: 100%;
+            border-color: #2778c4 rgba(0, 0, 0, 0) #2778c4 rgba(0, 0, 0, 0)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled) {
+            margin: .3125em;
+            padding: .625em 1.1em;
+            transition: var(--swal2-button-transition);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0);
+            font-weight: 500
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):not([disabled]) {
+            cursor: pointer
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+            border: var(--swal2-confirm-button-border);
+            border-radius: var(--swal2-confirm-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-confirm-button-background-color);
+            color: var(--swal2-confirm-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):hover {
+            background-color: color-mix(in srgb, var(--swal2-confirm-button-background-color), black 10%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):active {
+            background-color: color-mix(in srgb, var(--swal2-confirm-button-background-color), black 20%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny) {
+            border: var(--swal2-deny-button-border);
+            border-radius: var(--swal2-deny-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-deny-button-background-color);
+            color: var(--swal2-deny-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny):hover {
+            background-color: color-mix(in srgb, var(--swal2-deny-button-background-color), black 10%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny):active {
+            background-color: color-mix(in srgb, var(--swal2-deny-button-background-color), black 20%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel) {
+            border: var(--swal2-cancel-button-border);
+            border-radius: var(--swal2-cancel-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-cancel-button-background-color);
+            color: var(--swal2-cancel-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel):hover {
+            background-color: color-mix(in srgb, var(--swal2-cancel-button-background-color), black 10%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel):active {
+            background-color: color-mix(in srgb, var(--swal2-cancel-button-background-color), black 20%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):focus-visible {
+            outline: none;
+            box-shadow: var(--swal2-action-button-outline)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled)[disabled]:not(.swal2-loading) {
+            opacity: .4
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner {
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-footer) {
+            margin: 1em 0 0;
+            padding: 1em 1em 0;
+            border-top: 1px solid var(--swal2-footer-border-color);
+            color: inherit;
+            font-size: 1em;
+            text-align: center;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) .swal2-timer-progress-bar-container {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            grid-column: auto !important;
+            overflow: hidden;
+            border-bottom-right-radius: var(--swal2-border-radius);
+            border-bottom-left-radius: var(--swal2-border-radius)
+        }
+
+        div:where(.swal2-container) div:where(.swal2-timer-progress-bar) {
+            width: 100%;
+            height: .25em;
+            background: rgba(0, 0, 0, .2)
+        }
+
+        div:where(.swal2-container) img:where(.swal2-image) {
+            max-width: 100%;
+            margin: 2em auto 1em;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close) {
+            position: var(--swal2-close-button-position);
+            inset: var(--swal2-close-button-inset);
+            z-index: 2;
+            align-items: center;
+            justify-content: center;
+            width: 1.2em;
+            height: 1.2em;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: -1.2em;
+            padding: 0;
+            overflow: hidden;
+            transition: var(--swal2-close-button-transition);
+            border: none;
+            border-radius: var(--swal2-border-radius);
+            outline: var(--swal2-close-button-outline);
+            background: rgba(0, 0, 0, 0);
+            color: var(--swal2-close-button-color);
+            font-family: monospace;
+            font-size: var(--swal2-close-button-font-size);
+            cursor: pointer;
+            justify-self: end
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close):hover {
+            transform: var(--swal2-close-button-hover-transform);
+            background: rgba(0, 0, 0, 0);
+            color: #f27474
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close):focus-visible {
+            outline: none;
+            box-shadow: var(--swal2-close-button-focus-box-shadow)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner {
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-html-container) {
+            z-index: 1;
+            justify-content: center;
+            margin: 0;
+            padding: var(--swal2-html-container-padding);
+            overflow: auto;
+            color: inherit;
+            font-size: 1.125em;
+            font-weight: normal;
+            line-height: normal;
+            text-align: center;
+            word-wrap: break-word;
+            word-break: break-word;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input),
+        div:where(.swal2-container) input:where(.swal2-file),
+        div:where(.swal2-container) textarea:where(.swal2-textarea),
+        div:where(.swal2-container) select:where(.swal2-select),
+        div:where(.swal2-container) div:where(.swal2-radio),
+        div:where(.swal2-container) label:where(.swal2-checkbox) {
+            margin: 1em 2em 3px
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input),
+        div:where(.swal2-container) input:where(.swal2-file),
+        div:where(.swal2-container) textarea:where(.swal2-textarea) {
+            box-sizing: border-box;
+            width: auto;
+            transition: var(--swal2-input-transition);
+            border: 1px solid #d9d9d9;
+            border-radius: var(--swal2-input-border-radius);
+            background: var(--swal2-input-background);
+            box-shadow: var(--swal2-input-box-shadow);
+            color: inherit;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,
+        div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,
+        div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror {
+            border-color: #f27474 !important;
+            box-shadow: 0 0 2px #f27474 !important
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input):focus,
+        div:where(.swal2-container) input:where(.swal2-file):focus,
+        div:where(.swal2-container) textarea:where(.swal2-textarea):focus {
+            border: 1px solid #b4dbed;
+            outline: none;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .06), 0 0 0 3px rgba(100, 150, 200, .5)
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input)::placeholder,
+        div:where(.swal2-container) input:where(.swal2-file)::placeholder,
+        div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder {
+            color: #ccc
+        }
+
+        div:where(.swal2-container) .swal2-range {
+            margin: 1em 2em 3px;
+            background: var(--swal2-background)
+        }
+
+        div:where(.swal2-container) .swal2-range input {
+            width: 80%
+        }
+
+        div:where(.swal2-container) .swal2-range output {
+            width: 20%;
+            color: inherit;
+            font-weight: 600;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-range input,
+        div:where(.swal2-container) .swal2-range output {
+            height: 2.625em;
+            padding: 0;
+            font-size: 1.125em;
+            line-height: 2.625em
+        }
+
+        div:where(.swal2-container) .swal2-input {
+            height: 2.625em;
+            padding: 0 .75em
+        }
+
+        div:where(.swal2-container) .swal2-file {
+            width: 75%;
+            margin-right: auto;
+            margin-left: auto;
+            background: var(--swal2-input-background);
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-textarea {
+            height: 6.75em;
+            padding: .75em
+        }
+
+        div:where(.swal2-container) .swal2-select {
+            min-width: 50%;
+            max-width: 100%;
+            padding: .375em .625em;
+            background: var(--swal2-input-background);
+            color: inherit;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-radio,
+        div:where(.swal2-container) .swal2-checkbox {
+            align-items: center;
+            justify-content: center;
+            background: var(--swal2-background);
+            color: inherit
+        }
+
+        div:where(.swal2-container) .swal2-radio label,
+        div:where(.swal2-container) .swal2-checkbox label {
+            margin: 0 .6em;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-radio input,
+        div:where(.swal2-container) .swal2-checkbox input {
+            flex-shrink: 0;
+            margin: 0 .4em
+        }
+
+        div:where(.swal2-container) label:where(.swal2-input-label) {
+            display: flex;
+            justify-content: center;
+            margin: 1em auto 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-validation-message) {
+            align-items: center;
+            justify-content: center;
+            margin: 1em 0 0;
+            padding: .625em;
+            overflow: hidden;
+            background: var(--swal2-validation-message-background);
+            color: var(--swal2-validation-message-color);
+            font-size: 1em;
+            font-weight: 300
+        }
+
+        div:where(.swal2-container) div:where(.swal2-validation-message)::before {
+            content: "!";
+            display: inline-block;
+            width: 1.5em;
+            min-width: 1.5em;
+            height: 1.5em;
+            margin: 0 .625em;
+            border-radius: 50%;
+            background-color: #f27474;
+            color: #fff;
+            font-weight: 600;
+            line-height: 1.5em;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps {
+            flex-wrap: wrap;
+            align-items: center;
+            max-width: 100%;
+            margin: 1.25em auto;
+            padding: 0;
+            background: rgba(0, 0, 0, 0);
+            font-weight: 600
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps li {
+            display: inline-block;
+            position: relative
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step {
+            z-index: 20;
+            flex-shrink: 0;
+            width: 2em;
+            height: 2em;
+            border-radius: 2em;
+            background: #2778c4;
+            color: #fff;
+            line-height: 2em;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step {
+            background: #2778c4
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step {
+            background: var(--swal2-progress-step-background);
+            color: #fff
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line {
+            background: var(--swal2-progress-step-background)
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line {
+            z-index: 10;
+            flex-shrink: 0;
+            width: 2.5em;
+            height: .4em;
+            margin: 0 -1px;
+            background: #2778c4
+        }
+
+        div:where(.swal2-icon) {
+            position: relative;
+            box-sizing: content-box;
+            justify-content: center;
+            width: 5em;
+            height: 5em;
+            margin: 2.5em auto .6em;
+            zoom: var(--swal2-icon-zoom);
+            border: .25em solid rgba(0, 0, 0, 0);
+            border-radius: 50%;
+            border-color: #000;
+            font-family: inherit;
+            line-height: 5em;
+            cursor: default;
+            user-select: none
+        }
+
+        div:where(.swal2-icon) .swal2-icon-content {
+            display: flex;
+            align-items: center;
+            font-size: 3.75em
+        }
+
+        div:where(.swal2-icon).swal2-error {
+            border-color: #f27474;
+            color: #f27474
+        }
+
+        div:where(.swal2-icon).swal2-error .swal2-x-mark {
+            position: relative;
+            flex-grow: 1
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
+            display: block;
+            position: absolute;
+            top: 2.3125em;
+            width: 2.9375em;
+            height: .3125em;
+            border-radius: .125em;
+            background-color: #f27474
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left] {
+            left: 1.0625em;
+            transform: rotate(45deg)
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right] {
+            right: 1em;
+            transform: rotate(-45deg)
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-error.swal2-icon-show {
+                animation: swal2-animate-error-icon .5s
+            }
+
+            div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark {
+                animation: swal2-animate-error-x-mark .5s
+            }
+        }
+
+        div:where(.swal2-icon).swal2-warning {
+            border-color: #f8bb86;
+            color: #f8bb86
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-warning.swal2-icon-show {
+                animation: swal2-animate-error-icon .5s
+            }
+
+            div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content {
+                animation: swal2-animate-i-mark .5s
+            }
+        }
+
+        div:where(.swal2-icon).swal2-info {
+            border-color: #3fc3ee;
+            color: #3fc3ee
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-info.swal2-icon-show {
+                animation: swal2-animate-error-icon .5s
+            }
+
+            div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content {
+                animation: swal2-animate-i-mark .8s
+            }
+        }
+
+        div:where(.swal2-icon).swal2-question {
+            border-color: #87adbd;
+            color: #87adbd
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-question.swal2-icon-show {
+                animation: swal2-animate-error-icon .5s
+            }
+
+            div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content {
+                animation: swal2-animate-question-mark .8s
+            }
+        }
+
+        div:where(.swal2-icon).swal2-success {
+            border-color: #a5dc86;
+            color: #a5dc86
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line] {
+            position: absolute;
+            width: 3.75em;
+            height: 7.5em;
+            border-radius: 50%
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left] {
+            top: -0.4375em;
+            left: -2.0635em;
+            transform: rotate(-45deg);
+            transform-origin: 3.75em 3.75em;
+            border-radius: 7.5em 0 0 7.5em
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right] {
+            top: -0.6875em;
+            left: 1.875em;
+            transform: rotate(-45deg);
+            transform-origin: 0 3.75em;
+            border-radius: 0 7.5em 7.5em 0
+        }
+
+        div:where(.swal2-icon).swal2-success .swal2-success-ring {
+            position: absolute;
+            z-index: 2;
+            top: -0.25em;
+            left: -0.25em;
+            box-sizing: content-box;
+            width: 100%;
+            height: 100%;
+            border: .25em solid rgba(165, 220, 134, .3);
+            border-radius: 50%
+        }
+
+        div:where(.swal2-icon).swal2-success .swal2-success-fix {
+            position: absolute;
+            z-index: 1;
+            top: .5em;
+            left: 1.625em;
+            width: .4375em;
+            height: 5.625em;
+            transform: rotate(-45deg)
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+            display: block;
+            position: absolute;
+            z-index: 2;
+            height: .3125em;
+            border-radius: .125em;
+            background-color: #a5dc86
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip] {
+            top: 2.875em;
+            left: .8125em;
+            width: 1.5625em;
+            transform: rotate(45deg)
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long] {
+            top: 2.375em;
+            right: .5em;
+            width: 2.9375em;
+            transform: rotate(-45deg)
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip {
+                animation: swal2-animate-success-line-tip .75s
+            }
+
+            div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long {
+                animation: swal2-animate-success-line-long .75s
+            }
+
+            div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right {
+                animation: swal2-rotate-success-circular-line 4.25s ease-in
+            }
+        }
+
+        [class^=swal2] {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+        }
+
+        .swal2-show {
+            animation: var(--swal2-show-animation)
+        }
+
+        .swal2-hide {
+            animation: var(--swal2-hide-animation)
+        }
+
+        .swal2-noanimation {
+            transition: none
+        }
+
+        .swal2-scrollbar-measure {
+            position: absolute;
+            top: -9999px;
+            width: 50px;
+            height: 50px;
+            overflow: scroll
+        }
+
+        .swal2-rtl .swal2-close {
+            margin-right: initial;
+            margin-left: 0
+        }
+
+        .swal2-rtl .swal2-timer-progress-bar {
+            right: 0;
+            left: auto
+        }
+
+        .swal2-toast {
+            box-sizing: border-box;
+            grid-column: 1/4 !important;
+            grid-row: 1/4 !important;
+            grid-template-columns: min-content auto min-content;
+            padding: 1em;
+            overflow-y: hidden;
+            border: var(--swal2-toast-border);
+            background: var(--swal2-background);
+            box-shadow: var(--swal2-toast-box-shadow);
+            pointer-events: all
+        }
+
+        .swal2-toast>* {
+            grid-column: 2
+        }
+
+        .swal2-toast h2:where(.swal2-title) {
+            margin: .5em 1em;
+            padding: 0;
+            font-size: 1em;
+            text-align: initial
+        }
+
+        .swal2-toast .swal2-loading {
+            justify-content: center
+        }
+
+        .swal2-toast input:where(.swal2-input) {
+            height: 2em;
+            margin: .5em;
+            font-size: 1em
+        }
+
+        .swal2-toast .swal2-validation-message {
+            font-size: 1em
+        }
+
+        .swal2-toast div:where(.swal2-footer) {
+            margin: .5em 0 0;
+            padding: .5em 0 0;
+            font-size: .8em
+        }
+
+        .swal2-toast button:where(.swal2-close) {
+            grid-column: 3/3;
+            grid-row: 1/99;
+            align-self: center;
+            width: .8em;
+            height: .8em;
+            margin: 0;
+            font-size: 2em
+        }
+
+        .swal2-toast div:where(.swal2-html-container) {
+            margin: .5em 1em;
+            padding: 0;
+            overflow: initial;
+            font-size: 1em;
+            text-align: initial
+        }
+
+        .swal2-toast div:where(.swal2-html-container):empty {
+            padding: 0
+        }
+
+        .swal2-toast .swal2-loader {
+            grid-column: 1;
+            grid-row: 1/99;
+            align-self: center;
+            width: 2em;
+            height: 2em;
+            margin: .25em
+        }
+
+        .swal2-toast .swal2-icon {
+            grid-column: 1;
+            grid-row: 1/99;
+            align-self: center;
+            width: 2em;
+            min-width: 2em;
+            height: 2em;
+            margin: 0 .5em 0 0
+        }
+
+        .swal2-toast .swal2-icon .swal2-icon-content {
+            display: flex;
+            align-items: center;
+            font-size: 1.8em;
+            font-weight: bold
+        }
+
+        .swal2-toast .swal2-icon.swal2-success .swal2-success-ring {
+            width: 2em;
+            height: 2em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+            top: .875em;
+            width: 1.375em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left] {
+            left: .3125em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right] {
+            right: .3125em
+        }
+
+        .swal2-toast div:where(.swal2-actions) {
+            justify-content: flex-start;
+            height: auto;
+            margin: 0;
+            margin-top: .5em;
+            padding: 0 .5em
+        }
+
+        .swal2-toast button:where(.swal2-styled) {
+            margin: .25em .5em;
+            padding: .4em .6em;
+            font-size: 1em
+        }
+
+        .swal2-toast .swal2-success {
+            border-color: #a5dc86
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line] {
+            position: absolute;
+            width: 1.6em;
+            height: 3em;
+            border-radius: 50%
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left] {
+            top: -0.8em;
+            left: -0.5em;
+            transform: rotate(-45deg);
+            transform-origin: 2em 2em;
+            border-radius: 4em 0 0 4em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right] {
+            top: -0.25em;
+            left: .9375em;
+            transform-origin: 0 1.5em;
+            border-radius: 0 4em 4em 0
+        }
+
+        .swal2-toast .swal2-success .swal2-success-ring {
+            width: 2em;
+            height: 2em
+        }
+
+        .swal2-toast .swal2-success .swal2-success-fix {
+            top: 0;
+            left: .4375em;
+            width: .4375em;
+            height: 2.6875em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line] {
+            height: .3125em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line][class$=tip] {
+            top: 1.125em;
+            left: .1875em;
+            width: .75em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line][class$=long] {
+            top: .9375em;
+            right: .1875em;
+            width: 1.375em
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            .swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip {
+                animation: swal2-toast-animate-success-line-tip .75s
+            }
+
+            .swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long {
+                animation: swal2-toast-animate-success-line-long .75s
+            }
+        }
+
+        .swal2-toast.swal2-show {
+            animation: var(--swal2-toast-show-animation)
+        }
+
+        .swal2-toast.swal2-hide {
+            animation: var(--swal2-toast-hide-animation)
+        }
+
+        @keyframes swal2-show {
+            0% {
+                transform: scale(0.7)
+            }
+
+            45% {
+                transform: scale(1.05)
+            }
+
+            80% {
+                transform: scale(0.95)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @keyframes swal2-hide {
+            0% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            100% {
+                transform: scale(0.5);
+                opacity: 0
+            }
+        }
+
+        @keyframes swal2-animate-success-line-tip {
+            0% {
+                top: 1.1875em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: 1.0625em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: 2.1875em;
+                left: -0.375em;
+                width: 3.125em
+            }
+
+            84% {
+                top: 3em;
+                left: 1.3125em;
+                width: 1.0625em
+            }
+
+            100% {
+                top: 2.8125em;
+                left: .8125em;
+                width: 1.5625em
+            }
+        }
+
+        @keyframes swal2-animate-success-line-long {
+            0% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            65% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            84% {
+                top: 2.1875em;
+                right: 0;
+                width: 3.4375em
+            }
+
+            100% {
+                top: 2.375em;
+                right: .5em;
+                width: 2.9375em
+            }
+        }
+
+        @keyframes swal2-rotate-success-circular-line {
+            0% {
+                transform: rotate(-45deg)
+            }
+
+            5% {
+                transform: rotate(-45deg)
+            }
+
+            12% {
+                transform: rotate(-405deg)
+            }
+
+            100% {
+                transform: rotate(-405deg)
+            }
+        }
+
+        @keyframes swal2-animate-error-x-mark {
+            0% {
+                margin-top: 1.625em;
+                transform: scale(0.4);
+                opacity: 0
+            }
+
+            50% {
+                margin-top: 1.625em;
+                transform: scale(0.4);
+                opacity: 0
+            }
+
+            80% {
+                margin-top: -0.375em;
+                transform: scale(1.15)
+            }
+
+            100% {
+                margin-top: 0;
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-animate-error-icon {
+            0% {
+                transform: rotateX(100deg);
+                opacity: 0
+            }
+
+            100% {
+                transform: rotateX(0deg);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-rotate-loading {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes swal2-animate-question-mark {
+            0% {
+                transform: rotateY(-360deg)
+            }
+
+            100% {
+                transform: rotateY(0)
+            }
+        }
+
+        @keyframes swal2-animate-i-mark {
+            0% {
+                transform: rotateZ(45deg);
+                opacity: 0
+            }
+
+            25% {
+                transform: rotateZ(-25deg);
+                opacity: .4
+            }
+
+            50% {
+                transform: rotateZ(15deg);
+                opacity: .8
+            }
+
+            75% {
+                transform: rotateZ(-5deg);
+                opacity: 1
+            }
+
+            100% {
+                transform: rotateX(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-toast-show {
+            0% {
+                transform: translateY(-0.625em) rotateZ(2deg)
+            }
+
+            33% {
+                transform: translateY(0) rotateZ(-2deg)
+            }
+
+            66% {
+                transform: translateY(0.3125em) rotateZ(2deg)
+            }
+
+            100% {
+                transform: translateY(0) rotateZ(0deg)
+            }
+        }
+
+        @keyframes swal2-toast-hide {
+            100% {
+                transform: rotateZ(1deg);
+                opacity: 0
+            }
+        }
+
+        @keyframes swal2-toast-animate-success-line-tip {
+            0% {
+                top: .5625em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: .125em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: .625em;
+                left: -0.25em;
+                width: 1.625em
+            }
+
+            84% {
+                top: 1.0625em;
+                left: .75em;
+                width: .5em
+            }
+
+            100% {
+                top: 1.125em;
+                left: .1875em;
+                width: .75em
+            }
+        }
+
+        @keyframes swal2-toast-animate-success-line-long {
+            0% {
+                top: 1.625em;
+                right: 1.375em;
+                width: 0
+            }
+
+            65% {
+                top: 1.25em;
+                right: .9375em;
+                width: 0
+            }
+
+            84% {
+                top: .9375em;
+                right: 0;
+                width: 1.125em
+            }
+
+            100% {
+                top: .9375em;
+                right: .1875em;
+                width: 1.375em
+            }
+        }
+    </style>
+    <script>
+        window.onscroll = function () {
+            const btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            const scrollStep = -window.scrollY / 40;
+            const scrollInterval = setInterval(function () {
+                if (window.scrollY !== 0) {
+                    window.scrollBy(0, scrollStep);
+                } else {
+                    clearInterval(scrollInterval);
+                }
+            }, 10);
+        }
+        function gtag() { dataLayer.push(arguments) } window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "G-VCJMEK8E4V")
+    </script>
+    <style>
+        @media (max-width: 500px) {
+            .hiddenmb {
+                display: none;
+            }
+        }
+
+        .info-user {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .info-user span {
+            color: green;
+        }
+
+        .noti-warn {
+            text-align: left;
+            font-style: italic;
+        }
+
+        .dropdown-fullname {
+            position: relative;
+        }
+
+        .dropdown-content {
+            max-width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-content a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f0f8ff;
+            /* hoặc màu xanh nhạt */
+        }
+
+        .dropdown-content img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            flex-shrink: 0;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+
+        #fullnameInput {
+            padding-right: 40px;
+        }
+
+        #bankDropdown {
+            display: none;
+        }
+
+        .swal2-confirm,
+        .swal2-confirm:focus,
+        .swal2-confirm:hover {
+            background-color: #141ed2;
+        }
+
+        .banner-img {
+            width: 100vw;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        img.banner-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .swiper {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .swiper-slide {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .swiper-pagination-bullet {
+            width: 30px !important;
+            height: 2px !important;
+            background-color: rgba(255, 255, 255, 0.4) !important;
+            border-radius: 1px !important;
+            margin: 0 3px !important;
+            opacity: 1 !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #ffffff !important;
+            width: 40px !important;
+            height: 2px !important;
+        }
+
+        .swiper-pagination {
+            bottom: 15px !important;
+        }
+
+        .swiper-wrapper {
+            width: 100%;
+        }
+
+        @media (min-width: 50px) and (max-width: 320px) {
+            .main-title {
+                font-size: 14px;
+                letter-spacing: 0.3px;
+            }
+
+            .header-box {
+                padding: 8px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 321px) and (max-width: 480px) {
+            .main-title {
+                font-size: 16px;
+                letter-spacing: 0.5px;
+            }
+
+            .header-box {
+                padding: 10px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 16px;
+                letter-spacing: 0.5px;
+            }
+
+            .header-box {
+                padding: 10px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 767px) {
+            .main-title {
+                font-size: 18px;
+            }
+
+            .header-box {
+                padding: 12px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .main-title {
+                font-size: 22px;
+            }
+
+            .header-box {
+                padding: 15px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1366px) {
+            .main-title {
+                font-size: 26px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 1367px) {
+            .main-title {
+                font-size: 28px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        .custom-header {
+            background-color: #141ed2;
+            height: 30px;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .page-main {
+            background-color: #f1f1f1;
+        }
+
+        .footer {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body class="" style="padding-right: 0px;">
+    <header>
+        <div class="custom-header"></div>
+    </header>
+    <div id="global-loader" style="display: none;">
+    </div>
+    <div class="page">
+        <div class="page-main">
+            <div class="banner-img">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="./image/banner-2.jpg" alt="Banner 1"></div>
+                        <div class="swiper-slide"><img src="./image/banner-1.png" alt="Banner 2"></div>
+                        <div class="swiper-slide"><img src="./MBbank/1x.jpg" alt="Banner 3"></div>
+                        <div class="swiper-slide"><img src="./MBbank/2x.jpg" alt="Banner 4"></div>
+                        <div class="swiper-slide"><img src="./MBbank/3x.png" alt="Banner 5"></div>
+                        <div class="swiper-slide"><img src="./MBbank/4x.jpg" alt="Banner 6"></div>
+                        <div class="swiper-slide"><img src="./MBbank/5x.jpg" alt="Banner 7"></div>
+                        <div class="swiper-slide"><img src="./MBbank/6x.jpg" alt="Banner 8"></div>
+                        <div class="swiper-slide"><img src="./MBbank/7x.jpg" alt="Banner 9"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+                <script>
+                    var swiper = new Swiper(".swiper", {
+                        loop: true,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                        pagination: {
+                            el: ".swiper-pagination",
+                            clickable: true,
+                        },
+                    });
+
+                </script>
+                <main class="container">
+                    <div class="mainbar">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <div class="content text-center">
+                                <div class="py-3"
+                                    data-text="Hệ thống game MB Bank Kiếm Tiền Tự động | Uy tín, giao dịch tự động 24/7"
+                                    id="mainTitle">
+                                    <div class="py-3"
+                                        data-text="Hệ thống game MB Bank Kiếm Tiền Tự động | Uy tín, giao dịch tự động 24/7"
+                                        id="mainTitle">
+                                        <h1 class="font-weight-bold text-primary h2 cursor rainbow-text">
+                                            HỆ THỐNG KIẾM TIỀN ONLINE THU NHẬP TỰ ĐỘNG
+                                        </h1>
+                                        <p class="text-danger noti-warn">
+                                            Lưu ý: Bạn cần có tài khoản ngân hàng để nhận tiền
+                                            thưởng khi chơi game.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <div class="content text-center">
+                                <h3>
+                                    Nhập Số Tài Khoản Ngân Hàng Để Chơi Game
+                                </h3>
+                                <div class="form-group">
+                                    <input class="form-control" id="numberAccount" name="numberAccount"
+                                        placeholder="Nhập Số Tài Khoản Ngân Hàng" required="" type="text" />
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group dropdown-fullname" style="position: relative;">
+                                        <input class="form-control" name="fullname" id="fullnameInput"
+                                            placeholder="Vui Lòng Chọn Ngân Hàng Thụ Hưởng" type="text"
+                                            style="padding-right: 40px;" />
+                                        <button type="button" id="clearInput" class="btn btn-sm btn-primary"
+                                            style="position: absolute; right: 10px; top: 7px; z-index: 1100; display: none;">X</button>
+                                        <div class="dropdown-content" id="bankDropdown">
+                                            <a href="#" data-name="ABBank - Ngân Hàng TMCP An Bình"><img
+                                                    src="./image/ABBANK - Ngân Hàng TMCP An Bình.png" alt="">
+                                                ABBank - Ngân Hàng TMCP An Bình</a>
+                                            <a href="#" data-name="ACB - Ngân Hàng TMCP Á Châu"><img
+                                                    src="./image/ACB - Ngân Hàng TMCP Á Châu.png" alt="">
+                                                ACB - Ngân Hàng TMCP Á Châu</a>
+                                            <a href="#" data-name="BABank - Ngân Hàng TMCP Bắc Á"><img
+                                                    src="./image/BAB - Ngân Hàng TMCP Bắc Á.jpg" alt="">
+                                                BABank - Ngân Hàng TMCP Bắc Á</a>
+                                            <a href="#"
+                                                data-name="BIDV - Ngân Hàng TMCP Đầu Tư Và Phát Triển Việt Nam"><img
+                                                    src="./image/BIDV - Ngân Hàng TMCP Đầu Tư Và Phát Triển Việt Nam.png"
+                                                    alt="">
+                                                BIDV - Ngân Hàng TMCP Đầu Tư Và Phát Triển Việt Nam</a>
+                                            <a href="#"
+                                                data-name="BNP HCM - Ngân Hàng BNP Paribas - Chi Nhánh Thành Phố Hồ Chí Minh"><img
+                                                    src="./image/BNP HCM - Ngân Hàng BNP Paribas - Chi Nhánh Thành Phố Hồ Chí Minh.jpg"
+                                                    alt="">
+                                                BNP HCM - Ngân Hàng BNP Paribas - Chi Nhánh Thành Phố Hồ Chí
+                                                Minh</a>
+                                            <a href="#"
+                                                data-name="BNP HN - Ngân Hàng BNP Paribas - Chi Nhánh Hà Nội"><img
+                                                    src="./image/BNP HN - Ngân Hàng BNP Paribas - Chi Nhánh Hà Nội.jpg"
+                                                    alt="">
+                                                BNP HN - Ngân Hàng BNP Paribas - Chi Nhánh Hà Nội</a>
+                                            <a href="#" data-name="BVB - Ngân Hàng TMCP Bảo Việt"><img
+                                                    src="./image/BVB - Ngân Hàng TMCP Bảo Việt.jpg" alt="">
+                                                BVB - Ngân Hàng TMCP Bảo Việt</a>
+                                            <a href="#"
+                                                data-name="CAKE - TMCP Việt Nam Thịnh Vượng - Ngân Hàng Số CAKE By VPBANK"><img
+                                                    src="./image/CAKE - TMCP Việt Nam Thịnh Vượng - Ngân Hàng Số CAKE By VPBANK.png"
+                                                    alt="">
+                                                CAKE - TMCP Việt Nam Thịnh Vượng - Ngân Hàng Số CAKE By VPBANK</a>
+                                            <a href="#"
+                                                data-name="CBBank - Ngân Hàng Thương Mại TNHH MTV Xây Dựng Việt Nam"><img
+                                                    src="./image/CBB - Ngân Hàng Thương Mại TNHH MTV Xây Dựng Việt Nam.jpg"
+                                                    alt="">
+                                                CBBank - Ngân Hàng Thương Mại TNHH MTV Xây Dựng Việt Nam</a>
+                                            <a href="#"
+                                                data-name="CIMB - Ngân Hàng Thương Mại TNHH MTV CIMB Việt Nam"><img
+                                                    src="./image/CIMB - Ngân Hàng Thương Mại TNHH MTV CIMB Việt Nam.jpg"
+                                                    alt="">
+                                                CIMB - Ngân Hàng Thương Mại TNHH MTV CIMB Việt Nam</a>
+                                            <a href="#"
+                                                data-name="CiTiBank - Ngân Hàng Citibank, N.A. - Chi Nhánh Hà Nội"><img
+                                                    src="./image/CITIBANK - Ngân Hàng Citibank, N.A. - Chi Nhánh Hà Nội.png"
+                                                    alt="">
+                                                CiTiBank - Ngân Hàng Citibank, N.A. - Chi Nhánh Hà Nội</a>
+                                            <a href="#" data-name="COOPBANK - Ngân Hàng Hợp Tác Xã Việt Nam"><img
+                                                    src="./image/COOPBANK - Ngân Hàng Hợp Tác Xã Việt Nam.png" alt="">
+                                                COOPBANK - Ngân Hàng Hợp Tác Xã Việt Nam</a>
+                                            <a href="#"
+                                                data-name="CUBHCM - Ngân Hàng Cathay United Bank - Chi Nhánh Hồ Chí Minh"><img
+                                                    src="./image/CUBHCM - Ngân Hàng Cathay United Bank - Chi Nhánh Hồ Chí Minh.png"
+                                                    alt="">
+                                                CUBHCM - Ngân Hàng Cathay United Bank - Chi Nhánh Hồ Chí Minh</a>
+                                            <a href="#" data-name="DBS - DBS Bank Ltd - Chi Nhánh Hồ Chí Minh"><img
+                                                    src="./image/DBS - DBS Bank Ltd - Chi Nhánh Hồ Chí Minh.png" alt="">
+                                                DBS - DBS Bank Ltd - Chi Nhánh Hồ Chí Minh</a>
+                                            <a href="#" data-name=" DOBank - Ngân Hàng TMCP Đông Á"><img
+                                                    src="./image/DOB - Ngân Hàng TMCP Đông Á.jpg" alt="">
+                                                DOBank - Ngân Hàng TMCP Đông Á</a>
+                                            <a href="#"
+                                                data-name="Eximbank - Ngân Hàng TMCP Xuất Nhập Khẩu Việt Nam"><img
+                                                    src="./image/EIB - Ngân Hàng TMCP Xuất Nhập Khẩu Việt Nam.jpg"
+                                                    alt="">
+                                                Eximbank - Ngân Hàng TMCP Xuất Nhập Khẩu Việt Nam</a>
+                                            <a href="#"
+                                                data-name="GPBank - Ngân Hàng Thương Mại TNHH MTV Dầu Khí Toàn Cầu"><img
+                                                    src="./image/GPB - Ngân Hàng Thương Mại TNHH MTV Dầu Khí Toàn Cầu.jpg"
+                                                    alt="">
+                                                GPBank - Ngân Hàng Thương Mại TNHH MTV Dầu Khí Toàn Cầu</a>
+                                            <a href="#"
+                                                data-name="HDBank - Ngân Hàng TMCP Phát Triển Thành Phố Hồ Chí Minh"><img
+                                                    src="./image/HDB - Ngân Hàng TMCP Phát Triển Thành Phố Hồ Chí Minh.webp"
+                                                    alt="">
+                                                HDBank - Ngân Hàng TMCP Phát Triển Thành Phố Hồ Chí Minh</a>
+                                            <a href="#" data-name="HLBVN - Ngân Hàng TNHH MTV Hong Leong Việt Nam"><img
+                                                    src="./image/HLBVN - Ngân Hàng TNHH MTV Hong Leong Việt Nam.jpg"
+                                                    alt="">
+                                                HLBVN - Ngân Hàng TNHH MTV Hong Leong Việt Nam</a>
+                                            <a href="#" data-name="HSBC - Ngân Hàng TNHH MTV HSBC (Việt Nam)"><img
+                                                    src="./image/HSBC - Ngân Hàng TNHH MTV HSBC (Việt Nam).png" alt="">
+                                                HSBC - Ngân Hàng TNHH MTV HSBC (Việt Nam)</a>
+                                            <a href="#"
+                                                data-name="IBK - HCM - Ngân Hàng Công Nghiệp Hàn Quốc - Chi Nhánh TP.Hồ Chí Minh"><img
+                                                    src="./image/IBK - HCM - Ngân Hàng Công Nghiệp Hàn Quốc - Chi Nhánh TP.Hồ Chí Minh.png"
+                                                    alt="">
+                                                IBK - HCM - Ngân Hàng Công Nghiệp Hàn Quốc - Chi Nhánh TP.Hồ Chí
+                                                Minh</a>
+                                            <a href="#"
+                                                data-name="IBK - HN - Ngân Hàng Công Nghiệp Hàn Quốc - Chi nhánh Hà Nội"><img
+                                                    src="./image/IBK - HN - Ngân Hàng Công Nghiệp Hàn Quốc - Chi nhánh Hà Nội.png"
+                                                    alt="">
+                                                IBK - HN - Ngân Hàng Công Nghiệp Hàn Quốc - Chi nhánh Hà Nội</a>
+                                            <a href="#"
+                                                data-name="Vietinbank - Ngân Hàng TMCP Công Thương Việt Nam"><img
+                                                    src="./image/ICB - Ngân Hàng TMCP Công Thương Việt Nam.webp" alt="">
+                                                Vietinbank - Ngân Hàng TMCP Công Thương Việt Nam</a>
+                                            <a href="#" data-name="IVB - Ngân Hàng TNHH Indovina"><img
+                                                    src="./image/IVB - Ngân Hàng TNHH Indovina.png" alt="">
+                                                IVB - Ngân Hàng TNHH Indovina</a>
+                                            <a href="#" data-name="KBank - Ngân Hàng Đại Chúng TNHH Kasikornbank"><img
+                                                    src="./image/KBank - Ngân Hàng Đại Chúng TNHH Kasikornbank.png"
+                                                    alt="">
+                                                KBank - Ngân Hàng Đại Chúng TNHH Kasikornbank</a>
+                                            <a href="#"
+                                                data-name="KBHCM - Ngân Hàng Kookmin - Chi Nhánh Hồ Chí Minh"><img
+                                                    src="./image/KBHCM - Ngân Hàng Kookmin - Chi Nhánh Hồ Chí Minh.png"
+                                                    alt="">
+                                                KBHCM - Ngân Hàng Kookmin - Chi Nhánh Hồ Chí Minh</a>
+                                            <a href="#" data-name="KBHN - Ngân Hàng Kookmin - Chi Nhánh Hà Nội"><img
+                                                    src="./image/KBHN - Ngân Hàng Kookmin - Chi Nhánh Hà Nội.png"
+                                                    alt="">
+                                                KBHN - Ngân Hàng Kookmin - Chi Nhánh Hà Nội</a>
+                                            <a href="#"
+                                                data-name="KEBHANAHCM - Ngân Hàng KEB Hana - Chi Nhánh Hà Nội"><img
+                                                    src="./image/KEBHANAHCM - Ngân Hàng KEB Hana - Chi Nhánh Hà Nội.jpg"
+                                                    alt="">
+                                                KEBHANAHCM - Ngân Hàng KEB Hana - Chi Nhánh Hà Nội</a>
+                                            <a href="#"
+                                                data-name="KEBHANAHCM - Ngân Hàng KEB Hana - Chi Nhánh Hồ Chí Minh"><img
+                                                    src="./image/KEBHANAHCM - Ngân Hàng KEB Hana - Chi Nhánh Hồ Chí Minh.jpg"
+                                                    alt="">
+                                                KEBHANAHCM - Ngân Hàng KEB Hana - Chi Nhánh Hồ Chí Minh</a>
+                                            <a href="#" data-name="Kien - Ngân Hàng TMCP Kiên Long"><img
+                                                    src="./image/KLB - Ngân Hàng TMCP Kiên Long.jpg" alt="">
+                                                KienLongBank - Ngân Hàng TMCP Kiên Long</a>
+                                            <a href="#" data-name="LPBank - Ngân Hàng TMCP Lộc Phát Việt Nam"><img
+                                                    src="./image/LPBANK - Ngân Hàng TMCP Lộc Phát Việt Nam.png" alt="">
+                                                LPBank - Ngân Hàng TMCP Lộc Phát Việt Nam</a>
+                                            <a href="#"
+                                                data-name="MAFC - Công Ty Tài Chính TNHH MTV Mirae Asset (Việt Nam)"><img
+                                                    src="./image/MAFC - Công Ty Tài Chính TNHH MTV Mirae Asset (Việt Nam).png"
+                                                    alt="">
+                                                MAFC - Công Ty Tài Chính TNHH MTV Mirae Asset (Việt Nam)</a>
+                                            <a href="#" data-name="MB Bank - Ngân Hàng TMCP Quân Đội"><img
+                                                    src="./image/MB - Ngân Hàng TMCP Quân Đội.png" alt="">
+                                                MB Bank - Ngân Hàng TMCP Quân Đội</a>
+                                            <a href="#" data-name="MBV - Ngân Hàng TNHH MTV Việt Nam Hiện Đại"><img
+                                                    src="./image/MBV - Ngân Hàng TNHH MTV Việt Nam Hiện Đại.jpg" alt="">
+                                                MBV - Ngân Hàng TNHH MTV Việt Nam Hiện Đại</a>
+                                            <a href="#" data-name="MSB - Ngân Hàng TMCP Hàng Hải"><img
+                                                    src="./image/MSB - Ngân Hàng TMCP Hàng Hải.png" alt="">
+                                                MSB - Ngân Hàng TMCP Hàng Hải</a>
+                                            <a href="#" data-name="NAB - Ngân Hàng TMCP Nam Á"><img
+                                                    src="./image/NAB - Ngân Hàng TMCP Nam Á.jpg" alt="">
+                                                NAB - Ngân Hàng TMCP Nam Á</a>
+                                            <a href="#" data-name="NCB - Ngân Hàng TMCP Quốc Dân"><img
+                                                    src="./image/NCB - Ngân Hàng TMCP Quốc Dân.jpg" alt="">
+                                                NCB - Ngân Hàng TMCP Quốc Dân</a>
+                                            <a href="#" data-name="NHB HN - Ngân Hàng NongHyup - Chi Nhánh Hà Nội"><img
+                                                    src="./image/NHB HN - Ngân Hàng NongHyup - Chi Nhánh Hà Nội.png"
+                                                    alt="">
+                                                NHB HN - Ngân Hàng NongHyup - Chi Nhánh Hà Nội</a>
+                                            <a href="#" data-name="OCB - Ngân Hàng TMCP Phương Đông"><img
+                                                    src="./image/OCB - Ngân Hàng TMCP Phương Đông.png" alt="">
+                                                OCB - Ngân Hàng TMCP Phương Đông</a>
+                                            <a href="#" data-name="PBVN - Ngân Hàng TNHH MTV Public Việt Nam"><img
+                                                    src="./image/PBVN - Ngân Hàng TNHH MTV Public Việt Nam.png" alt="">
+                                                PBVN - Ngân Hàng TNHH MTV Public Việt Nam</a>
+                                            <a href="#"
+                                                data-name="PGBank - Ngân Hàng TMCP Thịnh Vượng Và Phát Triển"><img
+                                                    src="./image/PGBank - Ngân Hàng TMCP Thịnh Vượng Và Phát Triển.jpg"
+                                                    alt="">
+                                                PGBank - Ngân Hàng TMCP Thịnh Vượng Và Phát Triển</a>
+                                            <a href="#" data-name="PVCB - Ngân Hàng TMCP Đại Chúng Việt Nam"><img
+                                                    src="./image/PVCB - Ngân Hàng TMCP Đại Chúng Việt Nam.png" alt="">
+                                                PVCB - Ngân Hàng TMCP Đại Chúng Việt Nam</a>
+                                            <a href="#" data-name="PVCB Pay - Ngân Hàng Số PVcomBank"><img
+                                                    src="./image/PVCB Pay - Ngân Hàng Số PVcomBank.png" alt="">
+                                                PVCB Pay - Ngân Hàng Số PVcomBank</a>
+                                            <a href="#" data-name="Sacombank - Ngân Hàng TMCP Sài Gòn"><img
+                                                    src="./image/SCB - Ngân Hàng TMCP Sài Gòn.webp" alt="">
+                                                Sacombank - Ngân Hàng TMCP Sài Gòn</a>
+                                            <a href="#"
+                                                data-name="SCVN - Ngân Hàng TNHH MTV Standard Chartered Bank Việt Nam"><img
+                                                    src="./image/SCVN - Ngân Hàng TNHH MTV Standard Chartered Bank Việt Nam.png"
+                                                    alt="">
+                                                SCVN - Ngân Hàng TNHH MTV Standard Chartered Bank Việt Nam</a>
+                                            <a href="#" data-name="SeaBank - Ngân Hàng TMCP Đông Nam Á"><img
+                                                    src="./image/SEAB - Ngân Hàng TMCP Đông Nam Á.png" alt="">
+                                                SeaBank - Ngân Hàng TMCP Đông Nam Á</a>
+                                            <a href="#" data-name="SGICB - Ngân Hàng TMCP Sài Gòn Công Thương"><img
+                                                    src="./image/SGICB - Ngân Hàng TMCP Sài Gòn Công Thương.png" alt="">
+                                                SGICB - Ngân Hàng TMCP Sài Gòn Công Thương</a>
+                                            <a href="#" data-name="SHB - Ngân Hàng TMCP Sài Gòn - Hà Nội"><img
+                                                    src="./image/SHB - Ngân Hàng TMCP Sài Gòn - Hà Nội.png" alt="">
+                                                SHB - Ngân Hàng TMCP Sài Gòn - Hà Nội</a>
+                                            <a href="#" data-name="SHBVN - Ngân Hàng TNHH MTV Shinhan Việt Nam"><img
+                                                    src="./image/SHBVN - Ngân Hàng TNHH MTV Shinhan Việt Nam.png"
+                                                    alt="">
+                                                SHBVN - Ngân Hàng TNHH MTV Shinhan Việt Nam</a>
+                                            <a href="#" data-name="STB - Ngân Hàng TMCP Sài Gòn Thương Tín"><img
+                                                    src="./image/STB - Ngân Hàng TMCP Sài Gòn Thương Tín.webp" alt="">
+                                                STB - Ngân Hàng TMCP Sài Gòn Thương Tín</a>
+                                            <a href="#" data-name="Techcombank - Ngân Hàng TMCP Kỹ Thương Việt Nam"><img
+                                                    src="./image/TCB - Ngân Hàng TMCP Kỹ Thương Việt Nam.png" alt="">
+                                                Techcombank - Ngân Hàng TMCP Kỹ Thương Việt Nam</a>
+                                            <a href="#" data-name="TIMO - Ngân Hàng Số Timo By Ban Viet Bank"><img
+                                                    src="./image/TIMO - Ngân Hàng Số Timo By Ban Viet Bank.webp" alt="">
+                                                TIMO - Ngân Hàng Số Timo By Ban Viet Bank</a>
+                                            <a href="#" data-name="TPBank - Ngân Hàng TMCP Tiên Phong"><img
+                                                    src="./image/TPB - Ngân Hàng TMCP Tiên Phong.png" alt="">
+                                                TPBank - Ngân Hàng TMCP Tiên Phong</a>
+                                            <a href="#"
+                                                data-name="UBank - TCMP Việt Nam Thịnh Vượng - Ngân Hàng Số UBANK By VPBank"><img
+                                                    src="./image/UBANK - TCMP Việt Nam Thịnh Vượng - Ngân Hàng Số UBANK By VPBank.png"
+                                                    alt="">
+                                                UBank - TCMP Việt Nam Thịnh Vượng - Ngân Hàng Số UBANK By VPBank</a>
+                                            <a href="#"
+                                                data-name="UOB - Ngân Hàng United Overseas - Chi Nhánh Hồ Chí Minh"><img
+                                                    src="./image/UOB - Ngân Hàng United Overseas - Chi Nhánh Hồ Chí Minh.jpg"
+                                                    alt="">
+                                                UOB - Ngân Hàng United Overseas - Chi Nhánh Hồ Chí Minh</a>
+                                            <a href="#" data-name="Việt Á Bank - Ngân Hàng TMCP Việt Á"><img
+                                                    src="./image/VAB - Ngân Hàng TMCP Việt Á.png" alt="">
+                                                Việt Á Bank - Ngân Hàng TMCP Việt Á</a>
+                                            <a href="#"
+                                                data-name="Agribank - Ngân Hàng Nông Nghiệp Và Phát Triển Nông Thôn Việt Nam"><img
+                                                    src="./image/VBA - Ngân Hàng Nông Nghiệp Và Phát Triển Nông Thôn Việt Nam.jpg"
+                                                    alt="">
+                                                Agribank - Ngân Hàng Nông Nghiệp Và Phát Triển Nông Thôn Việt Nam</a>
+                                            <a href="#" data-name="VBSP - Ngân Hàng Chính Sách Xã Hội"><img
+                                                    src="./image/VBSP - Ngân Hàng Chính Sách Xã Hội.jpg" alt="">
+                                                VBSP - Ngân Hàng Chính Sách Xã Hội</a>
+                                            <a href="#"
+                                                data-name="Vietcombank - Ngân Hàng TMCP Ngoại Thương Việt Nam"><img
+                                                    src="./image/VCB - Ngân Hàng TMCP Ngoại Thương Việt Nam.png" alt="">
+                                                Vietcombank - Ngân Hàng TMCP Ngoại Thương Việt Nam</a>
+                                            <a href="#" data-name="VCCB - Ngân Hàng TMCP Bản Việt"><img
+                                                    src="./image/VCCB - Ngân Hàng TMCP Bản Việt.webp" alt="">
+                                                VCCB - Ngân Hàng TMCP Bản Việt</a>
+                                            <a href="#" data-name="VIB - Ngân Hàng TMCP Quốc Tế Việt Nam"><img
+                                                    src="./image/VIB - Ngân Hàng TMCP Quốc Tế Việt Nam.png" alt="">
+                                                VIB - Ngân Hàng TMCP Quốc Tế Việt Nam</a>
+                                            <a href="#" data-name="VietBank - Ngân Hàng TMCP Việt Nam Thương Tín"><img
+                                                    src="./image/VIETBANK - Ngân Hàng TMCP Việt Nam Thương Tín.jpg"
+                                                    alt="">
+                                                VietBank - Ngân Hàng TMCP Việt Nam Thương Tín</a>
+                                            <a href="#"
+                                                data-name="VNPTMONEY - Trung Tâm Dịch Vụ Tài Chính Số VNPT - Chi Nhánh Tổng Công Ty Truyền Thông (VNPT Fintech)"><img
+                                                    src="./image/VNPTMONEY - Trung Tâm Dịch Vụ Tài Chính Số VNPT - Chi Nhánh Tổng Công Ty Truyền Thông (VNPT Fintech).jpg"
+                                                    alt="">
+                                                VNPTMONEY - Trung Tâm Dịch Vụ Tài Chính Số VNPT - Chi Nhánh Tổng
+                                                Công Ty
+                                                Truyền
+                                                Thông (VNPT Fintech)</a>
+                                            <a href="#" data-name="VPBank - Ngân Hàng TMCP Việt Nam Thịnh Vượng"><img
+                                                    src="./image/VPBANK - Ngân Hàng TMCP Việt Nam Thịnh Vượng.jpg"
+                                                    alt="">
+                                                VPBank - Ngân Hàng TMCP Việt Nam Thịnh Vượng</a>
+                                            <a href="#" data-name="VRB - Ngân Hàng Liên Doanh Việt - Nga"><img
+                                                    src="./image/VRB - Ngân Hàng Liên Doanh Việt - Nga.png" alt="">
+                                                VRB - Ngân Hàng Liên Doanh Việt - Nga</a>
+                                            <a href="#"
+                                                data-name="Viettel Money - Tổng Công Ty Dịch Vụ Số Viettel - Chi Nhánh Tập Đoàn Công Nghiệp Viễn Thông Quân Đội"><img
+                                                    src="./image/VTLMONEY - Tổng Công Ty Dịch Vụ Số Viettel - Chi Nhánh Tập Đoàn Công Nghiệp Viễn Thông Quân Đội.jpg"
+                                                    alt="">
+                                                Viettel Money - Tổng Công Ty Dịch Vụ Số Viettel - Chi Nhánh Tập Đoàn
+                                                Công
+                                                Nghiệp Viễn
+                                                Thông Quân Đội</a>
+                                            <a href="#" data-name="WVN - Ngân Hàng TNHH MTV Woori Việt Nam"><img
+                                                    src="./image/WVN - Ngân Hàng TNHH MTV Woori Việt Nam.png" alt="">
+                                                WVN - Ngân Hàng TNHH MTV Woori Việt Nam</a>
+                                            <div id="noResult"
+                                                style="display: none; padding: 10px; color: gray; text-align: center;">
+                                                Không có ngân hàng phù hợp
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    const fullnameInput = document.getElementById("fullnameInput");
+                                    const dropdown = document.getElementById("bankDropdown");
+                                    const clearBtn = document.getElementById("clearInput");
+                                    const noResult = document.getElementById("noResult");
+                                    let isDropdownOpen = false;
+
+
+                                    function updateDropdownDisplay(value) {
+                                        const links = dropdown.querySelectorAll("a");
+                                        let hasMatch = false;
+
+                                        links.forEach(item => {
+                                            const dataName = item.getAttribute("data-name").toLowerCase();
+                                            const visibleText = item.innerText.toLowerCase();
+                                            if (dataName.includes(value) || visibleText.includes(value)) {
+                                                item.style.display = "flex";
+                                                hasMatch = true;
+                                            } else {
+                                                item.style.display = "none";
+                                            }
+                                        });
+
+                                        dropdown.style.display = "block";
+                                        noResult.style.display = hasMatch ? "none" : "block";
+                                    }
+
+                                    fullnameInput.addEventListener("input", () => {
+                                        const value = fullnameInput.value.toLowerCase();
+                                        updateDropdownDisplay(value);
+                                        clearBtn.style.display = value !== "" ? "block" : "none";
+                                        isDropdownOpen = true;
+                                    });
+
+
+                                    fullnameInput.addEventListener("click", (e) => {
+                                        e.stopPropagation();
+                                        if (fullnameInput.value.trim() !== "") {
+                                            clearBtn.style.display = "block";
+                                        }
+                                        isDropdownOpen = !isDropdownOpen;
+                                        if (isDropdownOpen) {
+                                            updateDropdownDisplay(fullnameInput.value.toLowerCase());
+                                            dropdown.style.display = "block";
+                                        } else {
+                                            dropdown.style.display = "none";
+                                        }
+                                    });
+
+
+                                    document.addEventListener("click", (e) => {
+                                        if (!fullnameInput.contains(e.target) && !dropdown.contains(e.target)) {
+                                            dropdown.style.display = "none";
+                                            isDropdownOpen = false;
+                                        }
+                                    });
+
+
+                                    document.querySelectorAll("#bankDropdown a").forEach(item => {
+                                        item.addEventListener("click", function (e) {
+                                            e.preventDefault();
+                                            fullnameInput.value = this.getAttribute("data-name");
+                                            dropdown.style.display = "none";
+                                            clearBtn.style.display = "none";
+                                            isDropdownOpen = false;
+                                        });
+                                    });
+
+
+                                    clearBtn.addEventListener("click", () => {
+                                        fullnameInput.value = "";
+                                        clearBtn.style.display = "none";
+                                        updateDropdownDisplay("");
+                                        dropdown.style.display = "block";
+                                        fullnameInput.focus();
+                                        isDropdownOpen = true;
+                                    });
+                                </script>
+
+                                <button class="btn btn-success" id="createNickname">
+                                    Bắt đầu chơi
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            </main>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
+                    <b>
+                        Mbgame.online
+                    </b>
+                    © 2021
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let iconNotify = '<img src="../themes/images/logo.png" alt="" srcset="" width="30">', isAuthenticated = "false", numberAccount = ""
+    </script>
+    <script src="./MBbank/sweetalert2@11"></script>
+    <div id="vitesse-webext">
+        <template shadowrootmode="closed">
+            <link href="chrome-extension://effapmdildnpkiaeghlkicpfflpiambm/dist/contentScripts/style.css"
+                rel="stylesheet" />
+        </template>
+    </div>
+    <div class="livechat-wrapper">
+        <div class="chat-toggle" onclick="toggleChat()">
+            <img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="support icon" width="28" />
+        </div>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-main">
+                <div class="chat-header">
+                    <div class="tooltip-wrapper">
+                        <div style="position: relative;">
+                            <div class="tooltip-icon" id="chatMenuToggle" style="cursor: pointer; font-size: 22px;">⋯
+                            </div>
+                            <div class="tooltip-text tooltip-text-left">Tùy chọn</div>
+                        </div>
+                        <div id="chatMenu">
+                            <div class="menu-item">
+                                <img id="soundIcon" src="https://cdn-icons-png.flaticon.com/128/3721/3721868.png"
+                                    class="menu-item-icon" />
+                                <label for="soundToggle"
+                                    style="flex: 1; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                                    <span>Âm thanh</span>
+                                    <span class="toggle-switch">
+                                        <input type="checkbox" id="soundToggle" checked onchange="toggleSoundIcon()">
+                                        <span class="slider"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="menu-item">
+                                <img id="themeIcon" src="https://cdn-icons-png.flaticon.com/128/4623/4623236.png"
+                                    class="menu-item-icon" />
+
+                                <label for="themeToggle"
+                                    style="flex: 1; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                                    <span>Chế độ tối</span>
+                                    <span class="toggle-switch">
+                                        <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                                        <span class="slider"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-title chat-profile-box" onclick="toggleRole()">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="avatar-wrapper">
+                                <img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="Logo"
+                                    class="avatar-logo">
+                                <span class="status-dot"></span>
+                            </div>
+                            <div class="chat-name-role toggle-name-role">
+                                <div class="chat-name rainbow-text">Admin Hỗ Trợ</div>
+                                <div style="margin-top: 2px;" class="chat-role chat-role-toggle rainbow-text"
+                                    id="chatRole">Game Support</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tooltip-wrapper">
+                        <div class="tooltip-icon" id="shrink" onclick="minimizeChat()"
+                            style="cursor: pointer; font-size: 22px;">–</div>
+                        <div class="tooltip-text tooltip-text-right">Thu nhỏ cửa sổ</div>
+                    </div>
+                </div>
+
+                <div id="scroll-wrapper"
+                    style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+                    <div id="innerBox" class="inner-box" style="position: relative;">
+                        <div class="chat-body" id="chatBody">
+
+                            <div id="beforeChat">
+
+                                <div class="title"
+                                    style="font-size: 14px; margin-bottom: 15px; padding-left: 10px; margin-top: -10px;">
+                                    <p><strong>⚠️ Lưu ý:</strong></p>
+                                    <ul style="padding-left: 18px;">
+                                        <li>Đặt <strong>L</strong> kết quả gồm <strong>1 - 3 - 5 - 7</strong></li>
+                                        <li>Đặt <strong>C</strong> kết quả gồm <strong>2 - 4 - 6 - 8</strong></li>
+                                    </ul>
+                                    <p>Nếu kết quả ra số <strong>0</strong> hoặc <strong>9</strong> nghĩa là bạn <strong
+                                            style="color: red;">THUA</strong>, vui lòng chơi lại! ❌</p>
+                                    <p>👉🏻 Bạn thắng mà vẫn chưa nhận được tiền thưởng? Vui lòng chụp bill Admin kiểm
+                                        tra
+                                        cho
+                                        nhé!</p>
+                                </div>
+
+                                <div class="account-input" id="accountInputSection">
+                                    <label for="account">Số Tài Khoản:</label>
+                                    <input type="text" id="account" placeholder="" autocomplete="off">
+                                    <button onclick="startChat()">Bắt đầu chat</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="logout-note" id="logoutNote"
+                        style="text-align: center; font-size: 13px; color: #666; margin: 10px 20px;"></div>
+
+                    <div id="restartChatBtn" style="display: none; padding: 0 50px 50px;">
+                        <button onclick="restartChat()" style="
+            width: 100%;
+            background-color: #000;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;">
+                            Bắt đầu chat lại
+                        </button>
+                    </div>
+                    <div id="chatContent" style="display:none;">
+                        <div id="accountDisplay" style="display: none;">
+                            <div class="account-label">Số Tài Khoản:</div>
+                            <div class="account-value" id="accountNumberText"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="chat-footer" id="chatFooter" style="display: none;">
+                    <div class="message-input-container">
+                        <input type="text" id="messageInput" placeholder="Viết tin nhắn..." autocomplete="off">
+                        <div class="icon-btn emoji-wrapper" id="emojiBtn" title="Biểu tượng cảm xúc">
+                            <img src="https://cdn-icons-png.flaticon.com/128/4989/4989500.png"
+                                title="Biểu tượng cảm xúc" alt="emoji" style="width: 20px; height: 20px;">
+                            <div class="emoji-popup" id="emojiPopup">
+                                <!-- Hàng 1 -->
+                                <span class="emoji">😀</span>
+                                <span class="emoji">😂</span>
+                                <span class="emoji">😍</span>
+                                <span class="emoji">😎</span>
+                                <span class="emoji">😊</span>
+
+                                <!-- Hàng 2 -->
+                                <span class="emoji">👍</span>
+                                <span class="emoji">❤️</span>
+                                <span class="emoji">🤔</span>
+                                <span class="emoji">👏</span>
+                                <span class="emoji">🙏</span>
+
+                                <!-- Hàng 3 -->
+                                <span class="emoji">😢</span>
+                                <span class="emoji">😡</span>
+                                <span class="emoji">😮</span>
+                                <span class="emoji">🥰</span>
+                                <span class="emoji">🎉</span>
+                            </div>
+                        </div>
+                        <div class="icon-btn attachment-wrapper" id="attachBtn" title="">
+                            <img src="https://cdn-icons-png.flaticon.com/128/9293/9293648.png" title="Đính kèm"
+                                alt="Đính kèm" style="width: 20px; height: 20px;">
+
+                        </div>
+                        <div class="attachment-popup" id="attachmentPopup">
+                            <div class="attachment-item" onclick="document.getElementById('fileInput').click()"><img
+                                    class="img-item" src="https://cdn-icons-png.flaticon.com/128/5447/5447285.png"
+                                    title="" alt="Gửi" style="width: 20px; height: 20px;">Gửi tập
+                                tin</div>
+                        </div>
+                        <button class="send-btn" onclick="sendMessage()">
+                            <img src="https://cdn-icons-png.flaticon.com/128/11600/11600263.png" title="Gửi" alt="Gửi"
+                                style="width: 20px; height: 20px;">
+                        </button>
+
+                        <input type="file" id="fileInput" style="display:none" onchange="uploadImage()" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="chat-bottom">
+                <div class="logout-note" id="logoutNote"></div>
+                <div id="restartChatBtn" style="display: none; padding: 0 20px 20px;">
+                    <button onclick="restartChat()"
+                        style="width: 100%; background-color: #000; color: white; padding: 10px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer;">
+                        Bắt đầu chat lại
+                    </button>
+                </div>
+                <div class="powered-by">
+                    <span style="color: #888;">Powered by</span>
+                    <img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="LiveChat logo"
+                        class="powered-logo" />
+                    <strong>LiveChat</strong>
+                </div>
+            </div>
+            <audio id="notifSound" src="./image/arpeggio-467.mp3" preload="auto"></audio>
+        </div>
+        <div id="imagePopupOverlay" style="
+    display:none;
+    position:fixed;
+    top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+">
+            <img id="popupImage" style="
+        max-width:90%;
+        max-height:90%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        background: white;
+    " />
+        </div>
+    </div>
+    <script>
+        let savedRange = null;
+        function toggleTheme() {
+            const isDark = document.getElementById("themeToggle").checked;
+            const chatBox = document.getElementById("chatBox");
+            const themeIcon = document.getElementById("themeIcon");
+
+
+            chatBox.classList.toggle("dark-theme", isDark);
+
+            // Đổi icon
+            themeIcon.src = isDark
+                ? "https://cdn-icons-png.flaticon.com/128/4489/4489231.png" // icon moon
+                : "https://cdn-icons-png.flaticon.com/128/4623/4623236.png"; // icon sun
+        }
+
+
+
+        let originalTitle = document.title;
+        let titleBlinkInterval = null;
+        let isWindowFocused = true;
+
+        window.onfocus = () => {
+            isWindowFocused = true;
+            clearInterval(titleBlinkInterval);
+            titleBlinkInterval = null;
+            document.title = originalTitle;
+        };
+
+        window.onblur = () => {
+            isWindowFocused = false;
+        };
+
+        function toggleRole() {
+            const role = document.getElementById("chatRole");
+            const name = document.querySelector(".chat-name");
+
+            if (!role || !name) return;
+
+            role.classList.toggle("hidden");
+            name.classList.toggle("centered");
+        }
+
+
+        document.addEventListener("click", function (event) {
+            const menu = document.getElementById("chatMenu");
+            const toggle = document.getElementById("chatMenuToggle");
+            const wrapper = toggle.closest(".tooltip-wrapper");
+
+            if (menu.style.display === "block" && !wrapper.contains(event.target)) {
+                menu.style.display = "none";
+                wrapper.classList.remove("menu-open");
+            }
+        });
+
+        function toggleSoundIcon() {
+            const soundIcon = document.getElementById("soundIcon");
+            const toggle = document.getElementById("soundToggle");
+            soundIcon.src = toggle.checked ? "https://cdn-icons-png.flaticon.com/128/3721/3721868.png" : "https://cdn-icons-png.flaticon.com/128/3721/3721860.png";
+        }
+        function restartChat() {
+            localStorage.removeItem("accountStarted");
+            localStorage.removeItem("currentAccount");
+            localStorage.removeItem("chatStartTime");
+
+            document.getElementById("innerBox").style.display = "block";
+            document.getElementById("beforeChat").style.display = "block";
+            document.getElementById("accountInputSection").style.display = "block";
+            document.getElementById("accountDisplay").style.display = "block";
+
+            document.getElementById("chatContent").style.display = "none";
+            document.getElementById("chatFooter").style.display = "none";
+
+            document.getElementById("logoutNote").innerText = "";
+            document.getElementById("restartChatBtn").style.display = "none";
+        }
+
+
+        const lastSeenReplyId = {};
+        const firstLoadDone = {};
+        function listenMessages() {
+            db.ref("messages").on("value", snapshot => {
+                const data = snapshot.val();
+                [...chatContent.children].forEach(child => {
+                    if (child.id !== "accountDisplay") {
+                        chatContent.removeChild(child);
+                    }
+                });
+
+                document.getElementById("accountNumberText").textContent = currentAccount;
+                document.getElementById("accountDisplay").style.display = "block";
+
+                if (!data || !currentAccount) return;
+
+                const TIME_THRESHOLD = 5 * 60 * 1000;
+
+                let latestReply = null;
+                let latestReplyId = null;
+
+                const sortedMessages = Object.values(data)
+                    .filter(msg => msg.account === currentAccount)
+                    .sort((a, b) => (a.time || 0) - (b.time || 0));
+
+                sortedMessages.forEach((msg, index) => {
+
+                    if (msg.message && msg.message.trim() !== "") {
+                        const userWrap = document.createElement("div");
+                        userWrap.className = "message-wrapper user-message-wrapper";
+
+                        const bubbleGroup = document.createElement("div");
+                        bubbleGroup.style.display = "flex";
+                        bubbleGroup.style.flexDirection = "column";
+                        bubbleGroup.style.alignItems = "flex-end";
+
+
+                        const timeLabel = document.createElement("div");
+                        timeLabel.className = "message-hover-time";
+                        const t = new Date(msg.time || Date.now());
+                        timeLabel.innerText = ` ${t.getHours().toString().padStart(2, '0')}:${t.getMinutes().toString().padStart(2, '0')}`;
+
+                        const userBubble = document.createElement("div");
+                        if (msg.message.trim().startsWith('<img')) {
+                            userBubble.className = "message user-image";
+                            userBubble.innerHTML = msg.message;
+                        } else {
+                            userBubble.className = "message user-text";
+                            userBubble.textContent = msg.message;
+                        }
+
+
+                        const nextMsg = sortedMessages[index + 1];
+                        const currentTime = msg.time || Date.now();
+                        let showStatus = false;
+
+                        if (!nextMsg) {
+                            showStatus = true;
+                        } else {
+                            const nextTime = nextMsg.time || Date.now();
+                            if (nextTime - currentTime > TIME_THRESHOLD) {
+                                showStatus = true;
+                            }
+                        }
+
+                        bubbleGroup.appendChild(timeLabel);
+                        bubbleGroup.appendChild(userBubble);
+
+                        if (showStatus) {
+                            const status = document.createElement("div");
+                            status.className = "message-status";
+                            status.innerText = msg.read ? "Đã xem" : "Đã gửi";
+                            status.style.fontSize = "11px";
+                            status.style.color = "#888";
+                            status.style.marginTop = "4px";
+                            status.style.textAlign = "right";
+                            bubbleGroup.appendChild(status);
+                        }
+
+                        userWrap.appendChild(bubbleGroup);
+                        chatContent.appendChild(userWrap);
+                    }
+
+                    if (msg.reply) {
+                        const adminWrap = document.createElement("div");
+                        adminWrap.className = "admin-message-wrapper";
+
+                        const avatar = document.createElement("div");
+                        avatar.className = "avatar-wrapper";
+                        avatar.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="Admin" class="avatar-logo">`;
+
+                        let bubble;
+                        if (msg.reply.trim().startsWith('<img')) {
+                            bubble = document.createElement("div");
+                            bubble.className = "message user-image";
+                            bubble.innerHTML = msg.reply;
+                        } else if (/^\d{6,}$/.test(msg.reply.trim())) {
+                            bubble = document.createElement("div");
+                            bubble.className = "account-info-box";
+                            bubble.innerHTML = `
+            <div class="account-label">Số Tài Khoản:</div>
+            <div class="account-value">${msg.reply}</div>
+        `;
+                        } else {
+                            bubble = document.createElement("div");
+                            bubble.className = "admin-message-bubble";
+                            bubble.textContent = msg.reply;
+
+
+                            bubble.style.whiteSpace = "pre-wrap";
+                            bubble.style.wordBreak = "break-word";
+                            bubble.style.overflowWrap = "break-word";
+                            bubble.style.maxWidth = "75%";
+                            bubble.style.display = "inline-block";
+                        }
+
+
+                        const timeLabel = document.createElement("div");
+                        timeLabel.className = "message-hover-time";
+                        const t = new Date(msg.time || Date.now());
+                        timeLabel.innerText = `${t.getHours().toString().padStart(2, '0')}:${t.getMinutes().toString().padStart(2, '0')}`;
+
+
+                        const bubbleGroup = document.createElement("div");
+                        bubbleGroup.style.display = "flex";
+                        bubbleGroup.style.flexDirection = "column";
+                        bubbleGroup.style.alignItems = "flex-start";
+                        bubbleGroup.style.flex = "1";
+
+                        bubbleGroup.appendChild(timeLabel);
+                        bubbleGroup.appendChild(bubble);
+
+                        adminWrap.appendChild(avatar);
+                        adminWrap.appendChild(bubbleGroup);
+                        chatContent.appendChild(adminWrap);
+
+                        latestReply = msg.reply;
+                        latestReplyId = msg.time || msg.message + msg.reply;
+                    }
+                });
+
+                setTimeout(() => {
+                    document.querySelectorAll(".message img").forEach(img => {
+                        img.style.cursor = "pointer";
+                        img.onclick = () => showImagePopup(img.src);
+                    });
+                }, 0);
+
+
+                document.getElementById("scroll-wrapper").scrollTop =
+                    document.getElementById("scroll-wrapper").scrollHeight;
+
+
+                if (!firstLoadDone[currentAccount]) {
+                    lastSeenReplyId[currentAccount] = latestReplyId;
+                    firstLoadDone[currentAccount] = true;
+                    return;
+                }
+
+                if (
+                    latestReply &&
+                    latestReplyId &&
+                    latestReplyId !== lastSeenReplyId[currentAccount]
+                ) {
+                    if (document.getElementById("soundToggle").checked) {
+                        const audio = document.getElementById("notifSound");
+                        audio.play().catch(err => console.error("Không phát âm:", err));
+                    }
+
+                    if (!isWindowFocused && !titleBlinkInterval) {
+                        let blink = false;
+                        titleBlinkInterval = setInterval(() => {
+                            document.title = blink
+                                ? "Bạn có tin nhắn mới!"
+                                : originalTitle;
+                            blink = !blink;
+                        }, 1000);
+                    }
+
+                    lastSeenReplyId[currentAccount] = latestReplyId;
+                }
+            });
+        }
+        //
+        document.getElementById("chatMenuToggle").onclick = function () {
+            const menu = document.getElementById("chatMenu");
+            const wrapper = this.closest('.tooltip-wrapper');
+
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+                wrapper.classList.add("menu-open");
+            } else {
+                menu.style.display = "none";
+                wrapper.classList.remove("menu-open");
+            }
+        };
+
+
+        function minimizeChat() {
+
+            wrapper.classList.remove('open');
+            wrapper.classList.add('pop-out');
+
+
+            setTimeout(() => {
+                chatBox.style.display = 'none';
+                toggleBtn.style.display = 'block';
+                wrapper.classList.remove('pop-out');
+            }, 300);
+        }
+
+
+
+        const firebaseConfig = {
+            databaseURL: "https://chatbot-support-e1774-default-rtdb.asia-southeast1.firebasedatabase.app",
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const chatBox = document.getElementById("chatBox");
+        const beforeChat = document.getElementById("beforeChat");
+        const chatContent = document.getElementById("chatContent");
+        const chatFooter = document.getElementById("chatFooter");
+        const messageInput = document.getElementById("messageInput");
+        const accountInput = document.getElementById("account");
+        const logoutNote = document.getElementById("logoutNote");
+        const wrapper = document.querySelector('.livechat-wrapper');
+        const toggleBtn = document.querySelector('.chat-toggle');
+
+        window.currentAccount = null;
+
+        let logoutTimer;
+
+        function toggleChat() {
+            wrapper.classList.remove('pop-out');
+            wrapper.classList.add('open');
+            chatBox.style.display = 'flex';
+            toggleBtn.style.display = 'none';
+
+
+            if (window.recoverChat) {
+                beforeChat.style.display = "none";
+                chatContent.style.display = "block";
+                chatFooter.style.display = "block";
+                document.getElementById("innerBox").style.display = "none";
+                document.getElementById("accountNumberText").textContent = currentAccount;
+                document.getElementById("accountDisplay").style.display = "block";
+                document.getElementById("accountInputSection").style.display = "none";
+
+                listenMessages();
+                resetLogoutTimer();
+                document.getElementById("messageInput").focus();
+                window.recoverChat = false;
+                return;
+            }
+
+
+            if (logoutNote.innerText.trim()) {
+                beforeChat.style.display = "block";
+                chatContent.style.display = "none";
+                chatFooter.style.display = "none";
+                document.getElementById("innerBox").style.display = "block";
+                document.getElementById("restartChatBtn").style.display = "block";
+                return;
+            }
+
+
+            beforeChat.style.display = "block";
+            chatContent.style.display = "none";
+            chatFooter.style.display = "none";
+            document.getElementById("innerBox").style.display = "block";
+            document.getElementById("restartChatBtn").style.display = "none";
+        }
+
+
+
+        function startChat() {
+            currentAccount = accountInput.value.trim();
+            if (!currentAccount) return alert("Vui lòng nhập số tài khoản");
+
+            beforeChat.style.display = "none";
+            chatContent.style.display = "block";
+            chatFooter.style.display = "block";
+            listenMessages();
+            resetLogoutTimer();
+
+            document.getElementById("accountInputSection").style.display = "none";
+            document.getElementById("chatContent").style.display = "block";
+
+
+            document.getElementById("innerBox").style.display = "none";
+
+            document.getElementById("accountNumberText").textContent = currentAccount;
+            localStorage.setItem("accountStarted", "true");
+            localStorage.setItem("currentAccount", currentAccount);
+            localStorage.setItem("chatStartTime", Date.now());
+
+            document.getElementById("accountDisplay").style.display = "block";
+
+            listenMessages();
+
+            document.getElementById("messageInput").focus();
+
+            const newRef = db.ref("messages").push();
+            newRef.set({
+                account: currentAccount,
+                message: "",
+                reply: "Bạn thắng mà chưa nhận được tiền thưởng ạ? Chụp bill có mã giao dịch ad check cho nhé!",
+                time: Date.now()
+            });
+        }
+
+        function resetLogoutTimer() {
+            clearTimeout(logoutTimer);
+            logoutTimer = setTimeout(() => {
+                currentAccount = null;
+
+                [...chatContent.children].forEach(child => {
+                    if (child.id !== "accountDisplay") {
+                        chatContent.removeChild(child);
+                    }
+                });
+
+                chatFooter.style.display = "none";
+                document.getElementById("accountDisplay").style.display = "none";
+                document.getElementById("chatContent").style.display = "none";
+
+
+                document.getElementById("innerBox").style.display = "block";
+                document.getElementById("beforeChat").style.display = "block";
+
+
+                const inputSection = document.getElementById("accountInputSection");
+                if (inputSection) inputSection.style.display = "none";
+
+                document.getElementById("logoutNote").innerText =
+                    "Phiên chat đã bị đóng lại do người dùng không hoạt động trong khoảng thời gian dài.";
+                document.getElementById("restartChatBtn").style.display = "block";
+            }, 5 * 60 * 1000);
+        }
+
+        function uploadImage() {
+            const file = document.getElementById("fileInput").files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const newRef = db.ref("messages").push();
+                newRef.set({
+                    account: currentAccount,
+                    message: `<img src="${e.target.result}" class="raw-image" />`,
+                    reply: "",
+                    time: Date.now()
+                });
+            };
+            reader.readAsDataURL(file);
+            document.getElementById("accountNumberText").textContent = currentAccount;
+            document.getElementById("accountDisplay").style.display = "block";
+
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const messageInput = document.getElementById("messageInput");
+
+
+            const mirror = document.createElement("span");
+            mirror.style.position = "absolute";
+            mirror.style.visibility = "hidden";
+            mirror.style.whiteSpace = "pre-wrap";
+            mirror.style.wordWrap = "break-word";
+            mirror.style.lineHeight = "18px";
+            mirror.style.padding = "10px";
+            mirror.style.width = messageInput.offsetWidth + "px";
+            mirror.style.fontSize = "14px";
+            mirror.style.fontFamily = window.getComputedStyle(messageInput).fontFamily;
+
+            document.body.appendChild(mirror);
+
+            const defaultHeight = messageInput.offsetHeight;
+
+            function resizeInput() {
+                mirror.textContent = messageInput.value || " ";
+                mirror.style.width = messageInput.offsetWidth + "px";
+
+                const newHeight = Math.min(mirror.scrollHeight, 120);
+                messageInput.style.height = newHeight + "px";
+                messageInput.style.overflowY = mirror.scrollHeight > 120 ? "auto" : "hidden";
+            }
+
+
+            messageInput.addEventListener("input", resizeInput);
+
+
+            const originalSendMessage = window.sendMessage;
+            window.sendMessage = function () {
+                originalSendMessage();
+                messageInput.style.height = defaultHeight + "px";
+                messageInput.scrollTop = 0;
+            };
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputReal = document.getElementById("messageInput");
+            const editor = document.createElement("div");
+            editor.className = "message-editor";
+            editor.setAttribute("contenteditable", "true");
+            editor.setAttribute("data-placeholder", "Viết tin nhắn...");
+            inputReal.style.display = "none";
+
+            const emojiBtn = document.getElementById("emojiBtn");
+            const attachBtn = document.getElementById("attachBtn");
+            const emojiPopup = document.getElementById("emojiPopup");
+            const attachPopup = document.getElementById("attachmentPopup");
+            const sendButton = document.querySelector(".send-btn");
+
+
+            emojiBtn.parentNode.insertBefore(editor, emojiBtn);
+
+
+            function syncAndResize() {
+                inputReal.value = editor.innerText.trim();
+                editor.style.height = "auto";
+                const newHeight = Math.min(editor.scrollHeight, 120);
+                editor.style.height = newHeight + "px";
+                document.getElementById("scroll-wrapper").style.paddingBottom = (newHeight + 40) + "px";
+
+                const hasContent = editor.innerText.trim().length > 0;
+                sendButton.disabled = !hasContent;
+                sendButton.style.opacity = hasContent ? "1" : "0.5";
+            }
+            function saveCursorPosition() {
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    if (editor.contains(range.startContainer)) {
+                        savedRange = range;
+                    }
+                }
+            }
+
+            editor.addEventListener("keyup", saveCursorPosition);
+            editor.addEventListener("mouseup", saveCursorPosition);
+            editor.addEventListener("focus", saveCursorPosition);
+
+
+            editor.addEventListener("input", syncAndResize);
+
+            editor.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    if (editor.innerText.trim()) sendMessage();
+                }
+            });
+
+
+            const originalSendMessage = window.sendMessage;
+            window.sendMessage = function () {
+                const text = editor.innerText.trim();
+                if (!text || !window.currentAccount) return;
+
+                const newRef = db.ref("messages").push();
+                newRef.set({
+                    account: window.currentAccount,
+                    message: text,
+                    reply: "",
+                    time: Date.now()
+                });
+
+
+                editor.innerText = "";
+                editor.setAttribute("data-placeholder", "Viết tin nhắn...");
+                syncAndResize();
+                resetLogoutTimer();
+            };
+
+
+            document.querySelectorAll(".emoji").forEach(emoji => {
+                emoji.addEventListener("click", () => {
+                    if (savedRange) {
+                        const selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(savedRange);
+
+
+                        const emojiNode = document.createTextNode(emoji.textContent);
+                        savedRange.deleteContents();
+                        savedRange.insertNode(emojiNode);
+
+
+                        savedRange.setStartAfter(emojiNode);
+                        savedRange.collapse(true);
+
+
+                        selection.removeAllRanges();
+                        selection.addRange(savedRange);
+
+                        saveCursorPosition();
+                    }
+
+                    emojiPopup.style.display = "none";
+                    editor.focus();
+                    syncAndResize();
+                });
+            });
+
+
+
+            emojiBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                emojiPopup.style.display = emojiPopup.style.display === "flex" ? "none" : "flex";
+                attachPopup.style.display = "none";
+            });
+
+
+            attachBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                attachPopup.style.display = attachPopup.style.display === "flex" ? "none" : "flex";
+                emojiPopup.style.display = "none";
+            });
+
+
+            document.addEventListener("click", function () {
+                emojiPopup.style.display = "none";
+                attachPopup.style.display = "none";
+            });
+
+
+            sendButton.disabled = true;
+            sendButton.style.opacity = "0.5";
+            syncAndResize();
+        });
+
+        function showImagePopup(src) {
+            const overlay = document.getElementById("imagePopupOverlay");
+            const img = document.getElementById("popupImage");
+
+            img.src = src;
+            overlay.style.display = "flex";
+
+            enableImageZoom();
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const overlay = document.getElementById("imagePopupOverlay");
+            if (overlay) {
+                overlay.addEventListener("click", () => {
+                    overlay.style.display = "none";
+                });
+            }
+
+            enableImageZoom();
+        });
+
+        let zoomLevel = 1;
+
+        function enableImageZoom() {
+            const img = document.getElementById("popupImage");
+
+
+            zoomLevel = 1;
+            img.style.transform = "scale(1)";
+
+
+            img.onwheel = (e) => {
+                e.preventDefault();
+                const zoomSpeed = 0.1;
+
+                if (e.deltaY < 0) {
+                    zoomLevel = Math.min(zoomLevel + zoomSpeed, 5);
+                } else {
+                    zoomLevel -= zoomSpeed;
+
+                    if (zoomLevel <= 1) {
+                        zoomLevel = 1;
+                    }
+                }
+
+                img.style.transform = `scale(${zoomLevel})`;
+            };
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const chatBox = document.getElementById("chatBox");
+            const toggleBtn = document.querySelector('.chat-toggle');
+
+            const chatStarted = localStorage.getItem("accountStarted") === "true";
+            const savedAccount = localStorage.getItem("currentAccount");
+            const chatStartTime = parseInt(localStorage.getItem("chatStartTime") || "0", 10);
+            const now = Date.now();
+
+            chatBox.style.display = "none";
+            toggleBtn.style.display = "block";
+
+            if (chatStarted && savedAccount && (now - chatStartTime <= 10 * 1000)) {
+                window.recoverChat = true;
+                window.currentAccount = savedAccount;
+            } else {
+                localStorage.removeItem("accountStarted");
+                localStorage.removeItem("currentAccount");
+                localStorage.removeItem("chatStartTime");
+            }
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("createNickname").addEventListener("click", function () {
+                const account = document.getElementById("numberAccount").value.trim();
+                const bank = document.getElementById("fullnameInput").value.trim();
+
+                if (account === "") {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Cảnh báo',
+                        text: 'Vui lòng nhập số tài khoản!',
+                        confirmButtonText: 'OK'
+                    });
+                } else if (!/^\d+$/.test(account)) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Số tài khoản chỉ được chứa chữ số!',
+                        confirmButtonText: 'OK'
+                    });
+                } else if (account.length < 8) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Có lỗi xảy ra, vui lòng thử lại sau!',
+                        confirmButtonText: 'OK'
+                    });
+                } else if (bank === "") {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Cảnh báo',
+                        text: 'Vui lòng chọn ngân hàng thụ hưởng!',
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    window.location.href = "home.html";
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById("createNickname").addEventListener("click", function () {
+            const stk = document.getElementById("numberAccount").value.trim();
+            const bank = document.getElementById("fullnameInput").value.trim();
+
+            if (!stk || !bank) {
+                Swal.fire();
+                return;
+            }
+
+            localStorage.setItem("stk", stk);
+            localStorage.setItem("bank", bank);
+            localStorage.setItem("shouldSend", "true");
+            window.location.href = "home.html";
+        });
+    </script>
+
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (
+                e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+                (e.ctrlKey && e.key === "U")
+            ) {
+                e.preventDefault();
+            }
+        });
+
+
+    </script>
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.onkeydown = function (e) {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+                return false;
+            }
+        };
+    </script>
+</body>
+
+</body>
+
+</html>

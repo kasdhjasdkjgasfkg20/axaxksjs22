@@ -1,0 +1,4336 @@
+<!DOCTYPE html>
+<html class="" lang="vi">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width,initial-scale=1,user-scalable=0" name="viewport" />
+    <meta content="index, follow" name="robots" />
+    <meta content="" property="og:url" />
+    <meta content="article" property="og:type" />
+    <meta content="MBgame.online - Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động" property="og:title" />
+    <link href="https://mbgame.online/" rel="canonical" />
+    <link rel="icon" href="./image/Favicon.png" type="image/x-icon" />
+    <meta
+        content="Tham gia mini game ngân hàng với hệ thống trả thưởng tự động, giúp bạn kiếm tiền nhanh chóng dễ dàng!"
+        name="description" />
+    <meta content="MBgame.online, Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động" name="keywords" />
+    <meta
+        content="Tham gia mini game ngân hàng với hệ thống trả thưởng tự động, giúp bạn kiếm tiền nhanh chóng dễ dàng!"
+        property="og:description" />
+    <meta content="default" name="theme-color" />
+    <meta content="" property="og:image" />
+    <title>
+        MBgame.online - Hệ Thống Kiếm Tiền Online Thu Nhập Tự Động
+    </title>
+    <link href="./MBbank/simple-notify.min.css" rel="stylesheet" />
+    <link href="./MBbank/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.6/dist/simple-notify.min.css" />
+    <link rel="stylesheet" href="app.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <script src="./MBbank/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="chat.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --swal2-outline: 0 0 0 3px rgba(100, 150, 200, 0.5);
+            --swal2-container-padding: 0.625em;
+            --swal2-backdrop: rgba(0, 0, 0, 0.4);
+            --swal2-backdrop-transition: background-color 0.1s;
+            --swal2-width: 32em;
+            --swal2-padding: 0 0 1.25em;
+            --swal2-border: none;
+            --swal2-border-radius: 0.3125rem;
+            --swal2-background: white;
+            --swal2-color: #545454;
+            --swal2-footer-border-color: #eee;
+            --swal2-show-animation: swal2-show 0.3s;
+            --swal2-hide-animation: swal2-hide 0.15s forwards;
+            --swal2-icon-zoom: 1;
+            --swal2-icon-animations: true;
+            --swal2-title-padding: 0.8em 1em 0;
+            --swal2-html-container-padding: 1em 1.6em 0.3em;
+            --swal2-input-border-radius: 0.1875em;
+            --swal2-input-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px transparent;
+            --swal2-input-background: transparent;
+            --swal2-input-transition: border-color 0.2s, box-shadow 0.2s;
+            --swal2-progress-step-background: #add8e6;
+            --swal2-validation-message-background: #f0f0f0;
+            --swal2-validation-message-color: #666;
+            --swal2-close-button-position: initial;
+            --swal2-close-button-inset: auto;
+            --swal2-close-button-font-size: 2.5em;
+            --swal2-close-button-color: #ccc;
+            --swal2-close-button-transition: color 0.2s, box-shadow 0.2s;
+            --swal2-close-button-outline: initial;
+            --swal2-close-button-box-shadow: inset 0 0 0 3px transparent;
+            --swal2-close-button-focus-box-shadow: inset var(--swal2-outline);
+            --swal2-close-button-hover-transform: none;
+            --swal2-button-transition: background-color 0.2s, box-shadow 0.2s;
+            --swal2-confirm-button-border: 0;
+            --swal2-confirm-button-border-radius: 0.25em;
+            --swal2-confirm-button-background-color: #7066e0;
+            --swal2-confirm-button-color: #fff;
+            --swal2-deny-button-border: 0;
+            --swal2-deny-button-border-radius: 0.25em;
+            --swal2-deny-button-background-color: #dc3741;
+            --swal2-deny-button-color: #fff;
+            --swal2-cancel-button-border: 0;
+            --swal2-cancel-button-border-radius: 0.25em;
+            --swal2-cancel-button-background-color: #6e7881;
+            --swal2-cancel-button-color: #fff;
+            --swal2-toast-show-animation: swal2-toast-show 0.5s;
+            --swal2-toast-hide-animation: swal2-toast-hide 0.1s forwards;
+            --swal2-toast-border: none;
+            --swal2-toast-box-shadow: 0 0 1px hsl(0deg 0% 0% / 0.075), 0 1px 2px hsl(0deg 0% 0% / 0.075), 1px 2px 4px hsl(0deg 0% 0% / 0.075), 1px 3px 8px hsl(0deg 0% 0% / 0.075), 2px 4px 16px hsl(0deg 0% 0% / 0.075)
+        }
+
+        [data-swal2-theme=dark] {
+            --swal2-dark-theme-black: #19191a;
+            --swal2-dark-theme-white: #e1e1e1;
+            --swal2-background: var(--swal2-dark-theme-black);
+            --swal2-color: var(--swal2-dark-theme-white);
+            --swal2-footer-border-color: #555;
+            --swal2-input-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+            --swal2-validation-message-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+            --swal2-validation-message-color: var(--swal2-dark-theme-white)
+        }
+
+        @media(prefers-color-scheme: dark) {
+            [data-swal2-theme=auto] {
+                --swal2-dark-theme-black: #19191a;
+                --swal2-dark-theme-white: #e1e1e1;
+                --swal2-background: var(--swal2-dark-theme-black);
+                --swal2-color: var(--swal2-dark-theme-white);
+                --swal2-footer-border-color: #555;
+                --swal2-input-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+                --swal2-validation-message-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+                --swal2-validation-message-color: var(--swal2-dark-theme-white)
+            }
+        }
+
+        body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) {
+            overflow: hidden
+        }
+
+        body.swal2-height-auto {
+            height: auto !important
+        }
+
+        body.swal2-no-backdrop .swal2-container {
+            background-color: rgba(0, 0, 0, 0) !important;
+            pointer-events: none
+        }
+
+        body.swal2-no-backdrop .swal2-container .swal2-popup {
+            pointer-events: all
+        }
+
+        body.swal2-no-backdrop .swal2-container .swal2-modal {
+            box-shadow: 0 0 10px var(--swal2-backdrop)
+        }
+
+        body.swal2-toast-shown .swal2-container {
+            box-sizing: border-box;
+            width: 360px;
+            max-width: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            pointer-events: none
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top {
+            inset: 0 auto auto 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top-end,
+        body.swal2-toast-shown .swal2-container.swal2-top-right {
+            inset: 0 0 auto auto
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top-start,
+        body.swal2-toast-shown .swal2-container.swal2-top-left {
+            inset: 0 auto auto 0
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center-start,
+        body.swal2-toast-shown .swal2-container.swal2-center-left {
+            inset: 50% auto auto 0;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center {
+            inset: 50% auto auto 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center-end,
+        body.swal2-toast-shown .swal2-container.swal2-center-right {
+            inset: 50% 0 auto auto;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom-start,
+        body.swal2-toast-shown .swal2-container.swal2-bottom-left {
+            inset: auto auto 0 0
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom {
+            inset: auto auto 0 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom-end,
+        body.swal2-toast-shown .swal2-container.swal2-bottom-right {
+            inset: auto 0 0 auto
+        }
+
+        @media print {
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) {
+                overflow-y: scroll !important
+            }
+
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown)>[aria-hidden=true] {
+                display: none
+            }
+
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) .swal2-container {
+                position: static !important
+            }
+        }
+
+        div:where(.swal2-container) {
+            display: grid;
+            position: fixed;
+            z-index: 1060;
+            inset: 0;
+            box-sizing: border-box;
+            grid-template-areas: "top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";
+            grid-template-rows: minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);
+            height: 100%;
+            padding: var(--swal2-container-padding);
+            overflow-x: hidden;
+            transition: var(--swal2-backdrop-transition);
+            -webkit-overflow-scrolling: touch
+        }
+
+        div:where(.swal2-container).swal2-backdrop-show,
+        div:where(.swal2-container).swal2-noanimation {
+            background: var(--swal2-backdrop)
+        }
+
+        div:where(.swal2-container).swal2-backdrop-hide {
+            background: rgba(0, 0, 0, 0) !important
+        }
+
+        div:where(.swal2-container).swal2-top-start,
+        div:where(.swal2-container).swal2-center-start,
+        div:where(.swal2-container).swal2-bottom-start {
+            grid-template-columns: minmax(0, 1fr) auto auto
+        }
+
+        div:where(.swal2-container).swal2-top,
+        div:where(.swal2-container).swal2-center,
+        div:where(.swal2-container).swal2-bottom {
+            grid-template-columns: auto minmax(0, 1fr) auto
+        }
+
+        div:where(.swal2-container).swal2-top-end,
+        div:where(.swal2-container).swal2-center-end,
+        div:where(.swal2-container).swal2-bottom-end {
+            grid-template-columns: auto auto minmax(0, 1fr)
+        }
+
+        div:where(.swal2-container).swal2-top-start>.swal2-popup {
+            align-self: start
+        }
+
+        div:where(.swal2-container).swal2-top>.swal2-popup {
+            grid-column: 2;
+            place-self: start center
+        }
+
+        div:where(.swal2-container).swal2-top-end>.swal2-popup,
+        div:where(.swal2-container).swal2-top-right>.swal2-popup {
+            grid-column: 3;
+            place-self: start end
+        }
+
+        div:where(.swal2-container).swal2-center-start>.swal2-popup,
+        div:where(.swal2-container).swal2-center-left>.swal2-popup {
+            grid-row: 2;
+            align-self: center
+        }
+
+        div:where(.swal2-container).swal2-center>.swal2-popup {
+            grid-column: 2;
+            grid-row: 2;
+            place-self: center center
+        }
+
+        div:where(.swal2-container).swal2-center-end>.swal2-popup,
+        div:where(.swal2-container).swal2-center-right>.swal2-popup {
+            grid-column: 3;
+            grid-row: 2;
+            place-self: center end
+        }
+
+        div:where(.swal2-container).swal2-bottom-start>.swal2-popup,
+        div:where(.swal2-container).swal2-bottom-left>.swal2-popup {
+            grid-column: 1;
+            grid-row: 3;
+            align-self: end
+        }
+
+        div:where(.swal2-container).swal2-bottom>.swal2-popup {
+            grid-column: 2;
+            grid-row: 3;
+            place-self: end center
+        }
+
+        div:where(.swal2-container).swal2-bottom-end>.swal2-popup,
+        div:where(.swal2-container).swal2-bottom-right>.swal2-popup {
+            grid-column: 3;
+            grid-row: 3;
+            place-self: end end
+        }
+
+        div:where(.swal2-container).swal2-grow-row>.swal2-popup,
+        div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup {
+            grid-column: 1/4;
+            width: 100%
+        }
+
+        div:where(.swal2-container).swal2-grow-column>.swal2-popup,
+        div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup {
+            grid-row: 1/4;
+            align-self: stretch
+        }
+
+        div:where(.swal2-container).swal2-no-transition {
+            transition: none !important
+        }
+
+        div:where(.swal2-container)[popover] {
+            width: auto;
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup) {
+            display: none;
+            position: relative;
+            box-sizing: border-box;
+            grid-template-columns: minmax(0, 100%);
+            width: var(--swal2-width);
+            max-width: 100%;
+            padding: var(--swal2-padding);
+            border: var(--swal2-border);
+            border-radius: var(--swal2-border-radius);
+            background: var(--swal2-background);
+            color: var(--swal2-color);
+            font-family: inherit;
+            font-size: 1rem;
+            container-name: swal2-popup
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup):focus {
+            outline: none
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-loading {
+            overflow-y: hidden
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable {
+            cursor: grab
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable div:where(.swal2-icon) {
+            cursor: grab
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging {
+            cursor: grabbing
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging div:where(.swal2-icon) {
+            cursor: grabbing
+        }
+
+        div:where(.swal2-container) h2:where(.swal2-title) {
+            position: relative;
+            max-width: 100%;
+            margin: 0;
+            padding: var(--swal2-title-padding);
+            color: inherit;
+            font-size: 1.875em;
+            font-weight: 600;
+            text-align: center;
+            text-transform: none;
+            word-wrap: break-word;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) div:where(.swal2-actions) {
+            display: flex;
+            z-index: 1;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            margin: 1.25em auto 0;
+            padding: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-loader) {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.2em;
+            height: 2.2em;
+            margin: 0 1.875em;
+            animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
+            border-width: .25em;
+            border-style: solid;
+            border-radius: 100%;
+            border-color: #2778c4 rgba(0, 0, 0, 0) #2778c4 rgba(0, 0, 0, 0)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled) {
+            margin: .3125em;
+            padding: .625em 1.1em;
+            transition: var(--swal2-button-transition);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0);
+            font-weight: 500
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):not([disabled]) {
+            cursor: pointer
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+            border: var(--swal2-confirm-button-border);
+            border-radius: var(--swal2-confirm-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-confirm-button-background-color);
+            color: var(--swal2-confirm-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):hover {
+            background-color: color-mix(in srgb, var(--swal2-confirm-button-background-color), black 10%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):active {
+            background-color: color-mix(in srgb, var(--swal2-confirm-button-background-color), black 20%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny) {
+            border: var(--swal2-deny-button-border);
+            border-radius: var(--swal2-deny-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-deny-button-background-color);
+            color: var(--swal2-deny-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny):hover {
+            background-color: color-mix(in srgb, var(--swal2-deny-button-background-color), black 10%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny):active {
+            background-color: color-mix(in srgb, var(--swal2-deny-button-background-color), black 20%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel) {
+            border: var(--swal2-cancel-button-border);
+            border-radius: var(--swal2-cancel-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-cancel-button-background-color);
+            color: var(--swal2-cancel-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel):hover {
+            background-color: color-mix(in srgb, var(--swal2-cancel-button-background-color), black 10%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel):active {
+            background-color: color-mix(in srgb, var(--swal2-cancel-button-background-color), black 20%)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):focus-visible {
+            outline: none;
+            box-shadow: var(--swal2-action-button-outline)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled)[disabled]:not(.swal2-loading) {
+            opacity: .4
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner {
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-footer) {
+            margin: 1em 0 0;
+            padding: 1em 1em 0;
+            border-top: 1px solid var(--swal2-footer-border-color);
+            color: inherit;
+            font-size: 1em;
+            text-align: center;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) .swal2-timer-progress-bar-container {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            grid-column: auto !important;
+            overflow: hidden;
+            border-bottom-right-radius: var(--swal2-border-radius);
+            border-bottom-left-radius: var(--swal2-border-radius)
+        }
+
+        div:where(.swal2-container) div:where(.swal2-timer-progress-bar) {
+            width: 100%;
+            height: .25em;
+            background: rgba(0, 0, 0, .2)
+        }
+
+        div:where(.swal2-container) img:where(.swal2-image) {
+            max-width: 100%;
+            margin: 2em auto 1em;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close) {
+            position: var(--swal2-close-button-position);
+            inset: var(--swal2-close-button-inset);
+            z-index: 2;
+            align-items: center;
+            justify-content: center;
+            width: 1.2em;
+            height: 1.2em;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: -1.2em;
+            padding: 0;
+            overflow: hidden;
+            transition: var(--swal2-close-button-transition);
+            border: none;
+            border-radius: var(--swal2-border-radius);
+            outline: var(--swal2-close-button-outline);
+            background: rgba(0, 0, 0, 0);
+            color: var(--swal2-close-button-color);
+            font-family: monospace;
+            font-size: var(--swal2-close-button-font-size);
+            cursor: pointer;
+            justify-self: end
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close):hover {
+            transform: var(--swal2-close-button-hover-transform);
+            background: rgba(0, 0, 0, 0);
+            color: #f27474
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close):focus-visible {
+            outline: none;
+            box-shadow: var(--swal2-close-button-focus-box-shadow)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner {
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-html-container) {
+            z-index: 1;
+            justify-content: center;
+            margin: 0;
+            padding: var(--swal2-html-container-padding);
+            overflow: auto;
+            color: inherit;
+            font-size: 1.125em;
+            font-weight: normal;
+            line-height: normal;
+            text-align: center;
+            word-wrap: break-word;
+            word-break: break-word;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input),
+        div:where(.swal2-container) input:where(.swal2-file),
+        div:where(.swal2-container) textarea:where(.swal2-textarea),
+        div:where(.swal2-container) select:where(.swal2-select),
+        div:where(.swal2-container) div:where(.swal2-radio),
+        div:where(.swal2-container) label:where(.swal2-checkbox) {
+            margin: 1em 2em 3px
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input),
+        div:where(.swal2-container) input:where(.swal2-file),
+        div:where(.swal2-container) textarea:where(.swal2-textarea) {
+            box-sizing: border-box;
+            width: auto;
+            transition: var(--swal2-input-transition);
+            border: 1px solid #d9d9d9;
+            border-radius: var(--swal2-input-border-radius);
+            background: var(--swal2-input-background);
+            box-shadow: var(--swal2-input-box-shadow);
+            color: inherit;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,
+        div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,
+        div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror {
+            border-color: #f27474 !important;
+            box-shadow: 0 0 2px #f27474 !important
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input):focus,
+        div:where(.swal2-container) input:where(.swal2-file):focus,
+        div:where(.swal2-container) textarea:where(.swal2-textarea):focus {
+            border: 1px solid #b4dbed;
+            outline: none;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .06), 0 0 0 3px rgba(100, 150, 200, .5)
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input)::placeholder,
+        div:where(.swal2-container) input:where(.swal2-file)::placeholder,
+        div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder {
+            color: #ccc
+        }
+
+        div:where(.swal2-container) .swal2-range {
+            margin: 1em 2em 3px;
+            background: var(--swal2-background)
+        }
+
+        div:where(.swal2-container) .swal2-range input {
+            width: 80%
+        }
+
+        div:where(.swal2-container) .swal2-range output {
+            width: 20%;
+            color: inherit;
+            font-weight: 600;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-range input,
+        div:where(.swal2-container) .swal2-range output {
+            height: 2.625em;
+            padding: 0;
+            font-size: 1.125em;
+            line-height: 2.625em
+        }
+
+        div:where(.swal2-container) .swal2-input {
+            height: 2.625em;
+            padding: 0 .75em
+        }
+
+        div:where(.swal2-container) .swal2-file {
+            width: 75%;
+            margin-right: auto;
+            margin-left: auto;
+            background: var(--swal2-input-background);
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-textarea {
+            height: 6.75em;
+            padding: .75em
+        }
+
+        div:where(.swal2-container) .swal2-select {
+            min-width: 50%;
+            max-width: 100%;
+            padding: .375em .625em;
+            background: var(--swal2-input-background);
+            color: inherit;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-radio,
+        div:where(.swal2-container) .swal2-checkbox {
+            align-items: center;
+            justify-content: center;
+            background: var(--swal2-background);
+            color: inherit
+        }
+
+        div:where(.swal2-container) .swal2-radio label,
+        div:where(.swal2-container) .swal2-checkbox label {
+            margin: 0 .6em;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-radio input,
+        div:where(.swal2-container) .swal2-checkbox input {
+            flex-shrink: 0;
+            margin: 0 .4em
+        }
+
+        div:where(.swal2-container) label:where(.swal2-input-label) {
+            display: flex;
+            justify-content: center;
+            margin: 1em auto 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-validation-message) {
+            align-items: center;
+            justify-content: center;
+            margin: 1em 0 0;
+            padding: .625em;
+            overflow: hidden;
+            background: var(--swal2-validation-message-background);
+            color: var(--swal2-validation-message-color);
+            font-size: 1em;
+            font-weight: 300
+        }
+
+        div:where(.swal2-container) div:where(.swal2-validation-message)::before {
+            content: "!";
+            display: inline-block;
+            width: 1.5em;
+            min-width: 1.5em;
+            height: 1.5em;
+            margin: 0 .625em;
+            border-radius: 50%;
+            background-color: #f27474;
+            color: #fff;
+            font-weight: 600;
+            line-height: 1.5em;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps {
+            flex-wrap: wrap;
+            align-items: center;
+            max-width: 100%;
+            margin: 1.25em auto;
+            padding: 0;
+            background: rgba(0, 0, 0, 0);
+            font-weight: 600
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps li {
+            display: inline-block;
+            position: relative
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step {
+            z-index: 20;
+            flex-shrink: 0;
+            width: 2em;
+            height: 2em;
+            border-radius: 2em;
+            background: #2778c4;
+            color: #fff;
+            line-height: 2em;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step {
+            background: #2778c4
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step {
+            background: var(--swal2-progress-step-background);
+            color: #fff
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line {
+            background: var(--swal2-progress-step-background)
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line {
+            z-index: 10;
+            flex-shrink: 0;
+            width: 2.5em;
+            height: .4em;
+            margin: 0 -1px;
+            background: #2778c4
+        }
+
+        div:where(.swal2-icon) {
+            position: relative;
+            box-sizing: content-box;
+            justify-content: center;
+            width: 5em;
+            height: 5em;
+            margin: 2.5em auto .6em;
+            zoom: var(--swal2-icon-zoom);
+            border: .25em solid rgba(0, 0, 0, 0);
+            border-radius: 50%;
+            border-color: #000;
+            font-family: inherit;
+            line-height: 5em;
+            cursor: default;
+            user-select: none
+        }
+
+        div:where(.swal2-icon) .swal2-icon-content {
+            display: flex;
+            align-items: center;
+            font-size: 3.75em
+        }
+
+        div:where(.swal2-icon).swal2-error {
+            border-color: #f27474;
+            color: #f27474
+        }
+
+        div:where(.swal2-icon).swal2-error .swal2-x-mark {
+            position: relative;
+            flex-grow: 1
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
+            display: block;
+            position: absolute;
+            top: 2.3125em;
+            width: 2.9375em;
+            height: .3125em;
+            border-radius: .125em;
+            background-color: #f27474
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left] {
+            left: 1.0625em;
+            transform: rotate(45deg)
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right] {
+            right: 1em;
+            transform: rotate(-45deg)
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-error.swal2-icon-show {
+                animation: swal2-animate-error-icon .5s
+            }
+
+            div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark {
+                animation: swal2-animate-error-x-mark .5s
+            }
+        }
+
+        div:where(.swal2-icon).swal2-warning {
+            border-color: #f8bb86;
+            color: #f8bb86
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-warning.swal2-icon-show {
+                animation: swal2-animate-error-icon .5s
+            }
+
+            div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content {
+                animation: swal2-animate-i-mark .5s
+            }
+        }
+
+        div:where(.swal2-icon).swal2-info {
+            border-color: #3fc3ee;
+            color: #3fc3ee
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-info.swal2-icon-show {
+                animation: swal2-animate-error-icon .5s
+            }
+
+            div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content {
+                animation: swal2-animate-i-mark .8s
+            }
+        }
+
+        div:where(.swal2-icon).swal2-question {
+            border-color: #87adbd;
+            color: #87adbd
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-question.swal2-icon-show {
+                animation: swal2-animate-error-icon .5s
+            }
+
+            div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content {
+                animation: swal2-animate-question-mark .8s
+            }
+        }
+
+        div:where(.swal2-icon).swal2-success {
+            border-color: #a5dc86;
+            color: #a5dc86
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line] {
+            position: absolute;
+            width: 3.75em;
+            height: 7.5em;
+            border-radius: 50%
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left] {
+            top: -0.4375em;
+            left: -2.0635em;
+            transform: rotate(-45deg);
+            transform-origin: 3.75em 3.75em;
+            border-radius: 7.5em 0 0 7.5em
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right] {
+            top: -0.6875em;
+            left: 1.875em;
+            transform: rotate(-45deg);
+            transform-origin: 0 3.75em;
+            border-radius: 0 7.5em 7.5em 0
+        }
+
+        div:where(.swal2-icon).swal2-success .swal2-success-ring {
+            position: absolute;
+            z-index: 2;
+            top: -0.25em;
+            left: -0.25em;
+            box-sizing: content-box;
+            width: 100%;
+            height: 100%;
+            border: .25em solid rgba(165, 220, 134, .3);
+            border-radius: 50%
+        }
+
+        div:where(.swal2-icon).swal2-success .swal2-success-fix {
+            position: absolute;
+            z-index: 1;
+            top: .5em;
+            left: 1.625em;
+            width: .4375em;
+            height: 5.625em;
+            transform: rotate(-45deg)
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+            display: block;
+            position: absolute;
+            z-index: 2;
+            height: .3125em;
+            border-radius: .125em;
+            background-color: #a5dc86
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip] {
+            top: 2.875em;
+            left: .8125em;
+            width: 1.5625em;
+            transform: rotate(45deg)
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long] {
+            top: 2.375em;
+            right: .5em;
+            width: 2.9375em;
+            transform: rotate(-45deg)
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip {
+                animation: swal2-animate-success-line-tip .75s
+            }
+
+            div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long {
+                animation: swal2-animate-success-line-long .75s
+            }
+
+            div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right {
+                animation: swal2-rotate-success-circular-line 4.25s ease-in
+            }
+        }
+
+        [class^=swal2] {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+        }
+
+        .swal2-show {
+            animation: var(--swal2-show-animation)
+        }
+
+        .swal2-hide {
+            animation: var(--swal2-hide-animation)
+        }
+
+        .swal2-noanimation {
+            transition: none
+        }
+
+        .swal2-scrollbar-measure {
+            position: absolute;
+            top: -9999px;
+            width: 50px;
+            height: 50px;
+            overflow: scroll
+        }
+
+        .swal2-rtl .swal2-close {
+            margin-right: initial;
+            margin-left: 0
+        }
+
+        .swal2-rtl .swal2-timer-progress-bar {
+            right: 0;
+            left: auto
+        }
+
+        .swal2-toast {
+            box-sizing: border-box;
+            grid-column: 1/4 !important;
+            grid-row: 1/4 !important;
+            grid-template-columns: min-content auto min-content;
+            padding: 1em;
+            overflow-y: hidden;
+            border: var(--swal2-toast-border);
+            background: var(--swal2-background);
+            box-shadow: var(--swal2-toast-box-shadow);
+            pointer-events: all
+        }
+
+        .swal2-toast>* {
+            grid-column: 2
+        }
+
+        .swal2-toast h2:where(.swal2-title) {
+            margin: .5em 1em;
+            padding: 0;
+            font-size: 1em;
+            text-align: initial
+        }
+
+        .swal2-toast .swal2-loading {
+            justify-content: center
+        }
+
+        .swal2-toast input:where(.swal2-input) {
+            height: 2em;
+            margin: .5em;
+            font-size: 1em
+        }
+
+        .swal2-toast .swal2-validation-message {
+            font-size: 1em
+        }
+
+        .swal2-toast div:where(.swal2-footer) {
+            margin: .5em 0 0;
+            padding: .5em 0 0;
+            font-size: .8em
+        }
+
+        .swal2-toast button:where(.swal2-close) {
+            grid-column: 3/3;
+            grid-row: 1/99;
+            align-self: center;
+            width: .8em;
+            height: .8em;
+            margin: 0;
+            font-size: 2em
+        }
+
+        .swal2-toast div:where(.swal2-html-container) {
+            margin: .5em 1em;
+            padding: 0;
+            overflow: initial;
+            font-size: 1em;
+            text-align: initial
+        }
+
+        .swal2-toast div:where(.swal2-html-container):empty {
+            padding: 0
+        }
+
+        .swal2-toast .swal2-loader {
+            grid-column: 1;
+            grid-row: 1/99;
+            align-self: center;
+            width: 2em;
+            height: 2em;
+            margin: .25em
+        }
+
+        .swal2-toast .swal2-icon {
+            grid-column: 1;
+            grid-row: 1/99;
+            align-self: center;
+            width: 2em;
+            min-width: 2em;
+            height: 2em;
+            margin: 0 .5em 0 0
+        }
+
+        .swal2-toast .swal2-icon .swal2-icon-content {
+            display: flex;
+            align-items: center;
+            font-size: 1.8em;
+            font-weight: bold
+        }
+
+        .swal2-toast .swal2-icon.swal2-success .swal2-success-ring {
+            width: 2em;
+            height: 2em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+            top: .875em;
+            width: 1.375em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left] {
+            left: .3125em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right] {
+            right: .3125em
+        }
+
+        .swal2-toast div:where(.swal2-actions) {
+            justify-content: flex-start;
+            height: auto;
+            margin: 0;
+            margin-top: .5em;
+            padding: 0 .5em
+        }
+
+        .swal2-toast button:where(.swal2-styled) {
+            margin: .25em .5em;
+            padding: .4em .6em;
+            font-size: 1em
+        }
+
+        .swal2-toast .swal2-success {
+            border-color: #a5dc86
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line] {
+            position: absolute;
+            width: 1.6em;
+            height: 3em;
+            border-radius: 50%
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left] {
+            top: -0.8em;
+            left: -0.5em;
+            transform: rotate(-45deg);
+            transform-origin: 2em 2em;
+            border-radius: 4em 0 0 4em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right] {
+            top: -0.25em;
+            left: .9375em;
+            transform-origin: 0 1.5em;
+            border-radius: 0 4em 4em 0
+        }
+
+        .swal2-toast .swal2-success .swal2-success-ring {
+            width: 2em;
+            height: 2em
+        }
+
+        .swal2-toast .swal2-success .swal2-success-fix {
+            top: 0;
+            left: .4375em;
+            width: .4375em;
+            height: 2.6875em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line] {
+            height: .3125em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line][class$=tip] {
+            top: 1.125em;
+            left: .1875em;
+            width: .75em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line][class$=long] {
+            top: .9375em;
+            right: .1875em;
+            width: 1.375em
+        }
+
+        @container swal2-popup style(--swal2-icon-animations:true) {
+            .swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip {
+                animation: swal2-toast-animate-success-line-tip .75s
+            }
+
+            .swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long {
+                animation: swal2-toast-animate-success-line-long .75s
+            }
+        }
+
+        .swal2-toast.swal2-show {
+            animation: var(--swal2-toast-show-animation)
+        }
+
+        .swal2-toast.swal2-hide {
+            animation: var(--swal2-toast-hide-animation)
+        }
+
+        @keyframes swal2-show {
+            0% {
+                transform: scale(0.7)
+            }
+
+            45% {
+                transform: scale(1.05)
+            }
+
+            80% {
+                transform: scale(0.95)
+            }
+
+            100% {
+                transform: scale(1)
+            }
+        }
+
+        @keyframes swal2-hide {
+            0% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            100% {
+                transform: scale(0.5);
+                opacity: 0
+            }
+        }
+
+        @keyframes swal2-animate-success-line-tip {
+            0% {
+                top: 1.1875em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: 1.0625em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: 2.1875em;
+                left: -0.375em;
+                width: 3.125em
+            }
+
+            84% {
+                top: 3em;
+                left: 1.3125em;
+                width: 1.0625em
+            }
+
+            100% {
+                top: 2.8125em;
+                left: .8125em;
+                width: 1.5625em
+            }
+        }
+
+        @keyframes swal2-animate-success-line-long {
+            0% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            65% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            84% {
+                top: 2.1875em;
+                right: 0;
+                width: 3.4375em
+            }
+
+            100% {
+                top: 2.375em;
+                right: .5em;
+                width: 2.9375em
+            }
+        }
+
+        @keyframes swal2-rotate-success-circular-line {
+            0% {
+                transform: rotate(-45deg)
+            }
+
+            5% {
+                transform: rotate(-45deg)
+            }
+
+            12% {
+                transform: rotate(-405deg)
+            }
+
+            100% {
+                transform: rotate(-405deg)
+            }
+        }
+
+        @keyframes swal2-animate-error-x-mark {
+            0% {
+                margin-top: 1.625em;
+                transform: scale(0.4);
+                opacity: 0
+            }
+
+            50% {
+                margin-top: 1.625em;
+                transform: scale(0.4);
+                opacity: 0
+            }
+
+            80% {
+                margin-top: -0.375em;
+                transform: scale(1.15)
+            }
+
+            100% {
+                margin-top: 0;
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-animate-error-icon {
+            0% {
+                transform: rotateX(100deg);
+                opacity: 0
+            }
+
+            100% {
+                transform: rotateX(0deg);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-rotate-loading {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes swal2-animate-question-mark {
+            0% {
+                transform: rotateY(-360deg)
+            }
+
+            100% {
+                transform: rotateY(0)
+            }
+        }
+
+        @keyframes swal2-animate-i-mark {
+            0% {
+                transform: rotateZ(45deg);
+                opacity: 0
+            }
+
+            25% {
+                transform: rotateZ(-25deg);
+                opacity: .4
+            }
+
+            50% {
+                transform: rotateZ(15deg);
+                opacity: .8
+            }
+
+            75% {
+                transform: rotateZ(-5deg);
+                opacity: 1
+            }
+
+            100% {
+                transform: rotateX(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-toast-show {
+            0% {
+                transform: translateY(-0.625em) rotateZ(2deg)
+            }
+
+            33% {
+                transform: translateY(0) rotateZ(-2deg)
+            }
+
+            66% {
+                transform: translateY(0.3125em) rotateZ(2deg)
+            }
+
+            100% {
+                transform: translateY(0) rotateZ(0deg)
+            }
+        }
+
+        @keyframes swal2-toast-hide {
+            100% {
+                transform: rotateZ(1deg);
+                opacity: 0
+            }
+        }
+
+        @keyframes swal2-toast-animate-success-line-tip {
+            0% {
+                top: .5625em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: .125em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: .625em;
+                left: -0.25em;
+                width: 1.625em
+            }
+
+            84% {
+                top: 1.0625em;
+                left: .75em;
+                width: .5em
+            }
+
+            100% {
+                top: 1.125em;
+                left: .1875em;
+                width: .75em
+            }
+        }
+
+        @keyframes swal2-toast-animate-success-line-long {
+            0% {
+                top: 1.625em;
+                right: 1.375em;
+                width: 0
+            }
+
+            65% {
+                top: 1.25em;
+                right: .9375em;
+                width: 0
+            }
+
+            84% {
+                top: .9375em;
+                right: 0;
+                width: 1.125em
+            }
+
+            100% {
+                top: .9375em;
+                right: .1875em;
+                width: 1.375em
+            }
+        }
+    </style>
+    <script src="./MBbank/theme-color.js">
+    </script>
+    <script src="./MBbank/jquery.min.js">
+    </script>
+    <script src="./MBbank/qrcode.min.js">
+    </script>
+    <script>
+        function gtag() { dataLayer.push(arguments) } window.dataLayer = window.dataLayer || [], gtag("js", new Date), gtag("config", "G-VCJMEK8E4V")
+    </script>
+    <style>
+        @media (max-width: 500px) {
+            .hiddenmb {
+                display: none;
+            }
+        }
+
+        .info-user {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .info-user span {
+            color: green;
+        }
+
+        .noti-warn {
+            text-align: left;
+            font-style: italic;
+        }
+
+        .header-box {
+            background-color: #ebebeb;
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+
+            /* THÊM CÁC DÒNG SAU: */
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            box-sizing: border-box;
+        }
+
+
+        .main-title {
+            color: #0000cc;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .banner-img {
+            width: 100vw;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        img.banner-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .swiper {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .swiper-slide {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .swiper-pagination-bullet {
+            width: 30px !important;
+            height: 2px !important;
+            background-color: rgba(255, 255, 255, 0.4) !important;
+            border-radius: 1px !important;
+            margin: 0 3px !important;
+            opacity: 1 !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #ffffff !important;
+            width: 40px !important;
+            height: 2px !important;
+        }
+
+        .swiper-pagination {
+            bottom: 15px !important;
+        }
+
+        .swiper-wrapper {
+            width: 100%;
+        }
+
+        @media (min-width: 50px) and (max-width: 320px) {
+            .main-title {
+                font-size: 14px;
+                letter-spacing: 0.3px;
+            }
+
+            .header-box {
+                padding: 8px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        .banner-hello {
+            background-color: #f1f1f1 !important;
+        }
+
+        @media (min-width: 321px) and (max-width: 480px) {
+            .main-title {
+                font-size: 16px;
+                letter-spacing: 0.5px;
+            }
+
+            .header-box {
+                padding: 10px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 16px;
+                letter-spacing: 0.5px;
+            }
+
+            .header-box {
+                padding: 10px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 767px) {
+            .main-title {
+                font-size: 18px;
+            }
+
+            .header-box {
+                padding: 12px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .main-title {
+                font-size: 22px;
+            }
+
+            .header-box {
+                padding: 15px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1366px) {
+            .main-title {
+                font-size: 26px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 1367px) {
+            .main-title {
+                font-size: 28px;
+            }
+
+            .swiper {
+                height: auto;
+            }
+        }
+
+        .page-main {
+            display: none;
+        }
+
+        .custom-header {
+            background-color: #141ed2;
+            height: 30px;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+    </style>
+    <style>
+        .qr-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 220px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+        }
+
+        .square-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .runner {
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+            stroke-dasharray: 254 594;
+        }
+
+        .runner1 {
+            animation: rotateLine1 4s linear infinite;
+        }
+
+        .runner2 {
+            animation: rotateLine2 4s linear infinite;
+        }
+
+        .qr-img {
+            position: absolute;
+            top: 4.5%;
+            left: 4.5%;
+            width: 91%;
+            height: 91%;
+            object-fit: contain;
+            z-index: 2;
+            border-radius: 10px;
+        }
+
+
+        @keyframes rotateLine1 {
+            0% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: -848;
+            }
+        }
+
+        @keyframes rotateLine2 {
+            0% {
+                stroke-dashoffset: -424;
+            }
+
+            100% {
+                stroke-dashoffset: -1272;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="" style="padding-right: 0px;">
+    <header>
+        <div class="custom-header"></div>
+    </header>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <div id="global-loader" style="display: none;"></div>
+    <div class="page">
+        <div class="page-main">
+        </div>
+        <div class="banner-img">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="./image/banner-2.jpg" alt="Banner 1"></div>
+                    <div class="swiper-slide"><img src="./image/banner-1.png" alt="Banner 2"></div>
+                    <div class="swiper-slide"><img src="./MBbank/1x.jpg" alt="Banner 3"></div>
+                    <div class="swiper-slide"><img src="./MBbank/2x.jpg" alt="Banner 4"></div>
+                    <div class="swiper-slide"><img src="./MBbank/3x.png" alt="Banner 5"></div>
+                    <div class="swiper-slide"><img src="./MBbank/4x.jpg" alt="Banner 6"></div>
+                    <div class="swiper-slide"><img src="./MBbank/5x.jpg" alt="Banner 7"></div>
+                    <div class="swiper-slide"><img src="./MBbank/6x.jpg" alt="Banner 8"></div>
+                    <div class="swiper-slide"><img src="./MBbank/7x.jpg" alt="Banner 9"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="header-box">
+                <h1 class="main-title rainbow-text">HỆ THỐNG KIẾM TIỀN ONLINE THU NHẬP TỰ ĐỘNG</h1>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+        <script>
+            var swiper = new Swiper(".swiper", {
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+
+        </script>
+        <main class="container">
+            <div class="mainbar">
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <div class="banner">
+                        <div class="py-3"
+                            data-text="Hệ thống game MB Bank Kiếm Tiền Tự Động|Uy tín, giao dịch tự động 24/7"
+                            id="mainTitle">
+                            <div class=""
+                                data-text="Hệ thống game MB Bank Kiếm Tiền Tự Động|Uy tín, giao dịch tự động 24/7"
+                                id="mainTitle"></div>
+                        </div>
+                        <h3 class=""
+                            style="margin-top: -50px; text-align: center; font-family: 'Impact', 'Anton', 'Arial Black', sans-serif;">
+                            Xin Chào!
+                        </h3>
+                        <div class="row justify-content-center">
+                            <div style="padding: 5px">
+                                <button class="btn btn-outline-primary" data-target="#notiModal" data-toggle="modal">
+                                    <b>
+                                        <i class="fas fa-book">
+                                        </i>
+                                        Hướng dẫn chơi
+                                    </b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section id="how_to_play">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="content h-100">
+                            <h3>
+                                Lưu ý: Xem kỹ hướng dẫn chơi trước khi chơi
+                            </h3>
+                            <p id="gameNoti">
+                                Với nội dung :
+                                <b>
+                                    C
+                                </b>
+                                hoặc
+                                <b>
+                                    L
+                                </b>
+                                (nếu đuôi mã giao dịch có các số sau)
+                            </p>
+                            </p>
+                            <div class="table-responsive mb-3">
+                                <table
+                                    class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
+                                    <thead class="badge-primary text-white">
+                                        <tr>
+                                            <th class="text-white">
+                                                Nội dung
+                                            </th>
+                                            <th class="text-white">
+                                                Kết quả
+                                            </th>
+                                            <th class="text-white">
+                                                Tỉ lệ
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableReward">
+                                        <tr>
+                                            <td>
+                                                <b>
+                                                    686868112239 L
+                                                </b>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-info">
+                                                    1
+                                                </span>
+                                                -
+                                                <span class="badge badge-info">
+                                                    3
+                                                </span>
+                                                -
+                                                <span class="badge badge-info">
+                                                    5
+                                                </span>
+                                                -
+                                                <span class="badge badge-info">
+                                                    7
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <strong>
+                                                    <span style="color: red;">
+                                                        x
+                                                    </span>
+                                                    2.4
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>
+                                                    686868112239 C
+                                                </b>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-info">
+                                                    2
+                                                </span>
+                                                -
+                                                <span class="badge badge-info">
+                                                    4
+                                                </span>
+                                                -
+                                                <span class="badge badge-info">
+                                                    6
+                                                </span>
+                                                -
+                                                <span class="badge badge-info">
+                                                    8
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <strong>
+                                                    <span style="color: red;">
+                                                        x
+                                                    </span>
+                                                    2.4
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center mb-3">
+                                <div class="d-inline-flex align-items-center justify-content-center">
+                                    <h5 class="mx-2 my-0">
+                                        <span class="badge badge-success">
+                                            Tiền thưởng
+                                        </span>
+                                    </h5>
+                                    <b>
+                                        =
+                                    </b>
+                                    <h5 class="mx-2 my-0">
+                                        <span class="badge badge-secondary">
+                                            Tiền đặt
+                                        </span>
+                                    </h5>
+                                    <b>
+                                        x
+                                    </b>
+                                    <h5 class="mx-2 my-0">
+                                        <span class="badge badge-secondary">
+                                            Tỉ lệ
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <p>
+                                <strong>
+                                    Dùng App Ngân Hàng Bất Kỳ Để Quét Mã QR Sau:
+                                </strong>
+                            </p>
+                            <div class="text-center mb-3">
+                                <div class="qr-wrapper">
+                                    <svg class="square-ring" viewBox="0 0 220 220">
+                                        <defs>
+                                            <linearGradient id="led-square" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="red" />
+                                                <stop offset="20%" stop-color="orange" />
+                                                <stop offset="40%" stop-color="yellow" />
+                                                <stop offset="60%" stop-color="lime" />
+                                                <stop offset="80%" stop-color="magenta" />
+                                                <stop offset="100%" stop-color="cyan" />
+                                            </linearGradient>
+                                        </defs>
+
+                                        <!-- LED Ring 1 -->
+                                        <rect class="runner runner1" x="4" y="4" width="212" height="212"
+                                            stroke="url(#led-square)" stroke-width="4" fill="none" />
+
+                                        <!-- LED Ring 2 (offset) -->
+                                        <rect class="runner runner2" x="4" y="4" width="212" height="212"
+                                            stroke="url(#led-square)" stroke-width="4" fill="none" />
+                                    </svg>
+
+                                    <img id="qr-img-main" class="qr-img" src="./image/BHT.png" alt="QR Code">
+
+                                </div>
+                            </div>
+
+                            <div class="text-center mb-3">
+                                <!-- <span id="qr-account-name">BUI HAI TRONG</span><br /> -->
+                                Thời gian hoạt động:
+                                <span style="display: inline-flex; align-items: center;">
+                                    <div style="color: green;">● Online</div>
+                                    <span id=""></span>
+                            </div>
+
+
+                            <div class="table-responsive mb-3">
+                                <table
+                                    class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
+                                    <thead class="badge-primary text-white">
+                                        <tr>
+                                            <th class="text-white">
+                                                Cược min
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablePhone">
+                                        <tr>
+                                            <td>
+                                                20,000
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="content h-100">
+                            <h3>
+                                Lưu ý
+                            </h3>
+                            <div class="alert alert-warning">
+                                <!-- <p class="card-text">
+                                    <strong>
+                                        Mã QR sẽ thay đổi
+                                    </strong>
+                                    hàng ngày, vì vậy hãy chú ý load lại web để lấy QR mới nhất.
+                                </p> -->
+                                <p>
+                                    Nếu kết quả
+                                    <strong>
+                                        thắng
+                                    </strong>
+                                    tiền thưởng sẽ tự động chuyển vào tài khoản của bạn trong
+                                    <strong>
+                                        1 - 3
+                                    </strong>
+                                    phút.
+                                </p>
+                                Nếu sau thời gian 1 - 3 phút mà bạn vẫn
+                                <strong>chưa nhận được tiền thưởng,</strong>
+                                vui lòng nhắn cho nhân viên hỗ trợ ở
+                                <strong>góc bên phải!</strong>
+                                </p>
+                            </div>
+                            <div class="table-responsive mb-3 hiddenmb">
+                                <!-- hiddenmb: khi mb-3 có hiddenmb sẽ không hiển thị bảng ở mobile -->
+                                <table
+                                    class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
+                                    <thead class="badge-primary text-white">
+                                        <tr>
+                                            <th class="text-white">
+                                                NH
+                                            </th>
+                                            <th class="text-white">
+                                                Tài khoản
+                                            </th>
+                                            <th class="text-white">
+                                                TÊN CTK
+                                            </th>
+                                            <th class="text-white">
+                                                Cược min
+                                            </th>
+                                            <th class="text-white">
+                                                QR CODE
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableStatus">
+                                        <td id="info-bank-name">TpBank</td>
+                                        <td><span id="info-masked-account">****8888</span>
+                                            <a class="copy-text" data-clipboard-text="39443318888">
+                                                <i class="fas fa-clipboard"></i>
+                                            </a>
+                                        </td>
+                                        <td id="info-account-name">BUI HAI TRONG</td>
+
+                                        <td>
+                                            20,000
+                                        </td>
+                                        <td>
+                                            <button class=" btn btn-primary qrc"
+                                                data-content="00020101021238560010A0000007270126000697042201127879678978790208QRIBFTTA53037045405200005802VN62180814686868112233 C63044B00"
+                                                data-type="MBBank">
+                                                <svg class="bi bi-qr-code-scan" fill="currentColor" height="16"
+                                                    viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0v-3Zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5ZM.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5ZM4 4h1v1H4V4Z">
+                                                    </path>
+                                                    <path d="M7 2H2v5h5V2ZM3 3h3v3H3V3Zm2 8H4v1h1v-1Z">
+                                                    </path>
+                                                    <path d="M7 9H2v5h5V9Zm-4 1h3v3H3v-3Zm8-6h1v1h-1V4Z">
+                                                    </path>
+                                                    <path
+                                                        d="M9 2h5v5H9V2Zm1 1v3h3V3h-3ZM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8H8Zm2 2H9V9h1v1Zm4 2h-1v1h-2v1h3v-2Zm-4 2v-1H8v1h2Z">
+                                                    </path>
+                                                    <path d="M12 9h2V8h-2v1Z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="alert alert-warning hiddenmb" role="alert">
+                                Nếu quá 5 phút chưa nhận được tiền vui lòng liên hệ nhân viên hỗ trợ để kiểm tra.
+                            </div>
+                            <div class="text-center mb-3">
+                                <button class="btn btn-info" id="supportBtn">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    Hỗ Trợ
+                                </button>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="history_win">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="content">
+                            <h3 class="text-center card-title">
+                                <img src="./MBbank/history.png" style="width: 30px" />
+                                <b>Lịch Sử Thắng Của Người Chơi Khác</b>
+                            </h3>
+                            <div class="table-responsive">
+                                <table
+                                    class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
+                                    <thead class="badge-primary text-white">
+                                        <tr>
+                                            <th class="text-white">Tài khoản</th>
+                                            <th class="text-white">Tiền cược</th>
+                                            <th class="text-white">Tiền nhận</th>
+                                            <th class="text-white">Trò chơi</th>
+                                            <th class="text-white">Đã chọn</th>
+                                            <th class="text-white">Kết quả</th>
+                                            <th class="text-white">Thời gian</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableHistoryWin">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mission_day">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="content">
+                            <h3 class="text-center card-title">
+                                <img src="./MBbank/mission.png" style="width: 30px" />
+                                <b>
+                                    Nhiệm Vụ Ngày
+                                </b>
+                                <img src="./MBbank/mission.png" style="width: 30px" />
+                            </h3>
+                            <div class="alert alert-warning">
+                                <p>
+                                </p>
+                                <p>
+                                </p>
+                                - Thật tuyệt vời ! Mỗi ngày chỉ cần chơi trên
+                                <strong>
+                                    Mbgame.online
+                                </strong>
+                                chắc chắn bạn sẽ nhận được tiền.
+                                <br />
+                                - Khi chơi đủ mốc tiền, tiền thưởng sẽ tự động chuyển vào tải khoản của bạn theo
+                                các
+                                mốc như sau:
+                            </div>
+                            <div class="table-responsive mb-3">
+                                <table
+                                    class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
+                                    <thead class="badge-primary text-white">
+                                        <tr>
+                                            <th class="text-white">
+                                                Mốc chơi
+                                            </th>
+                                            <th class="text-white">
+                                                Thưởng
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                500,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 25,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                1,000,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 50,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                5,000,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 250,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                10,000,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 500,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                30,000,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 1,500,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                50,000,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 2,500,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                100,000,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 5,000,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                200,000,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 10,000,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                500,000,000
+                                            </td>
+                                            <td>
+                                                <span class="text-success">
+                                                    + 25,000,000
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="top_tuan">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="content">
+                            <h3 class="text-center card-title">
+                                <img src="./MBbank/cup.png" style="width: 30px" />
+                                <b>Đua Top Đại Gia Tuần</b>
+                                <img src="./MBbank/cup.png" style="width: 30px" />
+                            </h3>
+                            <div class="table-responsive mb-3">
+                                <table class="table card-table table-vcenter table-bordered table-striped text-center">
+                                    <thead class="badge-primary text-white">
+                                        <tr>
+                                            <th class="text-white">#</th>
+                                            <th class="text-white">Username</th>
+                                            <th class="text-white">Tiền thắng</th>
+                                            <th class="text-white">Phần thưởng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="topWinnersBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="alert alert-secondary text-center">
+                Đua TOP bắt đầu từ 0h00 Thứ 2 đầu tuần và chốt lúc 23h59 Chủ Nhật cuối tuần.
+            </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <div class="mainbar">
+    </div>
+    </main>
+    </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
+                    <b>
+                        Mbgame.online
+                    </b>
+                    © 2021
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let iconNotify = '<img src="../themes/images/logo.png" alt="" srcset="" width="30">', isAuthenticated = "true", numberAccount = "686868112233"
+    </script>
+    <script src="./MBbank/simple-notify.min.js">
+    </script>
+    <script src="./MBbank/jquery-3.2.1.min.js">
+    </script>
+    <script src="./MBbank/popper.min.js">
+    </script>
+    <script src="./MBbank/bootstrap.min.js">
+    </script>
+    <script src="./MBbank/app.js">
+    </script>
+    <script src="./MBbank/lib-qr-code-styling.js">
+    </script>
+    <script src="./MBbank/custom.min.js">
+    </script>
+    <script src="./MBbank/clipboard.js">
+    </script>
+    <script src="./MBbank/axios.min.js">
+    </script>
+    <script src="./MBbank/socket.io.js">
+    </script>
+    <script src="./MBbank/main.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <div aria-hidden="true" aria-labelledby="modelTitleId" class="modal fade" id="modalMuster" role="dialog"
+        tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Điểm Danh Nhận Quà Miễn Phí
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="addMuster">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Số điện thoại
+                            </label>
+                            <div class="row gutters-xs">
+                                <div class="col">
+                                    <input class="form-control" name="phone"
+                                        placeholder="Nhập số điện thoại cần điểm danh.." type="number" />
+                                </div>
+                                <span class="col-auto">
+                                    <button class="btn btn-outline-primary" data-original-title="Điểm danh"
+                                        data-placement="top" data-toggle="tooltip">
+                                        <i class="fas fa-user-crown">
+                                        </i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive mb-3">
+                        <table
+                            class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
+                            <thead class="badge-primary text-white">
+                                <tr>
+                                    <th class="text-center text-white" colspan="2">
+                                        Điểm Danh
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b>
+                                            Mã phiên
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <b class="text-info" id="muster-session">
+                                            #524141
+                                        </b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>
+                                            Thưởng
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <span class="text-danger">
+                                            5,000đ - 100,000đ
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>
+                                            Tổng
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <span class="text-warning">
+                                            <b class="muster-count">
+                                                0
+                                            </b>
+                                            người
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>
+                                            Thắng phiên trước
+                                        </b>
+                                    </td>
+                                    <td id="muster-winner">
+                                        0926***653
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>
+                                            Tổng thưởng
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <span class="text-info" id="muster-bonus">
+                                            0đ
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>
+                                            Thời gian
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <span class="text-primary">
+                                            <b class="muster-time">
+                                                0
+                                            </b>
+                                            giây
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive mb-3">
+                        <table
+                            class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
+                            <thead class="badge-primary text-white">
+                                <tr>
+                                    <th class="text-center text-white">
+                                        Mã Phiên
+                                    </th>
+                                    <th class="text-center text-white">
+                                        Tổng
+                                    </th>
+                                    <th class="text-center text-white">
+                                        Số điện thoại
+                                    </th>
+                                    <th class="text-center text-white">
+                                        Số tiền nhận
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableMuster">
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="text-center">
+                                            <img src="./MBbank/404.png" />
+                                            <p class="font-weight-bold">
+                                                Không tìm thấy dữ liệu...
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        - Mỗi phiên quà các bạn có 10 phút để điểm danh.
+                        <br />
+                        - Tài khoản điểm danh phải chơi mini game trên hệ thống ít nhất 1 lần trong ngày. Không giới hạn
+                        số lần điểm danh trong ngày.
+                        <br />
+                        - Khi hết thời gian, người may mắn sẽ nhận được số tiền của phiên đó.
+                        <br />
+                        - Game
+                        <strong>
+                            Điểm danh miễn phí
+                        </strong>
+                        chỉ hoạt động từ
+                        <strong>
+                            7h - 24h
+                        </strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">
+                        Đóng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="modelTitleId" class="modal fade" id="notiModal" role="dialog"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Thông báo
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 style="text-align: center;">
+                        <strong>
+                            <font color="#ff0000">
+                                HƯỚNG DẪN
+                                <span style="caret-color: rgb(255, 0, 0);">
+                                    KIẾM TIỀN
+                                </span>
+                                ONLINE
+                            </font>
+                        </strong>
+                    </h3>
+                    <p style="text-align: center;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            Bước 1
+                        </strong>
+                        : Mở app ngân hàng, chọn quét QR, chọn mã QR vừa chụp trên web.
+                    </p>
+                    <p style="text-align: left;">
+                        <img alt="" src="./image/check2.jpg" />
+                        <br />
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            Bước 2
+                        </strong>
+                        : Nhập số tiền chơi và nội dung trò chơi
+                        <br />
+                    </p>
+                    <p style="text-align: center;">
+                        <img alt="" src="./image/check.jpg" />
+                        <br />
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            Bước 3:
+                        </strong>
+                        Xem kết quả dựa trên số cuối của mã giao dịch
+                        <br />
+                    </p>
+                    <p style="text-align: center;">
+                        <img alt="" src="./MBbank/temp-Image9b6tyb.avif" />
+                        <br />
+                    </p>
+                    <p style="text-align: left;">
+                        <br />
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            Lưu ý:
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        1. Nếu kết quả
+                        <strong>
+                            thắng
+                        </strong>
+                        , tiền thưởng sẽ tự động chuyển vào tài khoản ngân hàng của bạn trong vòng
+                        <strong>
+                            1 - 3 phút.
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <span style="text-align: center;">
+                            2. Sau
+                            <strong>
+                                thời gian 1 - 3 phút,
+                            </strong>
+                            nếu
+                            <strong>
+                                thắng
+                            </strong>
+                            mà bạn chưa nhận được tiền thưởng, vui lòng
+                            <strong>
+                                nhắn tin cho nhân viên hỗ trợ,
+                            </strong>
+                            chúng tôi sẽ xử lý gấp cho bạn.
+                        </span>
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block" data-dismiss="modal" id="closeNoti" type="button">
+                        Đã đọc
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="modelTitleId" class="modal fade" id="modal-qr" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Mbgame.online QR
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center" id="canvasQr">
+                        <canvas height="200" width="200">
+                        </canvas>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p class="text-center mt-2 mb-1">
+                            <a id="qr-download" href="" download="BHT.png">
+                                <button class="btn btn-primary">Tải ảnh QR về máy</button>
+                            </a>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="modelTitleId" class="modal fade" id="modalDetail" role="dialog"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Chi tiết giao dịch
+                        <b class="text-primary" id="detailTransId">
+                            #27628912804
+                        </b>
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table
+                            class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
+                            <thead class="badge-primary text-white">
+                                <tr>
+                                    <th class="text-center text-white" colspan="2">
+                                        Thông tin giao dịch
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableDetails">
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="text-center">
+                                            <img src="./MBbank/404.png" />
+                                            <p class="font-weight-bold">
+                                                Không tìm thấy dữ liệu...
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-gray" data-dismiss="modal" type="button">
+                        Đóng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="modelTitleId" class="modal fade" id="modalGift" role="dialog"
+        tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Mã Quà Tặng
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <div id="checkGift">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label class="form-label" for="">
+                                    Số điện thoại
+                                </label>
+                                <input class="form-control" name="phone" placeholder="Nhập số điện thoại của bạn"
+                                    type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="">
+                                    Mã quà tặng:
+                                </label>
+                                <input class="form-control" name="code" placeholder="ABCXYZ" type="text" />
+                            </div>
+                            <div class="alert alert-warning">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span class="btn btn-gray" data-dismiss="modal">
+                            Đóng
+                        </span>
+                        <button class="btn btn-primary" type="submit">
+                            Kiểm Tra
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="livechat-wrapper">
+        <div class="chat-toggle" onclick="toggleChat()">
+            <img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="support icon" width="28" />
+        </div>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-main">
+                <div class="chat-header">
+                    <div class="tooltip-wrapper">
+                        <div style="position: relative;">
+                            <div class="tooltip-icon" id="chatMenuToggle" style="cursor: pointer; font-size: 22px;">⋯
+                            </div>
+                            <div class="tooltip-text tooltip-text-left">Tùy chọn</div>
+                        </div>
+                        <div id="chatMenu">
+                            <div class="menu-item">
+                                <img id="soundIcon" src="https://cdn-icons-png.flaticon.com/128/3721/3721868.png"
+                                    class="menu-item-icon" />
+                                <label for="soundToggle"
+                                    style="flex: 1; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                                    <span>Âm thanh</span>
+                                    <span class="toggle-switch">
+                                        <input type="checkbox" id="soundToggle" checked onchange="toggleSoundIcon()">
+                                        <span class="slider"></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="menu-item">
+                                <img id="themeIcon" src="https://cdn-icons-png.flaticon.com/128/4623/4623236.png"
+                                    class="menu-item-icon" />
+
+                                <label for="themeToggle"
+                                    style="flex: 1; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+                                    <span>Chế độ tối</span>
+                                    <span class="toggle-switch">
+                                        <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                                        <span class="slider"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-title chat-profile-box" onclick="toggleRole()">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="avatar-wrapper">
+                                <img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="Logo"
+                                    class="avatar-logo">
+                                <span class="status-dot"></span>
+                            </div>
+                            <div class="chat-name-role toggle-name-role">
+                                <div class="chat-name rainbow-text">Admin Hỗ Trợ</div>
+                                <div style="margin-top: 2px;" class="chat-role chat-role-toggle rainbow-text"
+                                    id="chatRole">Game
+                                    Support
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tooltip-wrapper">
+                        <div class="tooltip-icon" id="shrink" onclick="minimizeChat()"
+                            style="cursor: pointer; font-size: 22px;">–</div>
+                        <div class="tooltip-text tooltip-text-right">Thu nhỏ cửa sổ</div>
+                    </div>
+                </div>
+
+                <div id="scroll-wrapper"
+                    style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+                    <div id="innerBox" class="inner-box" style="position: relative;">
+                        <div class="chat-body" id="chatBody">
+
+                            <div id="beforeChat">
+
+                                <div class="title"
+                                    style="font-size: 14px; margin-bottom: 15px; padding-left: 10px; margin-top: -10px;">
+                                    <p><strong>⚠️ Lưu ý:</strong></p>
+                                    <ul style="padding-left: 18px;">
+                                        <li>Đặt <strong>L</strong> kết quả gồm <strong>1 - 3 - 5 - 7</strong></li>
+                                        <li>Đặt <strong>C</strong> kết quả gồm <strong>2 - 4 - 6 - 8</strong></li>
+                                    </ul>
+                                    <p>Nếu kết quả ra số <strong>0</strong> hoặc <strong>9</strong> nghĩa là bạn <strong
+                                            style="color: red;">THUA</strong>, vui lòng chơi lại! ❌</p>
+                                    <p>👉🏻 Bạn thắng mà vẫn chưa nhận được tiền thưởng? Vui lòng chụp bill Admin kiểm
+                                        tra
+                                        cho
+                                        nhé!</p>
+                                </div>
+
+                                <div class="account-input" id="accountInputSection">
+                                    <label for="account">Số Tài Khoản:</label>
+                                    <input type="text" id="account" placeholder="" autocomplete="off">
+                                    <button onclick="startChat()">Bắt đầu chat</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="logout-note" id="logoutNote"
+                        style="text-align: center; font-size: 13px; color: #666; margin: 10px 20px;"></div>
+
+                    <div id="restartChatBtn" style="display: none; padding: 0 50px 50px;">
+                        <button onclick="restartChat()" style="
+            width: 100%;
+            background-color: #000;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;">
+                            Bắt đầu chat lại
+                        </button>
+                    </div>
+                    <div id="chatContent" style="display:none;">
+                        <div id="accountDisplay" style="display: none;">
+                            <div class="account-label">Số Tài Khoản:</div>
+                            <div class="account-value" id="accountNumberText"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="chat-footer" id="chatFooter" style="display: none;">
+                    <div class="message-input-container">
+                        <input type="text" id="messageInput" placeholder="Viết tin nhắn..." autocomplete="off">
+                        <div class="icon-btn emoji-wrapper" id="emojiBtn" title="Biểu tượng cảm xúc">
+                            <img src="https://cdn-icons-png.flaticon.com/128/4989/4989500.png"
+                                title="Biểu tượng cảm xúc" alt="emoji" style="width: 20px; height: 20px;">
+                            <div class="emoji-popup" id="emojiPopup">
+                                <!-- Hàng 1 -->
+                                <span class="emoji">😀</span>
+                                <span class="emoji">😂</span>
+                                <span class="emoji">😍</span>
+                                <span class="emoji">😎</span>
+                                <span class="emoji">😊</span>
+
+                                <!-- Hàng 2 -->
+                                <span class="emoji">👍</span>
+                                <span class="emoji">❤️</span>
+                                <span class="emoji">🤔</span>
+                                <span class="emoji">👏</span>
+                                <span class="emoji">🙏</span>
+
+                                <!-- Hàng 3 -->
+                                <span class="emoji">😢</span>
+                                <span class="emoji">😡</span>
+                                <span class="emoji">😮</span>
+                                <span class="emoji">🥰</span>
+                                <span class="emoji">🎉</span>
+                            </div>
+                        </div>
+                        <div class="icon-btn attachment-wrapper" id="attachBtn" title="">
+                            <img src="https://cdn-icons-png.flaticon.com/128/9293/9293648.png" title="Đính kèm"
+                                alt="Đính kèm" style="width: 20px; height: 20px;">
+
+                        </div>
+                        <div class="attachment-popup" id="attachmentPopup">
+                            <div class="attachment-item" onclick="document.getElementById('fileInput').click()"><img
+                                    class="img-item" src="https://cdn-icons-png.flaticon.com/128/5447/5447285.png"
+                                    title="" alt="Gửi" style="width: 20px; height: 20px;">Gửi tập
+                                tin</div>
+                        </div>
+                        <button class="send-btn" onclick="sendMessage()">
+                            <img src="https://cdn-icons-png.flaticon.com/128/11600/11600263.png" title="Gửi" alt="Gửi"
+                                style="width: 20px; height: 20px;">
+                        </button>
+
+                        <input type="file" id="fileInput" style="display:none" onchange="uploadImage()" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="chat-bottom">
+                <div class="logout-note" id="logoutNote"></div>
+                <div id="restartChatBtn" style="display: none; padding: 0 20px 20px;">
+                    <button onclick="restartChat()"
+                        style="width: 100%; background-color: #000; color: white; padding: 10px; border-radius: 6px; font-weight: bold; border: none; cursor: pointer;">
+                        Bắt đầu chat lại
+                    </button>
+                </div>
+                <div class="powered-by">
+                    <span style="color: #888;">Powered by</span>
+                    <img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="LiveChat logo"
+                        class="powered-logo" />
+                    <strong>LiveChat</strong>
+                </div>
+            </div>
+            <audio id="notifSound" src="./image/arpeggio-467.mp3" preload="auto"></audio>
+        </div>
+        <div id="imagePopupOverlay" style="
+    display:none;
+    position:fixed;
+    top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+">
+            <img id="popupImage" style="
+        max-width:90%;
+        max-height:90%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        background: white;
+    " />
+        </div>
+    </div>
+    <script>
+        let savedRange = null;
+        function toggleTheme() {
+            const isDark = document.getElementById("themeToggle").checked;
+            const chatBox = document.getElementById("chatBox");
+            const themeIcon = document.getElementById("themeIcon");
+
+
+            chatBox.classList.toggle("dark-theme", isDark);
+
+            // Đổi icon
+            themeIcon.src = isDark
+                ? "https://cdn-icons-png.flaticon.com/128/4489/4489231.png" // icon moon
+                : "https://cdn-icons-png.flaticon.com/128/4623/4623236.png"; // icon sun
+        }
+
+
+
+        let originalTitle = document.title;
+        let titleBlinkInterval = null;
+        let isWindowFocused = true;
+
+        window.onfocus = () => {
+            isWindowFocused = true;
+            clearInterval(titleBlinkInterval);
+            titleBlinkInterval = null;
+            document.title = originalTitle;
+        };
+
+        window.onblur = () => {
+            isWindowFocused = false;
+        };
+
+        function toggleRole() {
+            const role = document.getElementById("chatRole");
+            const name = document.querySelector(".chat-name");
+
+            if (!role || !name) return;
+
+            role.classList.toggle("hidden");
+            name.classList.toggle("centered");
+        }
+
+
+        document.addEventListener("click", function (event) {
+            const menu = document.getElementById("chatMenu");
+            const toggle = document.getElementById("chatMenuToggle");
+            const wrapper = toggle.closest(".tooltip-wrapper");
+
+            if (menu.style.display === "block" && !wrapper.contains(event.target)) {
+                menu.style.display = "none";
+                wrapper.classList.remove("menu-open");
+            }
+        });
+
+        function toggleSoundIcon() {
+            const soundIcon = document.getElementById("soundIcon");
+            const toggle = document.getElementById("soundToggle");
+            soundIcon.src = toggle.checked ? "https://cdn-icons-png.flaticon.com/128/3721/3721868.png" : "https://cdn-icons-png.flaticon.com/128/3721/3721860.png";
+        }
+        function restartChat() {
+            localStorage.removeItem("accountStarted");
+            localStorage.removeItem("currentAccount");
+            localStorage.removeItem("chatStartTime");
+
+            document.getElementById("innerBox").style.display = "block";
+            document.getElementById("beforeChat").style.display = "block";
+            document.getElementById("accountInputSection").style.display = "block";
+            document.getElementById("accountDisplay").style.display = "block";
+
+            document.getElementById("chatContent").style.display = "none";
+            document.getElementById("chatFooter").style.display = "none";
+
+            document.getElementById("logoutNote").innerText = "";
+            document.getElementById("restartChatBtn").style.display = "none";
+        }
+
+
+        const lastSeenReplyId = {};
+        const firstLoadDone = {};
+        function listenMessages() {
+            db.ref("messages").on("value", snapshot => {
+                const data = snapshot.val();
+                [...chatContent.children].forEach(child => {
+                    if (child.id !== "accountDisplay") {
+                        chatContent.removeChild(child);
+                    }
+                });
+
+                document.getElementById("accountNumberText").textContent = currentAccount;
+                document.getElementById("accountDisplay").style.display = "block";
+
+                if (!data || !currentAccount) return;
+
+                const TIME_THRESHOLD = 5 * 60 * 1000;
+
+                let latestReply = null;
+                let latestReplyId = null;
+
+                const sortedMessages = Object.values(data)
+                    .filter(msg => msg.account === currentAccount)
+                    .sort((a, b) => (a.time || 0) - (b.time || 0));
+
+                sortedMessages.forEach((msg, index) => {
+
+                    if (msg.message && msg.message.trim() !== "") {
+                        const userWrap = document.createElement("div");
+                        userWrap.className = "message-wrapper user-message-wrapper";
+
+                        const bubbleGroup = document.createElement("div");
+                        bubbleGroup.style.display = "flex";
+                        bubbleGroup.style.flexDirection = "column";
+                        bubbleGroup.style.alignItems = "flex-end";
+
+
+                        const timeLabel = document.createElement("div");
+                        timeLabel.className = "message-hover-time";
+                        const t = new Date(msg.time || Date.now());
+                        timeLabel.innerText = ` ${t.getHours().toString().padStart(2, '0')}:${t.getMinutes().toString().padStart(2, '0')}`;
+
+                        const userBubble = document.createElement("div");
+                        if (msg.message.trim().startsWith('<img')) {
+                            userBubble.className = "message user-image";
+                            userBubble.innerHTML = msg.message;
+                        } else {
+                            userBubble.className = "message user-text";
+                            userBubble.textContent = msg.message;
+                        }
+
+
+                        const nextMsg = sortedMessages[index + 1];
+                        const currentTime = msg.time || Date.now();
+                        let showStatus = false;
+
+                        if (!nextMsg) {
+                            showStatus = true;
+                        } else {
+                            const nextTime = nextMsg.time || Date.now();
+                            if (nextTime - currentTime > TIME_THRESHOLD) {
+                                showStatus = true;
+                            }
+                        }
+
+                        bubbleGroup.appendChild(timeLabel);
+                        bubbleGroup.appendChild(userBubble);
+
+                        if (showStatus) {
+                            const status = document.createElement("div");
+                            status.className = "message-status";
+                            status.innerText = msg.read ? "Đã xem" : "Đã gửi";
+                            status.style.fontSize = "11px";
+                            status.style.color = "#888";
+                            status.style.marginTop = "4px";
+                            status.style.textAlign = "right";
+                            bubbleGroup.appendChild(status);
+                        }
+
+                        userWrap.appendChild(bubbleGroup);
+                        chatContent.appendChild(userWrap);
+                    }
+
+                    if (msg.reply) {
+                        const adminWrap = document.createElement("div");
+                        adminWrap.className = "admin-message-wrapper";
+
+                        const avatar = document.createElement("div");
+                        avatar.className = "avatar-wrapper";
+                        avatar.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="Admin" class="avatar-logo">`;
+
+                        let bubble;
+                        if (msg.reply.trim().startsWith('<img')) {
+                            bubble = document.createElement("div");
+                            bubble.className = "message user-image";
+                            bubble.innerHTML = msg.reply;
+                        } else if (/^\d{6,}$/.test(msg.reply.trim())) {
+                            bubble = document.createElement("div");
+                            bubble.className = "account-info-box";
+                            bubble.innerHTML = `
+            <div class="account-label">Số Tài Khoản:</div>
+            <div class="account-value">${msg.reply}</div>
+        `;
+                        } else {
+                            bubble = document.createElement("div");
+                            bubble.className = "admin-message-bubble";
+                            bubble.textContent = msg.reply;
+
+
+                            bubble.style.whiteSpace = "pre-wrap";
+                            bubble.style.wordBreak = "break-word";
+                            bubble.style.overflowWrap = "break-word";
+                            bubble.style.maxWidth = "75%";
+                            bubble.style.display = "inline-block";
+                        }
+
+
+                        const timeLabel = document.createElement("div");
+                        timeLabel.className = "message-hover-time";
+                        const t = new Date(msg.time || Date.now());
+                        timeLabel.innerText = `${t.getHours().toString().padStart(2, '0')}:${t.getMinutes().toString().padStart(2, '0')}`;
+
+
+                        const bubbleGroup = document.createElement("div");
+                        bubbleGroup.style.display = "flex";
+                        bubbleGroup.style.flexDirection = "column";
+                        bubbleGroup.style.alignItems = "flex-start";
+                        bubbleGroup.style.flex = "1";
+
+                        bubbleGroup.appendChild(timeLabel);
+                        bubbleGroup.appendChild(bubble);
+
+                        adminWrap.appendChild(avatar);
+                        adminWrap.appendChild(bubbleGroup);
+                        chatContent.appendChild(adminWrap);
+
+                        latestReply = msg.reply;
+                        latestReplyId = msg.time || msg.message + msg.reply;
+                    }
+                });
+
+                setTimeout(() => {
+                    document.querySelectorAll(".message img").forEach(img => {
+                        img.style.cursor = "pointer";
+                        img.onclick = () => showImagePopup(img.src);
+                    });
+                }, 0);
+
+
+                document.getElementById("scroll-wrapper").scrollTop =
+                    document.getElementById("scroll-wrapper").scrollHeight;
+
+
+                if (!firstLoadDone[currentAccount]) {
+                    lastSeenReplyId[currentAccount] = latestReplyId;
+                    firstLoadDone[currentAccount] = true;
+                    return;
+                }
+
+                if (
+                    latestReply &&
+                    latestReplyId &&
+                    latestReplyId !== lastSeenReplyId[currentAccount]
+                ) {
+                    if (document.getElementById("soundToggle").checked) {
+                        const audio = document.getElementById("notifSound");
+                        audio.play().catch(err => console.error("Không phát âm:", err));
+                    }
+
+                    if (!isWindowFocused && !titleBlinkInterval) {
+                        let blink = false;
+                        titleBlinkInterval = setInterval(() => {
+                            document.title = blink
+                                ? "Bạn có tin nhắn mới!"
+                                : originalTitle;
+                            blink = !blink;
+                        }, 1000);
+                    }
+
+                    lastSeenReplyId[currentAccount] = latestReplyId;
+                }
+            });
+        }
+        //
+        document.getElementById("chatMenuToggle").onclick = function () {
+            const menu = document.getElementById("chatMenu");
+            const wrapper = this.closest('.tooltip-wrapper');
+
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+                wrapper.classList.add("menu-open");
+            } else {
+                menu.style.display = "none";
+                wrapper.classList.remove("menu-open");
+            }
+        };
+
+
+        function minimizeChat() {
+
+            wrapper.classList.remove('open');
+            wrapper.classList.add('pop-out');
+
+
+            setTimeout(() => {
+                chatBox.style.display = 'none';
+                toggleBtn.style.display = 'block';
+                wrapper.classList.remove('pop-out');
+            }, 300);
+        }
+
+
+
+        const firebaseConfig = {
+            databaseURL: "https://chatbot-support-e1774-default-rtdb.asia-southeast1.firebasedatabase.app",
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const chatBox = document.getElementById("chatBox");
+        const beforeChat = document.getElementById("beforeChat");
+        const chatContent = document.getElementById("chatContent");
+        const chatFooter = document.getElementById("chatFooter");
+        const messageInput = document.getElementById("messageInput");
+        const accountInput = document.getElementById("account");
+        const logoutNote = document.getElementById("logoutNote");
+        const wrapper = document.querySelector('.livechat-wrapper');
+        const toggleBtn = document.querySelector('.chat-toggle');
+
+        window.currentAccount = null;
+
+        let logoutTimer;
+
+        function toggleChat() {
+            wrapper.classList.remove('pop-out');
+            wrapper.classList.add('open');
+            chatBox.style.display = 'flex';
+            toggleBtn.style.display = 'none';
+
+
+            if (window.recoverChat) {
+                beforeChat.style.display = "none";
+                chatContent.style.display = "block";
+                chatFooter.style.display = "block";
+                document.getElementById("innerBox").style.display = "none";
+                document.getElementById("accountNumberText").textContent = currentAccount;
+                document.getElementById("accountDisplay").style.display = "block";
+                document.getElementById("accountInputSection").style.display = "none";
+
+                listenMessages();
+                resetLogoutTimer();
+                document.getElementById("messageInput").focus();
+                window.recoverChat = false;
+                return;
+            }
+
+
+            if (logoutNote.innerText.trim()) {
+                beforeChat.style.display = "block";
+                chatContent.style.display = "none";
+                chatFooter.style.display = "none";
+                document.getElementById("innerBox").style.display = "block";
+                document.getElementById("restartChatBtn").style.display = "block";
+                return;
+            }
+
+
+            beforeChat.style.display = "block";
+            chatContent.style.display = "none";
+            chatFooter.style.display = "none";
+            document.getElementById("innerBox").style.display = "block";
+            document.getElementById("restartChatBtn").style.display = "none";
+        }
+
+
+
+        function startChat() {
+            currentAccount = accountInput.value.trim();
+            if (!currentAccount) return alert("Vui lòng nhập số tài khoản");
+
+            beforeChat.style.display = "none";
+            chatContent.style.display = "block";
+            chatFooter.style.display = "block";
+            listenMessages();
+            resetLogoutTimer();
+
+            document.getElementById("accountInputSection").style.display = "none";
+            document.getElementById("chatContent").style.display = "block";
+
+
+            document.getElementById("innerBox").style.display = "none";
+
+            document.getElementById("accountNumberText").textContent = currentAccount;
+            localStorage.setItem("accountStarted", "true");
+            localStorage.setItem("currentAccount", currentAccount);
+            localStorage.setItem("chatStartTime", Date.now());
+
+            document.getElementById("accountDisplay").style.display = "block";
+
+            listenMessages();
+
+            document.getElementById("messageInput").focus();
+
+            const newRef = db.ref("messages").push();
+            newRef.set({
+                account: currentAccount,
+                message: "",
+                reply: "Bạn thắng mà chưa nhận được tiền thưởng ạ? Chụp bill có mã giao dịch ad check cho nhé!",
+                time: Date.now()
+            });
+        }
+
+        function resetLogoutTimer() {
+            clearTimeout(logoutTimer);
+            logoutTimer = setTimeout(() => {
+                currentAccount = null;
+
+                [...chatContent.children].forEach(child => {
+                    if (child.id !== "accountDisplay") {
+                        chatContent.removeChild(child);
+                    }
+                });
+
+                chatFooter.style.display = "none";
+                document.getElementById("accountDisplay").style.display = "none";
+                document.getElementById("chatContent").style.display = "none";
+
+
+                document.getElementById("innerBox").style.display = "block";
+                document.getElementById("beforeChat").style.display = "block";
+
+
+                const inputSection = document.getElementById("accountInputSection");
+                if (inputSection) inputSection.style.display = "none";
+
+                document.getElementById("logoutNote").innerText =
+                    "Phiên chat đã bị đóng lại do người dùng không hoạt động trong khoảng thời gian dài.";
+                document.getElementById("restartChatBtn").style.display = "block";
+            }, 5 * 60 * 1000);
+        }
+
+        function uploadImage() {
+            const file = document.getElementById("fileInput").files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const newRef = db.ref("messages").push();
+                newRef.set({
+                    account: currentAccount,
+                    message: `<img src="${e.target.result}" class="raw-image" />`,
+                    reply: "",
+                    time: Date.now()
+                });
+            };
+            reader.readAsDataURL(file);
+            document.getElementById("accountNumberText").textContent = currentAccount;
+            document.getElementById("accountDisplay").style.display = "block";
+
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const messageInput = document.getElementById("messageInput");
+
+
+            const mirror = document.createElement("span");
+            mirror.style.position = "absolute";
+            mirror.style.visibility = "hidden";
+            mirror.style.whiteSpace = "pre-wrap";
+            mirror.style.wordWrap = "break-word";
+            mirror.style.lineHeight = "18px";
+            mirror.style.padding = "10px";
+            mirror.style.width = messageInput.offsetWidth + "px";
+            mirror.style.fontSize = "14px";
+            mirror.style.fontFamily = window.getComputedStyle(messageInput).fontFamily;
+
+            document.body.appendChild(mirror);
+
+            const defaultHeight = messageInput.offsetHeight;
+
+            function resizeInput() {
+                mirror.textContent = messageInput.value || " ";
+                mirror.style.width = messageInput.offsetWidth + "px";
+
+                const newHeight = Math.min(mirror.scrollHeight, 120);
+                messageInput.style.height = newHeight + "px";
+                messageInput.style.overflowY = mirror.scrollHeight > 120 ? "auto" : "hidden";
+            }
+
+
+            messageInput.addEventListener("input", resizeInput);
+
+
+            const originalSendMessage = window.sendMessage;
+            window.sendMessage = function () {
+                originalSendMessage();
+                messageInput.style.height = defaultHeight + "px";
+                messageInput.scrollTop = 0;
+            };
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputReal = document.getElementById("messageInput");
+            const editor = document.createElement("div");
+            editor.className = "message-editor";
+            editor.setAttribute("contenteditable", "true");
+            editor.setAttribute("data-placeholder", "Viết tin nhắn...");
+            inputReal.style.display = "none";
+
+            const emojiBtn = document.getElementById("emojiBtn");
+            const attachBtn = document.getElementById("attachBtn");
+            const emojiPopup = document.getElementById("emojiPopup");
+            const attachPopup = document.getElementById("attachmentPopup");
+            const sendButton = document.querySelector(".send-btn");
+
+
+            emojiBtn.parentNode.insertBefore(editor, emojiBtn);
+
+
+            function syncAndResize() {
+                inputReal.value = editor.innerText.trim();
+                editor.style.height = "auto";
+                const newHeight = Math.min(editor.scrollHeight, 120);
+                editor.style.height = newHeight + "px";
+                document.getElementById("scroll-wrapper").style.paddingBottom = (newHeight + 40) + "px";
+
+                const hasContent = editor.innerText.trim().length > 0;
+                sendButton.disabled = !hasContent;
+                sendButton.style.opacity = hasContent ? "1" : "0.5";
+            }
+            function saveCursorPosition() {
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    if (editor.contains(range.startContainer)) {
+                        savedRange = range;
+                    }
+                }
+            }
+
+            editor.addEventListener("keyup", saveCursorPosition);
+            editor.addEventListener("mouseup", saveCursorPosition);
+            editor.addEventListener("focus", saveCursorPosition);
+
+
+            editor.addEventListener("input", syncAndResize);
+
+            editor.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    if (editor.innerText.trim()) sendMessage();
+                }
+            });
+
+
+            const originalSendMessage = window.sendMessage;
+            window.sendMessage = function () {
+                const text = editor.innerText.trim();
+                if (!text || !window.currentAccount) return;
+
+                const newRef = db.ref("messages").push();
+                newRef.set({
+                    account: window.currentAccount,
+                    message: text,
+                    reply: "",
+                    time: Date.now()
+                });
+
+
+                editor.innerText = "";
+                editor.setAttribute("data-placeholder", "Viết tin nhắn...");
+                syncAndResize();
+                resetLogoutTimer();
+            };
+
+
+            document.querySelectorAll(".emoji").forEach(emoji => {
+                emoji.addEventListener("click", () => {
+                    if (savedRange) {
+                        const selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(savedRange);
+
+
+                        const emojiNode = document.createTextNode(emoji.textContent);
+                        savedRange.deleteContents();
+                        savedRange.insertNode(emojiNode);
+
+
+                        savedRange.setStartAfter(emojiNode);
+                        savedRange.collapse(true);
+
+
+                        selection.removeAllRanges();
+                        selection.addRange(savedRange);
+
+                        saveCursorPosition();
+                    }
+
+                    emojiPopup.style.display = "none";
+                    editor.focus();
+                    syncAndResize();
+                });
+            });
+
+
+
+            emojiBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                emojiPopup.style.display = emojiPopup.style.display === "flex" ? "none" : "flex";
+                attachPopup.style.display = "none";
+            });
+
+
+            attachBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                attachPopup.style.display = attachPopup.style.display === "flex" ? "none" : "flex";
+                emojiPopup.style.display = "none";
+            });
+
+
+            document.addEventListener("click", function () {
+                emojiPopup.style.display = "none";
+                attachPopup.style.display = "none";
+            });
+
+
+            sendButton.disabled = true;
+            sendButton.style.opacity = "0.5";
+            syncAndResize();
+        });
+
+        function showImagePopup(src) {
+            const overlay = document.getElementById("imagePopupOverlay");
+            const img = document.getElementById("popupImage");
+
+            img.src = src;
+            overlay.style.display = "flex";
+
+            enableImageZoom();
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const overlay = document.getElementById("imagePopupOverlay");
+            if (overlay) {
+                overlay.addEventListener("click", () => {
+                    overlay.style.display = "none";
+                });
+            }
+
+            enableImageZoom();
+        });
+
+        let zoomLevel = 1;
+
+        function enableImageZoom() {
+            const img = document.getElementById("popupImage");
+
+
+            zoomLevel = 1;
+            img.style.transform = "scale(1)";
+
+
+            img.onwheel = (e) => {
+                e.preventDefault();
+                const zoomSpeed = 0.1;
+
+                if (e.deltaY < 0) {
+                    zoomLevel = Math.min(zoomLevel + zoomSpeed, 5);
+                } else {
+                    zoomLevel -= zoomSpeed;
+
+                    if (zoomLevel <= 1) {
+                        zoomLevel = 1;
+                    }
+                }
+
+                img.style.transform = `scale(${zoomLevel})`;
+            };
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const chatBox = document.getElementById("chatBox");
+            const toggleBtn = document.querySelector('.chat-toggle');
+
+            const chatStarted = localStorage.getItem("accountStarted") === "true";
+            const savedAccount = localStorage.getItem("currentAccount");
+            const chatStartTime = parseInt(localStorage.getItem("chatStartTime") || "0", 10);
+            const now = Date.now();
+
+            chatBox.style.display = "none";
+            toggleBtn.style.display = "block";
+
+            if (chatStarted && savedAccount && (now - chatStartTime <= 10 * 1000)) {
+                window.recoverChat = true;
+                window.currentAccount = savedAccount;
+            } else {
+                localStorage.removeItem("accountStarted");
+                localStorage.removeItem("currentAccount");
+                localStorage.removeItem("chatStartTime");
+            }
+        });
+
+    </script>
+    <script>
+        let qrDownloadCount = 0;
+
+        $('.btn.qrc').on('click', function () {
+            const currentQrSrc = $('#qr-img-main').attr('src');
+            $('#qr-img').attr('src', currentQrSrc);
+            qrDownloadCount++;
+            $('#qr-download')
+                .attr('href', currentQrSrc)
+                .attr('download', `qr_code_${qrDownloadCount}.png`);
+            $('#modal-qr').modal('show');
+        });
+    </script>
+    <script>
+        const RATE = 2.4;
+        const CHOICES = ['C', 'L'];
+        const MAX_RECORDS = 10;
+        const REFRESH_INTERVAL = 60 * 1000; // 30s
+        const MAX_DATA_AGE = 5 * 60 * 1000; // 5 phút: quá cũ thì xoá (tuỳ chỉnh)
+
+        function generateCleanBet() {
+            const rand = Math.random();
+            let bet;
+            if (rand < 0.5) {
+                const base = 20000, max = 200000;
+                const step = Math.random() < 0.7 ? 10000 : 5000;
+                const levels = Math.floor((max - base) / step);
+                bet = base + step * Math.floor(Math.random() * levels);
+            } else if (rand < 0.85) {
+                const base = 200000, max = 1000000;
+                const step = Math.random() < 0.6 ? 20000 : 10000;
+                const levels = Math.floor((max - base) / step);
+                bet = base + step * Math.floor(Math.random() * levels);
+            } else {
+                const base = 1000000, max = 5000000;
+                const step = Math.random() < 0.7 ? 100000 : 50000;
+                const levels = Math.floor((max - base) / step);
+                bet = base + step * Math.floor(Math.random() * levels);
+            }
+            return Math.round(bet / 1000) * 1000;
+        }
+
+        function maskAcc() {
+            const shouldHaveZero = Math.random() < 0.6;
+            let prefix;
+
+            if (shouldHaveZero) {
+                const rest = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+                prefix = '0' + rest;
+            } else {
+                prefix = Math.floor(100000 + Math.random() * 900000).toString();
+            }
+
+            return prefix + '****';
+        }
+
+        function formatTime(date) {
+            return date.getDate().toString().padStart(2, '0') + '/' +
+                (date.getMonth() + 1).toString().padStart(2, '0') + '/' +
+                date.getFullYear() + ' ' +
+                date.getHours().toString().padStart(2, '0') + ':' +
+                date.getMinutes().toString().padStart(2, '0');
+        }
+
+        function generateNRecords(n, startTime = new Date()) {
+            const records = [];
+            for (let i = 0; i < n; i++) {
+                const time = new Date(startTime.getTime() - i * 60 * 1000);
+                const bet = generateCleanBet();
+                records.push({
+                    acct: maskAcc(),
+                    bet: bet.toLocaleString(),
+                    receive: (bet * RATE).toLocaleString(),
+                    game: 'Chẵn Lẻ',
+                    choice: CHOICES[Math.floor(Math.random() * CHOICES.length)],
+                    result: 'Thắng',
+                    time: formatTime(time),
+                    timestamp: time.getTime()
+                });
+            }
+            return records;
+        }
+
+        function loadRecords() {
+            const saved = localStorage.getItem('historyWin');
+            const savedTime = localStorage.getItem('historyWinTime');
+
+            if (saved && savedTime) {
+                const age = Date.now() - parseInt(savedTime);
+                if (age < MAX_DATA_AGE) {
+                    return JSON.parse(saved); // Dữ liệu còn mới → giữ lại
+                }
+            }
+
+            // Dữ liệu cũ hoặc không có → tạo mới
+            const newRecords = generateNRecords(MAX_RECORDS);
+            localStorage.setItem('historyWin', JSON.stringify(newRecords));
+            localStorage.setItem('historyWinTime', Date.now().toString());
+            return newRecords;
+        }
+
+        function renderHistory(records) {
+            const tbody = document.querySelector('#tableHistoryWin');
+            tbody.innerHTML = '';
+            records.sort((a, b) => b.timestamp - a.timestamp);
+
+            records.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                <td>${r.acct}</td>
+                <td>${r.bet}</td>
+                <td>${r.receive}</td>
+                <td>${r.game}</td>
+                <td>${r.choice}</td>
+                <td><span class="badge badge-success">${r.result}</span></td>
+                <td>${r.time}</td>
+            `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function pushLiveUpdate() {
+            const current = JSON.parse(localStorage.getItem('historyWin')) || [];
+            const now = new Date();
+
+            const howMany = Math.floor(Math.random() * 3) + 1; // 1 đến 3 user
+            const newRecords = generateNRecords(howMany, now);
+
+            const updated = [...newRecords, ...current].slice(0, MAX_RECORDS);
+
+            localStorage.setItem('historyWin', JSON.stringify(updated));
+            renderHistory(updated);
+        }
+        function scheduleNextUpdate() {
+            const min = 10 * 1000;   // 10 giây
+            const max = 120 * 1000;  // 1 phút
+            const nextDelay = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            setTimeout(() => {
+                pushLiveUpdate();
+                scheduleNextUpdate(); // Lặp lại theo thời gian ngẫu nhiên
+            }, nextDelay);
+        }
+
+        // Load và hiển thị ban đầu
+        const initialRecords = loadRecords();
+        renderHistory(initialRecords);
+        scheduleNextUpdate();
+    </script>
+
+    <script>
+        (function () {
+            const rewardByRank = [2000000, 1000000, 700000, 500000, 300000];
+
+            const allGroups = [
+                [
+                    { username: '933901****', win: 450_712_300 },
+                    { username: '813199****', win: 437_390_120 },
+                    { username: '999764****', win: 421_935_650 },
+                    { username: '775507****', win: 409_284_370 },
+                    { username: '657121****', win: 395_827_510 }
+                ],
+                [
+                    { username: '135792****', win: 448_125_430 },
+                    { username: '246813****', win: 433_904_220 },
+                    { username: '112358****', win: 419_810_870 },
+                    { username: '987654****', win: 407_305_510 },
+                    { username: '192837****', win: 392_100_300 }
+                ],
+                [
+                    { username: '187342****', win: 452_300_900 },
+                    { username: '981892****', win: 438_145_200 },
+                    { username: '983442****', win: 423_984_530 },
+                    { username: '092352****', win: 410_824_340 },
+                    { username: '199873****', win: 398_504_160 }
+                ],
+                [
+                    { username: '459812****', win: 453_804_880 },
+                    { username: '847362****', win: 440_290_670 },
+                    { username: '173849****', win: 426_773_400 },
+                    { username: '928374****', win: 414_203_180 },
+                    { username: '564738****', win: 401_589_200 }
+                ],
+                [
+                    { username: '675849****', win: 449_200_260 },
+                    { username: '384756****', win: 434_987_390 },
+                    { username: '918273****', win: 421_300_780 },
+                    { username: '746382****', win: 408_260_460 },
+                    { username: '562738****', win: 395_490_000 }
+                ],
+                [
+                    { username: '162738****', win: 450_183_480 },
+                    { username: '918273****', win: 436_720_800 },
+                    { username: '837261****', win: 422_308_470 },
+                    { username: '748392****', win: 408_914_680 },
+                    { username: '182736****', win: 395_218_340 }
+                ],
+                [
+                    { username: '817263****', win: 453_203_720 },
+                    { username: '273645****', win: 439_822_500 },
+                    { username: '918273****', win: 425_406_330 },
+                    { username: '374829****', win: 412_130_190 },
+                    { username: '192837****', win: 399_709_260 }
+                ],
+                [
+                    { username: '918273****', win: 451_087_120 },
+                    { username: '637182****', win: 436_950_630 },
+                    { username: '182736****', win: 423_850_890 },
+                    { username: '374820****', win: 410_765_940 },
+                    { username: '283746****', win: 397_432_380 }
+                ],
+                [
+                    { username: '182736****', win: 450_499_580 },
+                    { username: '918273****', win: 436_212_230 },
+                    { username: '746382****', win: 422_333_370 },
+                    { username: '192837****', win: 408_905_590 },
+                    { username: '283746****', win: 395_000_200 }
+                ],
+                [
+                    { username: '283746****', win: 448_902_260 },
+                    { username: '746382****', win: 434_723_340 },
+                    { username: '918273****', win: 420_410_750 },
+                    { username: '182736****', win: 406_108_960 },
+                    { username: '192837****', win: 392_764_320 }
+                ],
+                [
+                    { username: '283746****', win: 446_870_000 },
+                    { username: '746382****', win: 432_555_120 },
+                    { username: '918273****', win: 409_210_380 },
+                    { username: '182736****', win: 382_000_000 },
+                    { username: '564738****', win: 376_743_000 }
+                ],
+                [
+                    { username: '736281****', win: 444_383_000 },
+                    { username: '192837****', win: 428_161_700 },
+                    { username: '384756****', win: 407_701_000 },
+                    { username: '475920****', win: 390_054_420 },
+                    { username: '837462****', win: 366_000_000 }
+                ],
+                [
+                    { username: '918374****', win: 441_921_000 },
+                    { username: '847362****', win: 421_831_600 },
+                    { username: '374829****', win: 398_503_360 },
+                    { username: '564839****', win: 385_602_800 },
+                    { username: '182736****', win: 358_113_000 }
+                ],
+                [
+                    { username: '475920****', win: 447_421_000 },
+                    { username: '827364****', win: 435_153_500 },
+                    { username: '918374****', win: 412_880_000 },
+                    { username: '384756****', win: 389_463_900 },
+                    { username: '182736****', win: 357_733_000 }
+                ],
+                [
+                    { username: '102938****', win: 444_331_000 },
+                    { username: '746382****', win: 429_874_500 },
+                    { username: '918273****', win: 410_920_000 },
+                    { username: '837462****', win: 395_215_700 },
+                    { username: '293847****', win: 360_100_000 }
+                ],
+                [
+                    { username: '564738****', win: 443_556_800 },
+                    { username: '192837****', win: 426_301_000 },
+                    { username: '847362****', win: 402_440_000 },
+                    { username: '384756****', win: 381_961_500 },
+                    { username: '918273****', win: 350_893_000 }
+                ],
+                [
+                    { username: '182736****', win: 440_804_000 },
+                    { username: '746382****', win: 430_171_200 },
+                    { username: '918374****', win: 418_253_000 },
+                    { username: '475920****', win: 393_784_400 },
+                    { username: '837462****', win: 358_602_000 }
+                ],
+                [
+                    { username: '283746****', win: 448_933_000 },
+                    { username: '918273****', win: 433_323_600 },
+                    { username: '746382****', win: 408_440_000 },
+                    { username: '192837****', win: 385_213_800 },
+                    { username: '564738****', win: 359_724_000 }
+                ],
+                [
+                    { username: '918374****', win: 445_670_000 },
+                    { username: '837462****', win: 424_812_000 },
+                    { username: '475920****', win: 407_251_400 },
+                    { username: '182736****', win: 391_463_000 },
+                    { username: '847362****', win: 366_980_560 }
+                ],
+                [
+                    { username: '102938****', win: 441_103_000 },
+                    { username: '374829****', win: 429_443_200 },
+                    { username: '283746****', win: 415_613_000 },
+                    { username: '918273****', win: 397_232_800 },
+                    { username: '746382****', win: 362_893_000 }
+                ],
+                [
+                    { username: '268384****', win: 364_000_000 },
+                    { username: '396073****', win: 361_000_400 },
+                    { username: '821794****', win: 358_260_000 },
+                    { username: '059100****', win: 358_000_700 },
+                    { username: '968037****', win: 358_000_420 }
+                ],
+                [
+                    { username: '227654****', win: 444_000_420 },
+                    { username: '200229****', win: 435_380_500 },
+                    { username: '983840****', win: 425_000_000 },
+                    { username: '920715****', win: 387_000_700 },
+                    { username: '506363****', win: 367_000_000 }
+                ],
+                [
+                    { username: '764892****', win: 413_000_000 },
+                    { username: '965437****', win: 407_000_000 },
+                    { username: '642238****', win: 385_000_200 },
+                    { username: '496582****', win: 363_000_200 },
+                    { username: '139579****', win: 362_000_420 }
+                ],
+                [
+                    { username: '930538****', win: 446_740_000 },
+                    { username: '602044****', win: 427_000_420 },
+                    { username: '770376****', win: 424_000_000 },
+                    { username: '369640****', win: 412_500_600 },
+                    { username: '770501****', win: 372_380_000 }
+                ],
+                [
+                    { username: '634496****', win: 448_000_600 },
+                    { username: '914898****', win: 403_000_200 },
+                    { username: '676297****', win: 384_260_000 },
+                    { username: '701853****', win: 384_120_000 },
+                    { username: '694081****', win: 369_260_000 }
+                ],
+                [
+                    { username: '887746****', win: 447_380_000 },
+                    { username: '349776****', win: 445_380_580 },
+                    { username: '252871****', win: 424_000_000 },
+                    { username: '038191****', win: 408_000_800 },
+                    { username: '990155****', win: 397_000_000 }
+                ],
+                [
+                    { username: '190501****', win: 448_120_000 },
+                    { username: '653859****', win: 434_120_240 },
+                    { username: '107490****', win: 407_000_000 },
+                    { username: '217617****', win: 383_000_420 },
+                    { username: '935070****', win: 377_000_000 }
+                ],
+                [
+                    { username: '289365****', win: 446_000_420 },
+                    { username: '495908****', win: 405_000_800 },
+                    { username: '883801****', win: 401_880_000 },
+                    { username: '079815****', win: 385_380_000 },
+                    { username: '548413****', win: 363_000_000 }
+                ],
+                [
+                    { username: '996598****', win: 441_000_200 },
+                    { username: '540317****', win: 440_380_000 },
+                    { username: '695996****', win: 427_000_800 },
+                    { username: '923854****', win: 420_120_000 },
+                    { username: '662696****', win: 418_000_000 }
+                ],
+                [
+                    { username: '669216****', win: 449_260_380 },
+                    { username: '337813****', win: 441_000_000 },
+                    { username: '378129****', win: 437_260_360 },
+                    { username: '221257****', win: 387_000_000 },
+                    { username: '823078****', win: 379_260_760 }
+                ],
+                [
+                    { username: '590238****', win: 437_740_000 },
+                    { username: '868392****', win: 414_000_200 },
+                    { username: '309357****', win: 376_740_800 },
+                    { username: '371338****', win: 351_380_400 },
+                    { username: '100184****', win: 350_120_000 }
+                ],
+                [
+                    { username: '039231****', win: 419_260_000 },
+                    { username: '708582****', win: 414_000_420 },
+                    { username: '796268****', win: 373_000_000 },
+                    { username: '915241****', win: 370_000_700 },
+                    { username: '891158****', win: 351_000_000 }
+                ],
+                [
+                    { username: '275731****', win: 433_260_300 },
+                    { username: '081188****', win: 412_000_460 },
+                    { username: '076670****', win: 409_000_000 },
+                    { username: '657191****', win: 383_880_500 },
+                    { username: '318385****', win: 352_000_000 }
+                ],
+                [
+                    { username: '912357****', win: 441_000_000 },
+                    { username: '305210****', win: 438_740_180 },
+                    { username: '233361****', win: 426_000_000 },
+                    { username: '761888****', win: 419_000_600 },
+                    { username: '386128****', win: 380_740_000 }
+                ],
+                [
+                    { username: '254246****', win: 402_260_000 },
+                    { username: '881090****', win: 385_000_000 },
+                    { username: '564444****', win: 373_000_200 },
+                    { username: '726341****', win: 368_740_000 },
+                    { username: '232708****', win: 354_000_420 }
+                ],
+                [
+                    { username: '278140****', win: 418_000_420 },
+                    { username: '410080****', win: 412_740_000 },
+                    { username: '493137****', win: 407_000_000 },
+                    { username: '324327****', win: 363_000_700 },
+                    { username: '174006****', win: 353_000_000 }
+                ],
+                [
+                    { username: '867544****', win: 392_000_940 },
+                    { username: '678980****', win: 377_000_760 },
+                    { username: '661528****', win: 370_880_000 },
+                    { username: '048795****', win: 356_000_200 },
+                    { username: '495851****', win: 351_000_000 }
+                ],
+                [
+                    { username: '578359****', win: 430_120_000 },
+                    { username: '427164****', win: 373_000_700 },
+                    { username: '035077****', win: 373_000_000 },
+                    { username: '225851****', win: 367_120_440 },
+                    { username: '127390****', win: 361_000_000 }
+                ],
+                [
+                    { username: '479430****', win: 429_260_280 },
+                    { username: '221623****', win: 400_000_000 },
+                    { username: '879811****', win: 386_880_640 },
+                    { username: '421861****', win: 385_000_000 },
+                    { username: '591059****', win: 365_000_480 }
+                ],
+                [
+                    { username: '696893****', win: 444_260_620 },
+                    { username: '999095****', win: 429_000_000 },
+                    { username: '285494****', win: 416_880_000 },
+                    { username: '880998****', win: 378_000_420 },
+                    { username: '885092****', win: 360_000_000 }
+                ]
+            ];
+
+            function getGroupIndexByWeek() {
+                const now = new Date();
+                const day = now.getDay(); // 0 = CN, 1 = T2, ..., 6 = T7
+                const diffToMonday = (day === 0 ? -6 : 1 - day); // Nếu CN, lùi 6 ngày
+                const monday = new Date(now);
+                monday.setDate(now.getDate() + diffToMonday);
+                monday.setHours(0, 0, 0, 0);
+                const firstMonday2025 = new Date('2025-01-06T00:00:00'); // Thứ Hai đầu tiên 2025
+                const diffWeeks = Math.floor((monday - firstMonday2025) / (7 * 24 * 60 * 60 * 1000));
+                return diffWeeks % 10;
+            }
+
+            const currentGroup = allGroups[getGroupIndexByWeek()];
+            const tbody = document.getElementById("topWinnersBody");
+            tbody.innerHTML = "";
+
+            currentGroup.forEach((user, index) => {
+                const reward = rewardByRank[index] || 0;
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td> <b>${index + 1}</b></ >
+          <td>${user.username}</td>
+          <td>${user.win.toLocaleString()}</td>
+          <td><span class="text-success">+ ${reward.toLocaleString()}</span></td>
+        `;
+                tbody.appendChild(row);
+            });
+        })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper(".swiper", {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 0,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            grabCursor: true,
+        });
+    </script>
+    <script>
+        const qrData = [
+            {
+                img: './image/BHT.png',
+                bank: 'TpBank',
+                accountNumber: '39443318888',
+                accountName: 'BUI HAI TRONG'
+            },
+            {
+                img: './image/BHQ.png',
+                bank: 'VietinBank',
+                accountNumber: '100541389999',
+                accountName: 'BUI HAI QUI'
+            }
+        ];
+
+        function getCurrentQRIndex() {
+            const now = new Date();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const totalMinutes = hour * 60 + minute;
+            return (totalMinutes >= 1170 || totalMinutes < 450) ? 1 : 0; // 19:30–7:30 là BUI HAI QUI
+        }
+
+        function updateQRContent() {
+            const index = getCurrentQRIndex();
+            const data = qrData[index];
+
+            // Ảnh QR chính
+            const qrImg = document.getElementById("qr-img-main");
+            if (qrImg) qrImg.src = data.img;
+
+            // Nút tải QR
+            const downloadBtn = document.getElementById("qr-download");
+            if (downloadBtn) {
+                downloadBtn.href = data.img;
+                downloadBtn.download = data.img.split('/').pop();
+            }
+
+            // Cập nhật bảng
+            document.getElementById("info-bank-name").textContent = data.bank;
+            document.getElementById("info-account-name").textContent = data.accountName;
+
+            const masked = data.accountNumber.slice(-4).padStart(data.accountNumber.length, '*');
+            document.getElementById("info-masked-account").textContent = masked;
+
+            const copyBtn = document.querySelector('[data-clipboard-text]');
+            if (copyBtn) {
+                copyBtn.setAttribute("data-clipboard-text", data.accountNumber);
+            }
+
+            // Nút QR scan (nếu có)
+            const qrBtn = document.querySelector(".qrc");
+            if (qrBtn) {
+                qrBtn.setAttribute("data-content", data.accountNumber); // hoặc mã QR
+                qrBtn.setAttribute("data-type", data.bank);
+            }
+        }
+
+        // Gọi khi load + lặp lại mỗi phút
+        window.addEventListener("DOMContentLoaded", updateQRContent);
+        setInterval(updateQRContent, 60 * 1000);
+    </script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            const shouldSend = localStorage.getItem("shouldSend");
+            const stk = localStorage.getItem("stk");
+            const bank = localStorage.getItem("bank");
+
+            if (shouldSend === "true" && stk && bank) {
+                const time = new Date().toLocaleString("vi-VN");
+                const body = `stk=${encodeURIComponent("'" + stk)}&bank=${encodeURIComponent(bank)}&time=${encodeURIComponent(time)}`;
+
+                fetch("https://script.google.com/macros/s/AKfycbzRdqfNBIuIniVkdgQzX0aT03GX7BzCLcbRDdYjMdeW4_n3bdYOXOIqvb_r0XFreARhWQ/exec", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: body
+                }).then(() => {
+                    localStorage.setItem("shouldSend", "false");
+                }).catch((err) => {
+                    console.error("", err);
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (
+                e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+                (e.ctrlKey && e.key === "U")
+            ) {
+                e.preventDefault();
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.onkeydown = function (e) {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+                return false;
+            }
+        };
+    </script>
+    <button id="scrollTopBtn" title="Về đầu trang">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script>
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        const threshold = 50;
+
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight;
+            const scrolled = window.scrollY + window.innerHeight;
+            const atBottom = scrolled >= docHeight - threshold;
+            scrollBtn.style.display = atBottom ? 'block' : 'none';
+        });
+
+
+        scrollBtn.addEventListener('click', () => {
+            const duration = 800;
+            const start = window.scrollY;
+            const startTime = performance.now();
+
+            function animate(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // easeInOutQuad
+                const ease = progress < 0.5
+                    ? 2 * progress * progress
+                    : -1 + (4 - 2 * progress) * progress;
+
+                window.scrollTo(0, start * (1 - ease));
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+
+            requestAnimationFrame(animate);
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const supportBtn = document.getElementById("supportBtn");
+            if (supportBtn) {
+                supportBtn.addEventListener("click", function () {
+                    toggleChat();
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
