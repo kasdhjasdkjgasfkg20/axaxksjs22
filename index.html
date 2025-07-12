@@ -25,7 +25,55 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        .chat-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #141ed2;
+            /* Nền chính */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(20, 30, 210, 0.4);
+            /* bóng phù hợp */
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-fab:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 30px rgba(20, 30, 210, 0.5);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(20, 30, 210, 0.7);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(20, 30, 210, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(20, 30, 210, 0);
+            }
+        }
+
         :root {
             --swal2-outline: 0 0 0 3px rgba(100, 150, 200, 0.5);
             --swal2-container-padding: 0.625em;
@@ -2129,8 +2177,11 @@
         </template>
     </div>
     <div class="livechat-wrapper">
-        <div class="chat-toggle" onclick="toggleChat()">
+        <!-- <div class="chat-toggle" onclick="toggleChat()">
             <img src="https://cdn-icons-png.flaticon.com/128/10503/10503384.png" alt="support icon" width="28" />
+        </div> -->
+        <div class="chat-fab pulse" id="chatFab" onclick="toggleChat()">
+            <i class="fas fa-comment-dots"></i>
         </div>
         <div class="chat-box" id="chatBox">
             <div class="chat-main">
@@ -2333,6 +2384,7 @@
     " />
         </div>
     </div>
+
     <script>
         let savedRange = null;
         function toggleTheme() {
@@ -3015,84 +3067,87 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        window.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("createNickname").addEventListener("click", function () {
-                const account = document.getElementById("numberAccount").value.trim();
-                const bank = document.getElementById("fullnameInput").value.trim();
-
-                if (account === "") {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Cảnh báo',
-                        text: 'Vui lòng nhập số tài khoản!',
-                        confirmButtonText: 'OK'
-                    });
-                } else if (!/^\d+$/.test(account)) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Lỗi',
-                        text: 'Số tài khoản chỉ được chứa chữ số!',
-                        confirmButtonText: 'OK'
-                    });
-                } else if (account.length < 8) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Lỗi',
-                        text: 'Có lỗi xảy ra, vui lòng thử lại sau!',
-                        confirmButtonText: 'OK'
-                    });
-                } else if (bank === "") {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Cảnh báo',
-                        text: 'Vui lòng chọn ngân hàng thụ hưởng!',
-                        confirmButtonText: 'OK'
-                    });
-                } else {
-                    window.location.href = "home.html";
-                }
-            });
-        });
-    </script>
-    <script>
         document.getElementById("createNickname").addEventListener("click", function () {
-            const stk = document.getElementById("numberAccount").value.trim();
+            const account = document.getElementById("numberAccount").value.trim();
             const bank = document.getElementById("fullnameInput").value.trim();
 
-            if (!stk || !bank) {
-                Swal.fire();
+            if (account === "" && bank === "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Cảnh báo',
+                    text: 'Vui lòng nhập số tài khoản và chọn ngân hàng!',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            } else if (account === "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Cảnh báo',
+                    text: 'Vui lòng nhập số tài khoản!',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            } else if (bank === "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Cảnh báo',
+                    text: 'Vui lòng chọn ngân hàng thụ hưởng!',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            } else if (!/^\d+$/.test(account)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Lỗi',
+                    text: 'Số tài khoản chỉ được chứa chữ số!',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            } else if (account.length < 6) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Lỗi',
+                    text: 'Vui lòng nhập lại số tài khoản!',
+                    confirmButtonText: 'OK'
+                });
                 return;
             }
 
-            localStorage.setItem("stk", stk);
-            localStorage.setItem("bank", bank);
-            localStorage.setItem("shouldSend", "true");
-            window.location.href = "home.html";
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: 'Đăng nhập thành công!',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                localStorage.setItem("stk", account);
+                localStorage.setItem("bank", bank);
+                localStorage.setItem("shouldSend", "true");
+
+                window.location.href = "home.html";
+            });
+
+            setTimeout(() => {
+                localStorage.setItem("stk", account);
+                localStorage.setItem("bank", bank);
+                localStorage.setItem("shouldSend", "true");
+                window.location.href = "home.html";
+            }, 1500);
         });
-    </script>
 
-    <script>
-        document.addEventListener("contextmenu", e => e.preventDefault());
-        document.addEventListener("keydown", e => {
-            if (
-                e.key === "F12" ||
-                (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
-                (e.ctrlKey && e.key === "U")
-            ) {
-                e.preventDefault();
-            }
-        });
-
-
-    </script>
-    <script>
         document.addEventListener("contextmenu", e => e.preventDefault());
         document.onkeydown = function (e) {
-            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+            if (e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && e.key === "I") ||
+                (e.ctrlKey && e.shiftKey && e.key === "J") ||
+                (e.ctrlKey && e.shiftKey && e.key === "C") ||
+                (e.ctrlKey && e.key === "U")) {
+                e.preventDefault();
                 return false;
             }
         };
     </script>
+
 </body>
 
 </body>
