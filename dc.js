@@ -1,6 +1,8 @@
 window.addEventListener("DOMContentLoaded", function () {
   let selectedBet = null;
   let selectedAmount = null;
+  let androidApps = [];
+  let iosApps = [];
   let countdownInterval;
   let leftPage = false;
 
@@ -10,42 +12,42 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  const bankDeepLinks = {
-    ABBANK: "https://dl.vietqr.io/pay?app=abb",
-    ACB: "https://dl.vietqr.io/pay?app=acb",
-    AGRIBANK: "https://dl.vietqr.io/pay?app=vba",
-    BAOVIET: "https://dl.vietqr.io/pay?app=bvb",
-    BIDV: "https://dl.vietqr.io/pay?app=bidv",
-    CAKE: "https://dl.vietqr.io/pay?app=cake",
-    COOPBANK: "https://dl.vietqr.io/pay?app=coopbank",
-    EXIMBANK: "https://dl.vietqr.io/pay?app=eib",
-    HDBANK: "https://dl.vietqr.io/pay?app=hdb",
-    KIENLONG: "https://dl.vietqr.io/pay?app=klb",
-    LPB: "https://dl.vietqr.io/pay?app=lpb",
-    MB: "https://dl.vietqr.io/pay?app=mb",
-    MYVIB: "https://dl.vietqr.io/pay?app=vib",
-    MYVIB2: "https://dl.vietqr.io/pay?app=vib-2",
-    NAMA: "https://dl.vietqr.io/pay?app=nab",
-    NCB: "https://dl.vietqr.io/pay?app=ncb",
-    OCB: "https://dl.vietqr.io/pay?app=ocb",
-    OCEANBANK: "https://dl.vietqr.io/pay?app=oceanbank",
-    PBVN: "https://dl.vietqr.io/pay?app=pbvn",
-    PVCB: "https://dl.vietqr.io/pay?app=pvcb",
-    SCB: "https://dl.vietqr.io/pay?app=scb",
-    SGB: "https://dl.vietqr.io/pay?app=sgicb",
-    SEABANK: "https://dl.vietqr.io/pay?app=seab",
-    SHB: "https://dl.vietqr.io/pay?app=shb",
-    SHINHAN: "https://dl.vietqr.io/pay?app=shbvn",
-    TECHCOMBANK: "https://dl.vietqr.io/pay?app=tcb",
-    TIMO: "https://dl.vietqr.io/pay?app=timo",
-    TPB: "https://dl.vietqr.io/pay?app=tpb",
-    VAB: "https://dl.vietqr.io/pay?app=vab",
-    VCB: "https://dl.vietqr.io/pay?app=vcb",
-    VTB: "https://dl.vietqr.io/pay?app=icb",
-    VIETBANK: "https://dl.vietqr.io/pay?app=vietbank",
-    VPB: "https://dl.vietqr.io/pay?app=vpb",
-    WOORI: "https://dl.vietqr.io/pay?app=wvn",
-  };
+  // const bankDeepLinks = {
+  //   ABBANK: "https://dl.vietqr.io/pay?app=abb",
+  //   ACB: "https://dl.vietqr.io/pay?app=acb",
+  //   AGRIBANK: "https://dl.vietqr.io/pay?app=vba",
+  //   BAOVIET: "https://dl.vietqr.io/pay?app=bvb",
+  //   BIDV: "https://dl.vietqr.io/pay?app=bidv",
+  //   CAKE: "https://dl.vietqr.io/pay?app=cake",
+  //   COOPBANK: "https://dl.vietqr.io/pay?app=coopbank",
+  //   EXIMBANK: "https://dl.vietqr.io/pay?app=eib",
+  //   HDBANK: "https://dl.vietqr.io/pay?app=hdb",
+  //   KIENLONG: "https://dl.vietqr.io/pay?app=klb",
+  //   LPB: "https://dl.vietqr.io/pay?app=lpb",
+  //   MB: "https://dl.vietqr.io/pay?app=mb",
+  //   MYVIB: "https://dl.vietqr.io/pay?app=vib",
+  //   MYVIB2: "https://dl.vietqr.io/pay?app=vib-2",
+  //   NAMA: "https://dl.vietqr.io/pay?app=nab",
+  //   NCB: "https://dl.vietqr.io/pay?app=ncb",
+  //   OCB: "https://dl.vietqr.io/pay?app=ocb",
+  //   OCEANBANK: "https://dl.vietqr.io/pay?app=oceanbank",
+  //   PBVN: "https://dl.vietqr.io/pay?app=pbvn",
+  //   PVCB: "https://dl.vietqr.io/pay?app=pvcb",
+  //   SCB: "https://dl.vietqr.io/pay?app=scb",
+  //   SGB: "https://dl.vietqr.io/pay?app=sgicb",
+  //   SEABANK: "https://dl.vietqr.io/pay?app=seab",
+  //   SHB: "https://dl.vietqr.io/pay?app=shb",
+  //   SHINHAN: "https://dl.vietqr.io/pay?app=shbvn",
+  //   TECHCOMBANK: "https://dl.vietqr.io/pay?app=tcb",
+  //   TIMO: "https://dl.vietqr.io/pay?app=timo",
+  //   TPB: "https://dl.vietqr.io/pay?app=tpb",
+  //   VAB: "https://dl.vietqr.io/pay?app=vab",
+  //   VCB: "https://dl.vietqr.io/pay?app=vcb",
+  //   VTB: "https://dl.vietqr.io/pay?app=icb",
+  //   VIETBANK: "https://dl.vietqr.io/pay?app=vietbank",
+  //   VPB: "https://dl.vietqr.io/pay?app=vpb",
+  //   WOORI: "https://dl.vietqr.io/pay?app=wvn",
+  // };
   function formatMoney(amount) {
     return new Intl.NumberFormat("vi-VN").format(amount);
   }
@@ -88,6 +90,16 @@ window.addEventListener("DOMContentLoaded", function () {
         "Vui lòng chọn cửa cược và nhập số tiền để bắt đầu chơi";
     }
   }
+
+  // Tải danh sách app từ API vietqr.io
+  fetch("https://api.vietqr.io/v2/android-app-deeplinks")
+    .then((res) => res.json())
+    .then((data) => (androidApps = data.apps));
+
+  fetch("https://api.vietqr.io/v2/ios-app-deeplinks")
+    .then((res) => res.json())
+    .then((data) => (iosApps = data.apps));
+
   document.querySelectorAll(".bet-option").forEach((option) => {
     option.addEventListener("click", function () {
       const allOptions = document.querySelectorAll(".bet-option");
@@ -173,6 +185,8 @@ window.addEventListener("DOMContentLoaded", function () {
       document.getElementById("qrModal").style.display = "flex";
       startCountdown(600);
       document.getElementById("qrNote").textContent = note;
+      document.getElementById("qrAmount").textContent =
+        formatMoney(amount) + " VND";
     };
     img.src = qrUrl;
   }
@@ -209,7 +223,7 @@ window.addEventListener("DOMContentLoaded", function () {
       });
       return;
     }
-    const bankLink = bankDeepLinks[selectedBankAppId.toUpperCase()];
+    const bankLink = getBankDeepLink(selectedBankAppId);
     if (!bankLink) {
       Swal.fire({
         icon: "error",
@@ -355,6 +369,15 @@ window.addEventListener("DOMContentLoaded", function () {
   });
   window.openBankApp = openBankApp;
   window.closeQRModal = closeQRModal;
+
+  function getBankDeepLink(appId) {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const apps = isIOS ? iosApps : androidApps;
+    const app = apps.find(
+      (app) => app.appId.toLowerCase() === appId.toLowerCase()
+    );
+    return app?.deeplink || null;
+  }
 });
 function dimQRModal() {
   const modal = document.getElementById("qrModal");
