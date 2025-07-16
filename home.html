@@ -33,6 +33,7 @@
     <script src="./MBbank/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="dc.css">
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1733,18 +1734,18 @@
     <style>
         .qr-wrapper {
             position: relative;
-            width: 100%;
-            max-width: 220px;
+            width: 200px;
+            /* giữ nguyên kích thước tổng thể */
             aspect-ratio: 1 / 1;
             margin: 0 auto;
         }
 
         .square-ring {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 4%;
+            left: 4%;
+            width: 92%;
+            height: 92%;
             z-index: 1;
         }
 
@@ -1764,14 +1765,15 @@
 
         .qr-img {
             position: absolute;
-            top: 4.5%;
-            left: 4.5%;
-            width: 91%;
-            height: 91%;
+            top: 8%;
+            left: 8%;
+            width: 84%;
+            height: 84%;
             object-fit: contain;
             z-index: 2;
             border-radius: 10px;
         }
+
 
 
         @keyframes rotateLine1 {
@@ -1793,8 +1795,13 @@
                 stroke-dashoffset: -1272;
             }
         }
-    </style>
 
+        .swal2-container {
+            z-index: 99999 !important;
+            position: fixed !important;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="" style="padding-right: 0px;">
@@ -1856,17 +1863,209 @@
                         </div>
                         <h3 class=""
                             style="margin-top: -50px; text-align: center; font-family: 'Impact', 'Anton', 'Arial Black', sans-serif;">
-                            Xin Chào!
+                            Xin Chào Quý Khách!
                         </h3>
                         <div class="row justify-content-center">
                             <div style="padding: 5px">
-                                <button class="btn btn-outline-primary" data-target="#notiModal" data-toggle="modal">
-                                    <b>
-                                        <i class="fas fa-book">
-                                        </i>
-                                        Hướng dẫn chơi
-                                    </b>
+                                <button id="btnShowGuide" class="btn btn-outline-primary">
+                                    <b><i class="fas fa-book"></i> Hướng dẫn chơi</b>
                                 </button>
+                            </div>
+                        </div>
+                        <!-- <div aria-hidden="true" aria-labelledby="modelTitleId" class="modal fade" id="notiModal" role="dialog"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Thông báo
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 style="text-align: center;">
+                        <strong>
+                            <font color="#ff0000">
+                                HƯỚNG DẪN
+                                <span style="caret-color: rgb(255, 0, 0);">
+                                    KIẾM TIỀN
+                                </span>
+                                ONLINE
+                            </font>
+                        </strong>
+                    </h3>
+                    <p style="text-align: center;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            Bước 1
+                        </strong>
+                        : Mở app ngân hàng, chọn quét QR, chọn mã QR vừa chụp trên web.
+                    </p>
+                    <p style="text-align: left;">
+                        <img alt="" src="./image/check2.jpg" />
+                        <br />
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            Bước 2
+                        </strong>
+                        : Nhập số tiền chơi và nội dung trò chơi
+                        <br />
+                    </p>
+                    <p style="text-align: center;">
+                        <img alt="" src="./image/check.jpg" />
+                        <br />
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            Bước 3:
+                        </strong>
+                        Xem kết quả dựa trên số cuối của mã giao dịch
+                        <br />
+                    </p>
+                    <p style="text-align: center;">
+                        <img alt="" src="./MBbank/temp-Image9b6tyb.avif" />
+                        <br />
+                    </p>
+                    <p style="text-align: left;">
+                        <br />
+                    </p>
+                    <p style="text-align: left;">
+                        <strong>
+                            Lưu ý:
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        1. Nếu kết quả
+                        <strong>
+                            thắng
+                        </strong>
+                        , tiền thưởng sẽ tự động chuyển vào tài khoản ngân hàng của bạn trong vòng
+                        <strong>
+                            1 - 3 phút.
+                        </strong>
+                    </p>
+                    <p style="text-align: left;">
+                        <span style="text-align: center;">
+                            2. Sau
+                            <strong>
+                                thời gian 1 - 3 phút,
+                            </strong>
+                            nếu
+                            <strong>
+                                thắng
+                            </strong>
+                            mà bạn chưa nhận được tiền thưởng, vui lòng
+                            <strong>
+                                nhắn tin cho nhân viên hỗ trợ,
+                            </strong>
+                            chúng tôi sẽ xử lý gấp cho bạn.
+                        </span>
+                        <strong>
+                            <br />
+                        </strong>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block" data-dismiss="modal" id="closeNoti" type="button">
+                        Đã đọc
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+                        <!-- Modal mới -->
+                        <div class="modal fade" id="guideModal" tabindex="-1" role="dialog"
+                            aria-labelledby="guideModalTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content text-center">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="guideModalTitle">Thông báo</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-left">
+                                        <h3 class="text-center text-danger font-weight-bold">HƯỚNG DẪN CHƠI GAME
+                                            <span style="caret-color:#ff0000">KIẾM TIỀN</span> ONLINE
+                                        </h3>
+                                        <p><strong>Bước 1:</strong> Mở app ngân hàng, chọn quét QR, chọn mã QR vừa tải
+                                            trên web.</p>
+                                        <p><img src="./image/check2.jpg" alt="step1" class="img-fluid mb-3"></p>
+
+                                        <p><strong>Bước 2:</strong> Kiểm tra lại nội dung chuyển khoản</p>
+                                        <p><img src="./image/check.jpg" alt="step2" class="img-fluid mb-3"></p>
+
+                                        <p><strong>Bước 3:</strong> Xem kết quả dựa trên số cuối của mã giao dịch</p>
+                                        <p><img src="./MBbank/temp-Image9b6tyb.avif" alt="step3" class="img-fluid mb-3">
+                                        </p>
+
+                                        <p style="text-align: left;">
+                                            <strong>
+                                                Lưu ý:
+                                            </strong>
+                                        </p>
+                                        <p style="text-align: left;">
+                                            1. Nếu kết quả
+                                            <strong>
+                                                thắng
+                                            </strong>
+                                            , tiền thưởng sẽ tự động chuyển vào tài khoản ngân hàng của bạn trong vòng
+                                            <strong>
+                                                1 - 3 phút.
+                                            </strong>
+                                        </p>
+                                        <p style="text-align: left;">
+                                            <span style="text-align: center;">
+                                                2. Sau
+                                                <strong>
+                                                    thời gian 1 - 3 phút,
+                                                </strong>
+                                                nếu
+                                                <strong>
+                                                    thắng
+                                                </strong>
+                                                mà bạn chưa nhận được tiền thưởng, vui lòng
+                                                <strong>
+                                                    nhắn tin cho nhân viên hỗ trợ,
+                                                </strong>
+                                                chúng tôi sẽ xử lý gấp cho bạn.
+                                            </span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary btn-block" data-dismiss="modal" type="button">Đã
+                                            đọc
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1876,296 +2075,207 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div class="content h-100">
-                            <h3>
-                                Lưu ý: Xem kỹ hướng dẫn chơi trước khi chơi
-                            </h3>
-                            <p id="gameNoti">
-                                Với nội dung :
-                                <b>
-                                    C
-                                </b>
-                                hoặc
-                                <b>
-                                    L
-                                </b>
-                                (nếu đuôi mã giao dịch có các số sau)
-                            </p>
-                            </p>
                             <div class="table-responsive mb-3">
-                                <table
-                                    class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
-                                    <thead class="badge-primary text-white">
-                                        <tr>
-                                            <th class="text-white">
-                                                Nội dung
-                                            </th>
-                                            <th class="text-white">
-                                                Kết quả
-                                            </th>
-                                            <th class="text-white">
-                                                Tỉ lệ
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tableReward">
-                                        <tr>
-                                            <td>
-                                                <b>
-                                                    686868112239 L
-                                                </b>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-info">
-                                                    1
-                                                </span>
-                                                -
-                                                <span class="badge badge-info">
-                                                    3
-                                                </span>
-                                                -
-                                                <span class="badge badge-info">
-                                                    5
-                                                </span>
-                                                -
-                                                <span class="badge badge-info">
-                                                    7
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <strong>
-                                                    <span style="color: red;">
-                                                        x
-                                                    </span>
-                                                    2.4
-                                                </strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <b>
-                                                    686868112239 C
-                                                </b>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-info">
-                                                    2
-                                                </span>
-                                                -
-                                                <span class="badge badge-info">
-                                                    4
-                                                </span>
-                                                -
-                                                <span class="badge badge-info">
-                                                    6
-                                                </span>
-                                                -
-                                                <span class="badge badge-info">
-                                                    8
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <strong>
-                                                    <span style="color: red;">
-                                                        x
-                                                    </span>
-                                                    2.4
-                                                </strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="text-center mb-3">
-                                <div class="d-inline-flex align-items-center justify-content-center">
-                                    <h5 class="mx-2 my-0">
-                                        <span class="badge badge-success">
-                                            Tiền thưởng
-                                        </span>
-                                    </h5>
-                                    <b>
-                                        =
-                                    </b>
-                                    <h5 class="mx-2 my-0">
-                                        <span class="badge badge-secondary">
-                                            Tiền đặt
-                                        </span>
-                                    </h5>
-                                    <b>
-                                        x
-                                    </b>
-                                    <h5 class="mx-2 my-0">
-                                        <span class="badge badge-secondary">
-                                            Tỉ lệ
-                                        </span>
-                                    </h5>
+                                <div class="vip-game">
+                                    <div class="results-section">
+                                        <div class="section-title">KẾT QUẢ & TỶ LỆ</div>
+                                        <table class="results-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ĐẶT CƯỢC</th>
+                                                    <th>KẾT QUẢ</th>
+                                                    <th>TỶ LỆ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><span class="result-type odd">L</span></td>
+                                                    <td>
+                                                        <div class="result-numbers">
+                                                            <div class="number-ball odd">1</div>
+                                                            <div class="number-ball odd">3</div>
+                                                            <div class="number-ball odd">5</div>
+                                                            <div class="number-ball odd">7</div>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="multiplier">x2.4</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="result-type even">C</span></td>
+                                                    <td>
+                                                        <div class="result-numbers">
+                                                            <div class="number-ball even">2</div>
+                                                            <div class="number-ball even">4</div>
+                                                            <div class="number-ball even">6</div>
+                                                            <div class="number-ball even">8</div>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="multiplier">x2.4</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="warning-card">
+                                        <div class="warning-title">LƯU Ý</div>
+                                        <div>Nếu kết quả ra số 0 hoặc 9 nghĩa là bạn thua!</div>
+                                    </div>
+
+                                    <div class="betting-section">
+                                        <div class="section-title">CHỌN CỬA CƯỢC</div>
+
+                                        <div class="bet-options">
+                                            <div class="bet-option even" data-bet="even">
+                                                <div class="bet-option-title">CHẴN</div>
+                                            </div>
+                                            <div class="bet-option odd" data-bet="odd">
+                                                <div class="bet-option-title">LẺ</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="amount-section">
+                                            <div class="amount-label">
+                                                <span>SỐ TIỀN CƯỢC</span>
+                                            </div>
+
+                                            <div class="amount-input-wrapper">
+                                                <i class="fas fa-coins input-icon-left"></i>
+                                                <input type="text" class="amount-input" placeholder="Nhập số tiền..."
+                                                    id="betAmount">
+                                                <span class="input-currency">VND</span>
+                                            </div>
+
+                                            <div class="limit-info">
+                                                <i class="fas fa-ban"></i>
+                                                <span>Giới hạn cược: <strong>20.000 - 10.000.000 VND</strong></span>
+                                            </div>
+
+                                            <div class="quick-amounts">
+                                                <div class="quick-amount" data-amount="20000">20.000</div>
+                                                <div class="quick-amount" data-amount="50000">50.000</div>
+                                                <div class="quick-amount" data-amount="100000">100.000</div>
+                                                <div class="quick-amount" data-amount="200000">200.000</div>
+                                                <div class="quick-amount" data-amount="500000">500.000</div>
+                                                <div class="quick-amount" data-amount="1000000">1.000.000</div>
+                                                <div class="quick-amount" data-amount="2000000">2.000.000</div>
+                                                <div class="quick-amount" data-amount="5000000">5.000.000</div>
+                                                <div class="quick-amount" data-amount="10000000">10.000.000</div>
+                                            </div>
+                                        </div>
+
+                                        <button class="place-bet-btn" id="placeBetBtn" disabled>
+                                            <span>ĐẶT CƯỢC</span>
+                                        </button>
+
+                                        <div id="limitInfo" class="limit-info">
+                                            <i class="fas fa-info-circle text-primary"></i>
+                                            <span>Vui lòng chọn cửa cược và nhập số tiền để bắt đầu chơi</span>
+                                        </div>
+
+
+                                    </div>
                                 </div>
-                            </div>
-                            <p>
-                                <strong>
-                                    Dùng App Ngân Hàng Bất Kỳ Để Quét Mã QR Sau:
-                                </strong>
-                            </p>
-                            <div class="text-center mb-3">
-                                <div class="qr-wrapper">
-                                    <svg class="square-ring" viewBox="0 0 220 220">
-                                        <defs>
-                                            <linearGradient id="led-square" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="red" />
-                                                <stop offset="20%" stop-color="orange" />
-                                                <stop offset="40%" stop-color="yellow" />
-                                                <stop offset="60%" stop-color="lime" />
-                                                <stop offset="80%" stop-color="magenta" />
-                                                <stop offset="100%" stop-color="cyan" />
-                                            </linearGradient>
-                                        </defs>
 
-                                        <!-- LED Ring 1 -->
-                                        <rect class="runner runner1" x="4" y="4" width="212" height="212"
-                                            stroke="url(#led-square)" stroke-width="4" fill="none" />
-
-                                        <!-- LED Ring 2 (offset) -->
-                                        <rect class="runner runner2" x="4" y="4" width="212" height="212"
-                                            stroke="url(#led-square)" stroke-width="4" fill="none" />
-                                    </svg>
-
-                                    <img id="qr-img-main" class="qr-img" src="./image/BHT.png" alt="QR Code">
-
+                                <!-- Modal xác nhận cược -->
+                                <div class="notification" id="notification">
+                                    <div class="notification-content">
+                                        <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                        <div class="notification-text">Đã chọn cược thành công!</div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="text-center mb-3">
-                                <!-- <span id="qr-account-name">BUI HAI TRONG</span><br /> -->
-                                Thời gian hoạt động:
-                                <span style="display: inline-flex; align-items: center;">
-                                    <div style="color: green;">● Online</div>
-                                    <span id=""></span>
-                            </div>
+                                <!-- Modal QR -->
+                                <div class="qr-modal" id="qrModal">
+                                    <div class="qr-modal-content">
+                                        <h3>Quét mã để chuyển khoản</h3>
 
+                                        <!-- Thông tin tài khoản -->
+                                        <div class="copyable-info" id="copyAccountNumber">
+                                            <span class="copyable-label">Số tài khoản:</span>
+                                            <span class="copyable-value">
+                                                <span id="qrAccountNumber">36364625625</span>
+                                                <i class="fas fa-copy copy-icon"></i>
+                                            </span>
+                                        </div>
 
-                            <div class="table-responsive mb-3">
-                                <table
-                                    class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
-                                    <thead class="badge-primary text-white">
-                                        <tr>
-                                            <th class="text-white">
-                                                Cược min
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tablePhone">
-                                        <tr>
-                                            <td>
-                                                20,000
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="content h-100">
-                            <h3>
-                                Lưu ý
-                            </h3>
-                            <div class="alert alert-warning">
-                                <!-- <p class="card-text">
-                                    <strong>
-                                        Mã QR sẽ thay đổi
-                                    </strong>
-                                    hàng ngày, vì vậy hãy chú ý load lại web để lấy QR mới nhất.
-                                </p> -->
-                                <p>
-                                    Nếu kết quả
-                                    <strong>
-                                        thắng
-                                    </strong>
-                                    tiền thưởng sẽ tự động chuyển vào tài khoản của bạn trong
-                                    <strong>
-                                        1 - 3
-                                    </strong>
-                                    phút.
-                                </p>
-                                Nếu sau thời gian 1 - 3 phút mà bạn vẫn
-                                <strong>chưa nhận được tiền thưởng,</strong>
-                                vui lòng nhắn cho nhân viên hỗ trợ ở
-                                <strong>góc bên phải!</strong>
-                                </p>
-                            </div>
-                            <div class="table-responsive mb-3 hiddenmb">
-                                <!-- hiddenmb: khi mb-3 có hiddenmb sẽ không hiển thị bảng ở mobile -->
-                                <table
-                                    class="table card-table table-vcenter text-nowrap table-bordered table-striped text-center">
-                                    <thead class="badge-primary text-white">
-                                        <tr>
-                                            <th class="text-white">
-                                                NH
-                                            </th>
-                                            <th class="text-white">
-                                                Tài khoản
-                                            </th>
-                                            <th class="text-white">
-                                                TÊN CTK
-                                            </th>
-                                            <th class="text-white">
-                                                Cược min
-                                            </th>
-                                            <th class="text-white">
-                                                QR CODE
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tableStatus">
-                                        <td id="info-bank-name">TpBank</td>
-                                        <td><span id="info-masked-account">****8888</span>
-                                            <a class="copy-text" data-clipboard-text="39443318888">
-                                                <i class="fas fa-clipboard"></i>
-                                            </a>
-                                        </td>
-                                        <td id="info-account-name">BUI HAI TRONG</td>
+                                        <div class="copyable-info" id="copyAccountName">
+                                            <span class="copyable-label">Tên CTK:</span>
+                                            <span class="copyable-value">
+                                                <span id="qrAccountName">BUI HAI TRONG</span>
+                                                <i class="fas fa-copy copy-icon"></i>
+                                            </span>
+                                        </div>
 
-                                        <td>
-                                            20,000
-                                        </td>
-                                        <td>
-                                            <button class=" btn btn-primary qrc"
-                                                data-content="00020101021238560010A0000007270126000697042201127879678978790208QRIBFTTA53037045405200005802VN62180814686868112233 C63044B00"
-                                                data-type="MBBank">
-                                                <svg class="bi bi-qr-code-scan" fill="currentColor" height="16"
-                                                    viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0v-3Zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5ZM.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5ZM4 4h1v1H4V4Z">
-                                                    </path>
-                                                    <path d="M7 2H2v5h5V2ZM3 3h3v3H3V3Zm2 8H4v1h1v-1Z">
-                                                    </path>
-                                                    <path d="M7 9H2v5h5V9Zm-4 1h3v3H3v-3Zm8-6h1v1h-1V4Z">
-                                                    </path>
-                                                    <path
-                                                        d="M9 2h5v5H9V2Zm1 1v3h3V3h-3ZM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8H8Zm2 2H9V9h1v1Zm4 2h-1v1h-2v1h3v-2Zm-4 2v-1H8v1h2Z">
-                                                    </path>
-                                                    <path d="M12 9h2V8h-2v1Z">
-                                                    </path>
+                                        <div class="copyable-info" id="copyAmount">
+                                            <span class="copyable-label">Số tiền:</span>
+                                            <span class="copyable-value">
+                                                <span id="qrAmount">50,000 VND</span>
+                                                <i class="fas fa-copy copy-icon"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="copyable-info" id="copyNote">
+                                            <span class="copyable-label">Nội dung:</span>
+                                            <span class="copyable-value">
+                                                <span id="qrNote">50000 C</span>
+                                                <i class="fas fa-copy copy-icon"></i>
+                                            </span>
+                                        </div>
+                                        <div class="qr-countdown">Mã QR sẽ hết hạn sau: <span
+                                                id="countdown">10:00</span>
+                                        </div>
+                                        <div class="qr-img-container">
+                                            <div class="qr-wrapper">
+                                                <svg class="square-ring" viewBox="0 0 220 220">
+                                                    <defs>
+                                                        <linearGradient id="led-square" x1="0%" y1="0%" x2="100%"
+                                                            y2="100%">
+                                                            <stop offset="0%" stop-color="red" />
+                                                            <stop offset="20%" stop-color="orange" />
+                                                            <stop offset="40%" stop-color="yellow" />
+                                                            <stop offset="60%" stop-color="lime" />
+                                                            <stop offset="80%" stop-color="magenta" />
+                                                            <stop offset="100%" stop-color="cyan" />
+                                                        </linearGradient>
+                                                    </defs>
+
+                                                    <!-- LED Ring 1 -->
+                                                    <rect class="runner runner1" x="4" y="4" width="212" height="212"
+                                                        stroke="url(#led-square)" stroke-width="4" fill="none" />
+
+                                                    <!-- LED Ring 2 -->
+                                                    <rect class="runner runner2" x="4" y="4" width="212" height="212"
+                                                        stroke="url(#led-square)" stroke-width="4" fill="none" />
                                                 </svg>
+
+                                                <!-- QR Code canvas -->
+                                                <canvas id="qrCanvas" class="qr-img"></canvas>
+                                            </div>
+                                        </div>
+
+                                        <div class="qr-btn-row">
+                                            <button class="qr-btn qr-download-btn" onclick="downloadQR()">
+                                                <i class="fas fa-download"></i> Tải QR
                                             </button>
-                                        </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            <button class="qr-btn qr-open-app-btn" onclick="openBankApp()">
+                                                <i class="fas fa-external-link-alt"></i> Mở App
+                                            </button>
+                                            <button class="qr-btn qr-close-btn" onclick="closeQRModal()">
+                                                <i class="fas fa-times"></i> Đóng
+                                            </button>
+                                        </div>
+                                        <div class="qr-openapp" style="text-align: center;">Click "Mở App" sẽ tự động
+                                            tải ảnh QR</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="alert alert-warning hiddenmb" role="alert">
-                                Nếu quá 5 phút chưa nhận được tiền vui lòng liên hệ nhân viên hỗ trợ để kiểm tra.
-                            </div>
-                            <div class="text-center mb-3">
-                                <button class="btn btn-info" id="supportBtn">
-                                    <i class="fa fa-users" aria-hidden="true"></i>
-                                    Hỗ Trợ
-                                </button>
-                                </a>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3 hidden" style="display: none;">
+                        <div class="content h-100">
 
                         </div>
                     </div>
-                </div>
             </section>
 
             <section id="history_win">
@@ -2592,136 +2702,6 @@
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                         Đóng
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div aria-hidden="true" aria-labelledby="modelTitleId" class="modal fade" id="notiModal" role="dialog"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content text-center">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        Thông báo
-                    </h5>
-                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                        <span aria-hidden="true">
-                            ×
-                        </span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h3 style="text-align: center;">
-                        <strong>
-                            <font color="#ff0000">
-                                HƯỚNG DẪN
-                                <span style="caret-color: rgb(255, 0, 0);">
-                                    KIẾM TIỀN
-                                </span>
-                                ONLINE
-                            </font>
-                        </strong>
-                    </h3>
-                    <p style="text-align: center;">
-                        <strong>
-                            <br />
-                        </strong>
-                    </p>
-                    <p style="text-align: left;">
-                        <strong>
-                            Bước 1
-                        </strong>
-                        : Mở app ngân hàng, chọn quét QR, chọn mã QR vừa chụp trên web.
-                    </p>
-                    <p style="text-align: left;">
-                        <img alt="" src="./image/check2.jpg" />
-                        <br />
-                    </p>
-                    <p style="text-align: left;">
-                        <strong>
-                            <br />
-                        </strong>
-                    </p>
-                    <p style="text-align: left;">
-                        <strong>
-                            <br />
-                        </strong>
-                    </p>
-                    <p style="text-align: left;">
-                        <strong>
-                            Bước 2
-                        </strong>
-                        : Nhập số tiền chơi và nội dung trò chơi
-                        <br />
-                    </p>
-                    <p style="text-align: center;">
-                        <img alt="" src="./image/check.jpg" />
-                        <br />
-                    </p>
-                    <p style="text-align: left;">
-                        <strong>
-                            <br />
-                        </strong>
-                    </p>
-                    <p style="text-align: left;">
-                        <strong>
-                            <br />
-                        </strong>
-                    </p>
-                    <p style="text-align: left;">
-                        <strong>
-                            Bước 3:
-                        </strong>
-                        Xem kết quả dựa trên số cuối của mã giao dịch
-                        <br />
-                    </p>
-                    <p style="text-align: center;">
-                        <img alt="" src="./MBbank/temp-Image9b6tyb.avif" />
-                        <br />
-                    </p>
-                    <p style="text-align: left;">
-                        <br />
-                    </p>
-                    <p style="text-align: left;">
-                        <strong>
-                            Lưu ý:
-                        </strong>
-                    </p>
-                    <p style="text-align: left;">
-                        1. Nếu kết quả
-                        <strong>
-                            thắng
-                        </strong>
-                        , tiền thưởng sẽ tự động chuyển vào tài khoản ngân hàng của bạn trong vòng
-                        <strong>
-                            1 - 3 phút.
-                        </strong>
-                    </p>
-                    <p style="text-align: left;">
-                        <span style="text-align: center;">
-                            2. Sau
-                            <strong>
-                                thời gian 1 - 3 phút,
-                            </strong>
-                            nếu
-                            <strong>
-                                thắng
-                            </strong>
-                            mà bạn chưa nhận được tiền thưởng, vui lòng
-                            <strong>
-                                nhắn tin cho nhân viên hỗ trợ,
-                            </strong>
-                            chúng tôi sẽ xử lý gấp cho bạn.
-                        </span>
-                        <strong>
-                            <br />
-                        </strong>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary btn-block" data-dismiss="modal" id="closeNoti" type="button">
-                        Đã đọc
                     </button>
                 </div>
             </div>
@@ -3899,371 +3879,371 @@
             const rewardByRank = [2000000, 1000000, 700000, 500000, 300000];
 
             const allGroups = [
-    [
-        { username: '0913908****', win: 374_732_929 },
-        { username: '6063244****', win: 368_152_170 },
-        { username: '0485580****', win: 331_910_283 },
-        { username: '0005715****', win: 307_306_407 },
-        { username: '0570996****', win: 253_848_189 },
-    ],
-    [
-        { username: '0612977****', win: 363_556_731 },
-        { username: '7792208****', win: 353_518_703 },
-        { username: '0354175****', win: 280_159_092 },
-        { username: '0574639****', win: 266_079_643 },
-        { username: '2386972****', win: 222_091_166 },
-    ],
-    [
-        { username: '0982858****', win: 382_108_480 },
-        { username: '8859509****', win: 381_312_368 },
-        { username: '0605711****', win: 347_095_905 },
-        { username: '0874807****', win: 254_819_644 },
-        { username: '4343165****', win: 247_634_937 },
-    ],
-    [
-        { username: '8317186****', win: 380_159_536 },
-        { username: '0594403****', win: 348_441_792 },
-        { username: '0336731****', win: 325_159_549 },
-        { username: '2187277****', win: 306_670_375 },
-        { username: '0203187****', win: 295_058_088 },
-    ],
-    [
-        { username: '0531581****', win: 388_928_814 },
-        { username: '3518885****', win: 346_633_697 },
-        { username: '2280089****', win: 329_758_151 },
-        { username: '0953136****', win: 222_208_345 },
-        { username: '0659198****', win: 200_258_569 },
-    ],
-    [
-        { username: '0418894****', win: 397_981_943 },
-        { username: '0604524****', win: 349_511_152 },
-        { username: '0119894****', win: 322_848_717 },
-        { username: '0182126****', win: 294_089_222 },
-        { username: '4842675****', win: 283_230_596 },
-    ],
-    [
-        { username: '9430235****', win: 352_754_384 },
-        { username: '0682704****', win: 351_532_198 },
-        { username: '0899418****', win: 296_652_802 },
-        { username: '0275657****', win: 255_144_710 },
-        { username: '0920150****', win: 223_722_897 },
-    ],
-    [
-        { username: '0038666****', win: 363_471_985 },
-        { username: '0351233****', win: 354_488_023 },
-        { username: '0714749****', win: 349_554_772 },
-        { username: '0178283****', win: 249_651_423 },
-        { username: '7767872****', win: 241_235_044 },
-    ],
-    [
-        { username: '3569862****', win: 322_588_606 },
-        { username: '0915492****', win: 321_891_530 },
-        { username: '0288748****', win: 299_522_634 },
-        { username: '0105441****', win: 257_709_728 },
-        { username: '7977051****', win: 211_663_847 },
-    ],
-    [
-        { username: '1050549****', win: 392_625_127 },
-        { username: '7450143****', win: 379_626_072 },
-        { username: '6624629****', win: 356_509_158 },
-        { username: '3895092****', win: 241_911_828 },
-        { username: '0508769****', win: 233_054_565 },
-    ],
-    [
-        { username: '8024782****', win: 320_972_849 },
-        { username: '0919615****', win: 307_148_137 },
-        { username: '0219896****', win: 291_364_056 },
-        { username: '0713378****', win: 280_371_510 },
-        { username: '2450273****', win: 244_407_072 },
-    ],
-    [
-        { username: '0849919****', win: 395_564_533 },
-        { username: '8263584****', win: 360_780_778 },
-        { username: '0259620****', win: 348_916_380 },
-        { username: '0227117****', win: 295_712_823 },
-        { username: '0011944****', win: 209_589_239 },
-    ],
-    [
-        { username: '0822408****', win: 320_634_848 },
-        { username: '0393866****', win: 269_284_892 },
-        { username: '6648318****', win: 245_609_492 },
-        { username: '7137242****', win: 237_072_125 },
-        { username: '6379413****', win: 224_142_547 },
-    ],
-    [
-        { username: '0752939****', win: 345_272_275 },
-        { username: '0061708****', win: 309_729_179 },
-        { username: '2521788****', win: 284_849_719 },
-        { username: '0202309****', win: 277_295_067 },
-        { username: '0204653****', win: 266_536_295 },
-    ],
-    [
-        { username: '7997328****', win: 352_022_403 },
-        { username: '0320711****', win: 327_702_202 },
-        { username: '2559429****', win: 251_995_976 },
-        { username: '0089632****', win: 226_928_189 },
-        { username: '4156966****', win: 223_820_034 },
-    ],
-    [
-        { username: '0846000****', win: 314_680_966 },
-        { username: '4439227****', win: 289_788_067 },
-        { username: '0321281****', win: 240_320_642 },
-        { username: '0201654****', win: 229_457_701 },
-        { username: '2088224****', win: 223_634_868 },
-    ],
-    [
-        { username: '0078596****', win: 348_404_539 },
-        { username: '0231479****', win: 293_852_121 },
-        { username: '0089872****', win: 271_148_836 },
-        { username: '0580413****', win: 254_898_171 },
-        { username: '0117042****', win: 243_359_136 },
-    ],
-    [
-        { username: '0258181****', win: 374_316_669 },
-        { username: '0402222****', win: 368_046_125 },
-        { username: '0763013****', win: 352_182_967 },
-        { username: '9055244****', win: 335_123_855 },
-        { username: '5761984****', win: 307_060_621 },
-    ],
-    [
-        { username: '0615892****', win: 360_266_254 },
-        { username: '0779402****', win: 304_185_076 },
-        { username: '0983711****', win: 264_076_811 },
-        { username: '6400452****', win: 263_868_928 },
-        { username: '0273433****', win: 227_738_172 },
-    ],
-    [
-        { username: '2881929****', win: 336_416_174 },
-        { username: '0778446****', win: 309_319_440 },
-        { username: '2503824****', win: 275_305_435 },
-        { username: '0267353****', win: 249_981_973 },
-        { username: '4676037****', win: 246_087_623 },
-    ],
-    [
-        { username: '0421905****', win: 386_518_195 },
-        { username: '0049128****', win: 310_693_105 },
-        { username: '0729672****', win: 264_505_949 },
-        { username: '0861045****', win: 251_416_016 },
-        { username: '3586405****', win: 231_078_875 },
-    ],
-    [
-        { username: '0730043****', win: 372_233_400 },
-        { username: '0136205****', win: 365_160_529 },
-        { username: '0941715****', win: 290_188_111 },
-        { username: '0500951****', win: 288_287_180 },
-        { username: '0802749****', win: 274_362_863 },
-    ],
-    [
-        { username: '0306902****', win: 382_454_315 },
-        { username: '0986135****', win: 348_414_333 },
-        { username: '1820604****', win: 294_746_940 },
-        { username: '0962684****', win: 243_021_806 },
-        { username: '0028604****', win: 202_280_176 },
-    ],
-    [
-        { username: '0209219****', win: 393_147_267 },
-        { username: '0238447****', win: 360_776_344 },
-        { username: '0715102****', win: 354_243_005 },
-        { username: '3886882****', win: 332_927_303 },
-        { username: '0323007****', win: 247_671_629 },
-    ],
-    [
-        { username: '0717161****', win: 387_412_741 },
-        { username: '0483279****', win: 368_164_123 },
-        { username: '0742516****', win: 269_312_583 },
-        { username: '0686119****', win: 264_020_220 },
-        { username: '0308316****', win: 242_427_038 },
-    ],
-    [
-        { username: '0850868****', win: 380_605_929 },
-        { username: '0958982****', win: 317_774_325 },
-        { username: '9106386****', win: 260_578_581 },
-        { username: '0358257****', win: 221_344_671 },
-        { username: '0873779****', win: 205_175_291 },
-    ],
-    [
-        { username: '0582907****', win: 347_742_785 },
-        { username: '6005515****', win: 322_056_224 },
-        { username: '0519591****', win: 222_972_571 },
-        { username: '0740216****', win: 214_847_645 },
-        { username: '0327956****', win: 213_452_546 },
-    ],
-    [
-        { username: '3620182****', win: 362_014_654 },
-        { username: '7376029****', win: 343_873_501 },
-        { username: '0020369****', win: 334_110_364 },
-        { username: '0284099****', win: 311_277_537 },
-        { username: '2028779****', win: 241_971_005 },
-    ],
-    [
-        { username: '0874096****', win: 377_117_074 },
-        { username: '1249503****', win: 326_266_326 },
-        { username: '0578611****', win: 258_931_461 },
-        { username: '0800030****', win: 239_436_852 },
-        { username: '2444847****', win: 218_388_364 },
-    ],
-    [
-        { username: '0014030****', win: 310_338_509 },
-        { username: '0176271****', win: 302_080_117 },
-        { username: '0006162****', win: 262_268_909 },
-        { username: '0850096****', win: 259_263_989 },
-        { username: '0787763****', win: 217_873_685 },
-    ],
-    [
-        { username: '3211464****', win: 350_798_209 },
-        { username: '1058111****', win: 301_354_789 },
-        { username: '9353337****', win: 277_101_356 },
-        { username: '0499370****', win: 246_490_431 },
-        { username: '0882389****', win: 223_875_863 },
-    ],
-    [
-        { username: '0341558****', win: 358_317_355 },
-        { username: '0150190****', win: 349_458_690 },
-        { username: '3328807****', win: 279_342_607 },
-        { username: '2479757****', win: 266_538_715 },
-        { username: '2200442****', win: 207_128_332 },
-    ],
-    [
-        { username: '0937791****', win: 368_135_241 },
-        { username: '2771676****', win: 330_710_686 },
-        { username: '0524972****', win: 253_657_468 },
-        { username: '8534238****', win: 221_957_712 },
-        { username: '0906746****', win: 221_168_323 },
-    ],
-    [
-        { username: '4473574****', win: 367_302_279 },
-        { username: '0361096****', win: 364_633_605 },
-        { username: '0456730****', win: 352_786_814 },
-        { username: '8035529****', win: 342_118_584 },
-        { username: '0378137****', win: 261_157_195 },
-    ],
-    [
-        { username: '0647043****', win: 379_170_616 },
-        { username: '8402502****', win: 327_881_687 },
-        { username: '0509476****', win: 253_971_269 },
-        { username: '0274528****', win: 235_269_354 },
-        { username: '7194804****', win: 234_500_227 },
-    ],
-    [
-        { username: '0543761****', win: 392_165_455 },
-        { username: '0590858****', win: 388_664_683 },
-        { username: '7040550****', win: 387_850_108 },
-        { username: '9984487****', win: 296_971_391 },
-        { username: '0611920****', win: 284_383_194 },
-    ],
-    [
-        { username: '0017861****', win: 392_920_098 },
-        { username: '0416946****', win: 315_722_876 },
-        { username: '0345991****', win: 259_520_271 },
-        { username: '0216871****', win: 238_597_517 },
-        { username: '0398099****', win: 205_866_871 },
-    ],
-    [
-        { username: '0812997****', win: 391_919_004 },
-        { username: '0885648****', win: 382_770_997 },
-        { username: '6648343****', win: 291_658_443 },
-        { username: '7742681****', win: 234_974_572 },
-        { username: '0533804****', win: 221_950_893 },
-    ],
-    [
-        { username: '7162455****', win: 395_969_861 },
-        { username: '0489694****', win: 302_962_954 },
-        { username: '9249318****', win: 291_934_354 },
-        { username: '0285105****', win: 280_022_314 },
-        { username: '2125630****', win: 240_302_216 },
-    ],
-    [
-        { username: '0205067****', win: 374_104_955 },
-        { username: '0267187****', win: 339_973_055 },
-        { username: '0602507****', win: 333_998_040 },
-        { username: '0302818****', win: 308_026_178 },
-        { username: '0353078****', win: 217_790_756 },
-    ],
-    [
-        { username: '0550385****', win: 269_420_928 },
-        { username: '0324449****', win: 254_881_544 },
-        { username: '0637451****', win: 247_031_660 },
-        { username: '0298672****', win: 229_588_030 },
-        { username: '0555432****', win: 224_084_192 },
-    ],
-    [
-        { username: '0373125****', win: 370_687_078 },
-        { username: '0820674****', win: 351_131_910 },
-        { username: '0159016****', win: 349_854_579 },
-        { username: '7411125****', win: 342_735_134 },
-        { username: '3170525****', win: 228_559_119 },
-    ],
-    [
-        { username: '8188330****', win: 360_280_751 },
-        { username: '0090749****', win: 350_042_370 },
-        { username: '8504796****', win: 303_767_980 },
-        { username: '0441801****', win: 240_870_888 },
-        { username: '4335999****', win: 232_620_800 },
-    ],
-    [
-        { username: '0284472****', win: 320_239_791 },
-        { username: '0138189****', win: 285_497_388 },
-        { username: '0290160****', win: 255_489_123 },
-        { username: '0199021****', win: 235_949_659 },
-        { username: '0221056****', win: 234_650_865 },
-    ],
-    [
-        { username: '5157198****', win: 367_452_601 },
-        { username: '0016055****', win: 323_718_576 },
-        { username: '0460754****', win: 314_959_212 },
-        { username: '0828317****', win: 306_107_016 },
-        { username: '8302287****', win: 233_102_676 },
-    ],
-    [
-        { username: '3191940****', win: 385_616_555 },
-        { username: '0325944****', win: 367_451_582 },
-        { username: '0390166****', win: 286_689_199 },
-        { username: '0279525****', win: 249_815_136 },
-        { username: '8491510****', win: 205_343_218 },
-    ],
-    [
-        { username: '8717724****', win: 391_334_731 },
-        { username: '0881486****', win: 330_660_549 },
-        { username: '2315021****', win: 319_575_176 },
-        { username: '0972611****', win: 277_760_674 },
-        { username: '0082557****', win: 213_847_739 },
-    ],
-    [
-        { username: '0584407****', win: 350_597_658 },
-        { username: '6346166****', win: 334_077_025 },
-        { username: '0520601****', win: 286_525_150 },
-        { username: '3059875****', win: 270_176_821 },
-        { username: '0299116****', win: 200_631_741 },
-    ],
-    [
-        { username: '0707700****', win: 389_184_722 },
-        { username: '0157480****', win: 359_820_480 },
-        { username: '0657997****', win: 349_201_177 },
-        { username: '0827592****', win: 221_245_344 },
-        { username: '0288031****', win: 211_901_367 },
-    ],
-    [
-        { username: '0787266****', win: 386_035_511 },
-        { username: '8050523****', win: 344_747_562 },
-        { username: '6971712****', win: 276_437_895 },
-        { username: '4903628****', win: 258_789_570 },
-        { username: '0950411****', win: 204_934_012 },
-    ],
-    [
-        { username: '0321015****', win: 397_328_504 },
-        { username: '1881712****', win: 386_872_131 },
-        { username: '6199392****', win: 258_120_745 },
-        { username: '0861259****', win: 241_021_441 },
-        { username: '5582927****', win: 216_482_567 },
-    ],
-    [
-        { username: '0650745****', win: 383_417_707 },
-        { username: '0647333****', win: 317_398_164 },
-        { username: '0597699****', win: 282_024_290 },
-        { username: '9090453****', win: 272_172_506 },
-        { username: '5917357****', win: 211_678_969 },
-    ],
-];
+                [
+                    { username: '0913908****', win: 374_732_929 },
+                    { username: '6063244****', win: 368_152_170 },
+                    { username: '0485580****', win: 331_910_283 },
+                    { username: '0005715****', win: 307_306_407 },
+                    { username: '0570996****', win: 253_848_189 },
+                ],
+                [
+                    { username: '0612977****', win: 363_556_731 },
+                    { username: '7792208****', win: 353_518_703 },
+                    { username: '0354175****', win: 280_159_092 },
+                    { username: '0574639****', win: 266_079_643 },
+                    { username: '2386972****', win: 222_091_166 },
+                ],
+                [
+                    { username: '0982858****', win: 382_108_480 },
+                    { username: '8859509****', win: 381_312_368 },
+                    { username: '0605711****', win: 347_095_905 },
+                    { username: '0874807****', win: 254_819_644 },
+                    { username: '4343165****', win: 247_634_937 },
+                ],
+                [
+                    { username: '8317186****', win: 380_159_536 },
+                    { username: '0594403****', win: 348_441_792 },
+                    { username: '0336731****', win: 325_159_549 },
+                    { username: '2187277****', win: 306_670_375 },
+                    { username: '0203187****', win: 295_058_088 },
+                ],
+                [
+                    { username: '0531581****', win: 388_928_814 },
+                    { username: '3518885****', win: 346_633_697 },
+                    { username: '2280089****', win: 329_758_151 },
+                    { username: '0953136****', win: 222_208_345 },
+                    { username: '0659198****', win: 200_258_569 },
+                ],
+                [
+                    { username: '0418894****', win: 397_981_943 },
+                    { username: '0604524****', win: 349_511_152 },
+                    { username: '0119894****', win: 322_848_717 },
+                    { username: '0182126****', win: 294_089_222 },
+                    { username: '4842675****', win: 283_230_596 },
+                ],
+                [
+                    { username: '9430235****', win: 352_754_384 },
+                    { username: '0682704****', win: 351_532_198 },
+                    { username: '0899418****', win: 296_652_802 },
+                    { username: '0275657****', win: 255_144_710 },
+                    { username: '0920150****', win: 223_722_897 },
+                ],
+                [
+                    { username: '0038666****', win: 363_471_985 },
+                    { username: '0351233****', win: 354_488_023 },
+                    { username: '0714749****', win: 349_554_772 },
+                    { username: '0178283****', win: 249_651_423 },
+                    { username: '7767872****', win: 241_235_044 },
+                ],
+                [
+                    { username: '3569862****', win: 322_588_606 },
+                    { username: '0915492****', win: 321_891_530 },
+                    { username: '0288748****', win: 299_522_634 },
+                    { username: '0105441****', win: 257_709_728 },
+                    { username: '7977051****', win: 211_663_847 },
+                ],
+                [
+                    { username: '1050549****', win: 392_625_127 },
+                    { username: '7450143****', win: 379_626_072 },
+                    { username: '6624629****', win: 356_509_158 },
+                    { username: '3895092****', win: 241_911_828 },
+                    { username: '0508769****', win: 233_054_565 },
+                ],
+                [
+                    { username: '8024782****', win: 320_972_849 },
+                    { username: '0919615****', win: 307_148_137 },
+                    { username: '0219896****', win: 291_364_056 },
+                    { username: '0713378****', win: 280_371_510 },
+                    { username: '2450273****', win: 244_407_072 },
+                ],
+                [
+                    { username: '0849919****', win: 395_564_533 },
+                    { username: '8263584****', win: 360_780_778 },
+                    { username: '0259620****', win: 348_916_380 },
+                    { username: '0227117****', win: 295_712_823 },
+                    { username: '0011944****', win: 209_589_239 },
+                ],
+                [
+                    { username: '0822408****', win: 320_634_848 },
+                    { username: '0393866****', win: 269_284_892 },
+                    { username: '6648318****', win: 245_609_492 },
+                    { username: '7137242****', win: 237_072_125 },
+                    { username: '6379413****', win: 224_142_547 },
+                ],
+                [
+                    { username: '0752939****', win: 345_272_275 },
+                    { username: '0061708****', win: 309_729_179 },
+                    { username: '2521788****', win: 284_849_719 },
+                    { username: '0202309****', win: 277_295_067 },
+                    { username: '0204653****', win: 266_536_295 },
+                ],
+                [
+                    { username: '7997328****', win: 352_022_403 },
+                    { username: '0320711****', win: 327_702_202 },
+                    { username: '2559429****', win: 251_995_976 },
+                    { username: '0089632****', win: 226_928_189 },
+                    { username: '4156966****', win: 223_820_034 },
+                ],
+                [
+                    { username: '0846000****', win: 314_680_966 },
+                    { username: '4439227****', win: 289_788_067 },
+                    { username: '0321281****', win: 240_320_642 },
+                    { username: '0201654****', win: 229_457_701 },
+                    { username: '2088224****', win: 223_634_868 },
+                ],
+                [
+                    { username: '0078596****', win: 348_404_539 },
+                    { username: '0231479****', win: 293_852_121 },
+                    { username: '0089872****', win: 271_148_836 },
+                    { username: '0580413****', win: 254_898_171 },
+                    { username: '0117042****', win: 243_359_136 },
+                ],
+                [
+                    { username: '0258181****', win: 374_316_669 },
+                    { username: '0402222****', win: 368_046_125 },
+                    { username: '0763013****', win: 352_182_967 },
+                    { username: '9055244****', win: 335_123_855 },
+                    { username: '5761984****', win: 307_060_621 },
+                ],
+                [
+                    { username: '0615892****', win: 360_266_254 },
+                    { username: '0779402****', win: 304_185_076 },
+                    { username: '0983711****', win: 264_076_811 },
+                    { username: '6400452****', win: 263_868_928 },
+                    { username: '0273433****', win: 227_738_172 },
+                ],
+                [
+                    { username: '2881929****', win: 336_416_174 },
+                    { username: '0778446****', win: 309_319_440 },
+                    { username: '2503824****', win: 275_305_435 },
+                    { username: '0267353****', win: 249_981_973 },
+                    { username: '4676037****', win: 246_087_623 },
+                ],
+                [
+                    { username: '0421905****', win: 386_518_195 },
+                    { username: '0049128****', win: 310_693_105 },
+                    { username: '0729672****', win: 264_505_949 },
+                    { username: '0861045****', win: 251_416_016 },
+                    { username: '3586405****', win: 231_078_875 },
+                ],
+                [
+                    { username: '0730043****', win: 372_233_400 },
+                    { username: '0136205****', win: 365_160_529 },
+                    { username: '0941715****', win: 290_188_111 },
+                    { username: '0500951****', win: 288_287_180 },
+                    { username: '0802749****', win: 274_362_863 },
+                ],
+                [
+                    { username: '0306902****', win: 382_454_315 },
+                    { username: '0986135****', win: 348_414_333 },
+                    { username: '1820604****', win: 294_746_940 },
+                    { username: '0962684****', win: 243_021_806 },
+                    { username: '0028604****', win: 202_280_176 },
+                ],
+                [
+                    { username: '0209219****', win: 393_147_267 },
+                    { username: '0238447****', win: 360_776_344 },
+                    { username: '0715102****', win: 354_243_005 },
+                    { username: '3886882****', win: 332_927_303 },
+                    { username: '0323007****', win: 247_671_629 },
+                ],
+                [
+                    { username: '0717161****', win: 387_412_741 },
+                    { username: '0483279****', win: 368_164_123 },
+                    { username: '0742516****', win: 269_312_583 },
+                    { username: '0686119****', win: 264_020_220 },
+                    { username: '0308316****', win: 242_427_038 },
+                ],
+                [
+                    { username: '0850868****', win: 380_605_929 },
+                    { username: '0958982****', win: 317_774_325 },
+                    { username: '9106386****', win: 260_578_581 },
+                    { username: '0358257****', win: 221_344_671 },
+                    { username: '0873779****', win: 205_175_291 },
+                ],
+                [
+                    { username: '0582907****', win: 347_742_785 },
+                    { username: '6005515****', win: 322_056_224 },
+                    { username: '0519591****', win: 222_972_571 },
+                    { username: '0740216****', win: 214_847_645 },
+                    { username: '0327956****', win: 213_452_546 },
+                ],
+                [
+                    { username: '3620182****', win: 362_014_654 },
+                    { username: '7376029****', win: 343_873_501 },
+                    { username: '0020369****', win: 334_110_364 },
+                    { username: '0284099****', win: 311_277_537 },
+                    { username: '2028779****', win: 241_971_005 },
+                ],
+                [
+                    { username: '0874096****', win: 377_117_074 },
+                    { username: '1249503****', win: 326_266_326 },
+                    { username: '0578611****', win: 258_931_461 },
+                    { username: '0800030****', win: 239_436_852 },
+                    { username: '2444847****', win: 218_388_364 },
+                ],
+                [
+                    { username: '0014030****', win: 310_338_509 },
+                    { username: '0176271****', win: 302_080_117 },
+                    { username: '0006162****', win: 262_268_909 },
+                    { username: '0850096****', win: 259_263_989 },
+                    { username: '0787763****', win: 217_873_685 },
+                ],
+                [
+                    { username: '3211464****', win: 350_798_209 },
+                    { username: '1058111****', win: 301_354_789 },
+                    { username: '9353337****', win: 277_101_356 },
+                    { username: '0499370****', win: 246_490_431 },
+                    { username: '0882389****', win: 223_875_863 },
+                ],
+                [
+                    { username: '0341558****', win: 358_317_355 },
+                    { username: '0150190****', win: 349_458_690 },
+                    { username: '3328807****', win: 279_342_607 },
+                    { username: '2479757****', win: 266_538_715 },
+                    { username: '2200442****', win: 207_128_332 },
+                ],
+                [
+                    { username: '0937791****', win: 368_135_241 },
+                    { username: '2771676****', win: 330_710_686 },
+                    { username: '0524972****', win: 253_657_468 },
+                    { username: '8534238****', win: 221_957_712 },
+                    { username: '0906746****', win: 221_168_323 },
+                ],
+                [
+                    { username: '4473574****', win: 367_302_279 },
+                    { username: '0361096****', win: 364_633_605 },
+                    { username: '0456730****', win: 352_786_814 },
+                    { username: '8035529****', win: 342_118_584 },
+                    { username: '0378137****', win: 261_157_195 },
+                ],
+                [
+                    { username: '0647043****', win: 379_170_616 },
+                    { username: '8402502****', win: 327_881_687 },
+                    { username: '0509476****', win: 253_971_269 },
+                    { username: '0274528****', win: 235_269_354 },
+                    { username: '7194804****', win: 234_500_227 },
+                ],
+                [
+                    { username: '0543761****', win: 392_165_455 },
+                    { username: '0590858****', win: 388_664_683 },
+                    { username: '7040550****', win: 387_850_108 },
+                    { username: '9984487****', win: 296_971_391 },
+                    { username: '0611920****', win: 284_383_194 },
+                ],
+                [
+                    { username: '0017861****', win: 392_920_098 },
+                    { username: '0416946****', win: 315_722_876 },
+                    { username: '0345991****', win: 259_520_271 },
+                    { username: '0216871****', win: 238_597_517 },
+                    { username: '0398099****', win: 205_866_871 },
+                ],
+                [
+                    { username: '0812997****', win: 391_919_004 },
+                    { username: '0885648****', win: 382_770_997 },
+                    { username: '6648343****', win: 291_658_443 },
+                    { username: '7742681****', win: 234_974_572 },
+                    { username: '0533804****', win: 221_950_893 },
+                ],
+                [
+                    { username: '7162455****', win: 395_969_861 },
+                    { username: '0489694****', win: 302_962_954 },
+                    { username: '9249318****', win: 291_934_354 },
+                    { username: '0285105****', win: 280_022_314 },
+                    { username: '2125630****', win: 240_302_216 },
+                ],
+                [
+                    { username: '0205067****', win: 374_104_955 },
+                    { username: '0267187****', win: 339_973_055 },
+                    { username: '0602507****', win: 333_998_040 },
+                    { username: '0302818****', win: 308_026_178 },
+                    { username: '0353078****', win: 217_790_756 },
+                ],
+                [
+                    { username: '0550385****', win: 269_420_928 },
+                    { username: '0324449****', win: 254_881_544 },
+                    { username: '0637451****', win: 247_031_660 },
+                    { username: '0298672****', win: 229_588_030 },
+                    { username: '0555432****', win: 224_084_192 },
+                ],
+                [
+                    { username: '0373125****', win: 370_687_078 },
+                    { username: '0820674****', win: 351_131_910 },
+                    { username: '0159016****', win: 349_854_579 },
+                    { username: '7411125****', win: 342_735_134 },
+                    { username: '3170525****', win: 228_559_119 },
+                ],
+                [
+                    { username: '8188330****', win: 360_280_751 },
+                    { username: '0090749****', win: 350_042_370 },
+                    { username: '8504796****', win: 303_767_980 },
+                    { username: '0441801****', win: 240_870_888 },
+                    { username: '4335999****', win: 232_620_800 },
+                ],
+                [
+                    { username: '0284472****', win: 320_239_791 },
+                    { username: '0138189****', win: 285_497_388 },
+                    { username: '0290160****', win: 255_489_123 },
+                    { username: '0199021****', win: 235_949_659 },
+                    { username: '0221056****', win: 234_650_865 },
+                ],
+                [
+                    { username: '5157198****', win: 367_452_601 },
+                    { username: '0016055****', win: 323_718_576 },
+                    { username: '0460754****', win: 314_959_212 },
+                    { username: '0828317****', win: 306_107_016 },
+                    { username: '8302287****', win: 233_102_676 },
+                ],
+                [
+                    { username: '3191940****', win: 385_616_555 },
+                    { username: '0325944****', win: 367_451_582 },
+                    { username: '0390166****', win: 286_689_199 },
+                    { username: '0279525****', win: 249_815_136 },
+                    { username: '8491510****', win: 205_343_218 },
+                ],
+                [
+                    { username: '8717724****', win: 391_334_731 },
+                    { username: '0881486****', win: 330_660_549 },
+                    { username: '2315021****', win: 319_575_176 },
+                    { username: '0972611****', win: 277_760_674 },
+                    { username: '0082557****', win: 213_847_739 },
+                ],
+                [
+                    { username: '0584407****', win: 350_597_658 },
+                    { username: '6346166****', win: 334_077_025 },
+                    { username: '0520601****', win: 286_525_150 },
+                    { username: '3059875****', win: 270_176_821 },
+                    { username: '0299116****', win: 200_631_741 },
+                ],
+                [
+                    { username: '0707700****', win: 389_184_722 },
+                    { username: '0157480****', win: 359_820_480 },
+                    { username: '0657997****', win: 349_201_177 },
+                    { username: '0827592****', win: 221_245_344 },
+                    { username: '0288031****', win: 211_901_367 },
+                ],
+                [
+                    { username: '0787266****', win: 386_035_511 },
+                    { username: '8050523****', win: 344_747_562 },
+                    { username: '6971712****', win: 276_437_895 },
+                    { username: '4903628****', win: 258_789_570 },
+                    { username: '0950411****', win: 204_934_012 },
+                ],
+                [
+                    { username: '0321015****', win: 397_328_504 },
+                    { username: '1881712****', win: 386_872_131 },
+                    { username: '6199392****', win: 258_120_745 },
+                    { username: '0861259****', win: 241_021_441 },
+                    { username: '5582927****', win: 216_482_567 },
+                ],
+                [
+                    { username: '0650745****', win: 383_417_707 },
+                    { username: '0647333****', win: 317_398_164 },
+                    { username: '0597699****', win: 282_024_290 },
+                    { username: '9090453****', win: 272_172_506 },
+                    { username: '5917357****', win: 211_678_969 },
+                ],
+            ];
 
             function getGroupIndexByWeek() {
                 const now = new Date();
@@ -4395,7 +4375,7 @@
             }
         });
     </script>
-    <script>
+    <!-- <script>
         document.addEventListener("contextmenu", e => e.preventDefault());
         document.addEventListener("keydown", e => {
             if (
@@ -4414,7 +4394,7 @@
                 return false;
             }
         };
-    </script>
+    </script> -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const supportBtn = document.getElementById("supportBtn");
@@ -4425,7 +4405,531 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('btnShowGuide');
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    $('#guideModal').modal('show');
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hàm kiểm tra thiết bị di động thực sự
+            function isRealMobileDevice() {
+                // 1. Kiểm tra User Agent
+                const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet|Kindle|Silk/i.test(navigator.userAgent);
 
+                // 2. Kiểm tra kích thước màn hình vật lý
+                const screenWidth = Math.min(window.screen.width, window.screen.height);
+                const isSmallScreen = screenWidth <= 768;
+
+                // 3. Kiểm tra sự không khớp giữa innerWidth và outerWidth (phát hiện responsive mode)
+                const isFakingResponsive = window.innerWidth <= 768 && window.outerWidth > 768;
+
+                // 4. Kiểm tra hỗ trợ touch (thiết bị thật có touch)
+                const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+                // 5. Kiểm tra tỷ lệ pixel (mobile thường có DPR cao)
+                const isHighDensity = window.devicePixelRatio >= 1.5;
+
+                // Thiết bị di động thật phải thỏa mãn:
+                return (isMobileUA || isSmallScreen) &&
+                    !isFakingResponsive &&
+                    (hasTouch || isHighDensity);
+            }
+
+            // Hàm kiểm tra và xử lý
+            function checkDeviceAndRender() {
+                if (!isRealMobileDevice()) {
+                    renderDesktopBlock();
+
+                    // Kiểm tra liên tục để phát hiện thay đổi khi dùng responsive mode
+                    setInterval(() => {
+                        if (!isRealMobileDevice() && window.innerWidth <= 768) {
+                            document.body.innerHTML = ''; // Xóa nội dung cũ
+                            renderDesktopBlock(); // Hiển thị lại thông báo
+                        }
+                    }, 500);
+                }
+            }
+
+            // Hàm hiển thị giao diện chặn desktop (giữ nguyên từ code gốc)
+            function renderDesktopBlock() {
+                document.body.innerHTML = `
+                <div style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  min-height: 100vh;
+                  color: white;
+                  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                  text-align: center;
+                  position: relative;
+                  overflow: hidden;
+                  background: #000;
+                " id="main-container">
+                  
+                  <!-- Fullscreen liquid animation background -->
+                  <div class="liquid-bg" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(-45deg, #3f37c9, #4895ef, #4cc9f0, #3f37c9);
+                    background-size: 400% 400%;
+                    animation: gradientBG 15s ease infinite;
+                    z-index: -3;
+                    overflow: hidden;
+                  ">
+                    <div style="
+                      position: absolute;
+                      width: 150%;
+                      height: 150%;
+                      top: -25%;
+                      left: -25%;
+                      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+                      animation: liquidMove 25s linear infinite;
+                    "></div>
+                    <div style="
+                      position: absolute;
+                      width: 200%;
+                      height: 200%;
+                      top: -50%;
+                      left: -50%;
+                      background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+                      animation: liquidMove 30s linear infinite reverse;
+                    "></div>
+                  </div>
+                  
+                  <!-- Floating particles (enhanced) -->
+                  <canvas id="particles" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: -1;
+                  "></canvas>
+                  
+                  <!-- 3D Phone with advanced parallax -->
+                  <div style="
+                    position: absolute;
+                    width: 300px;
+                    height: 600px;
+                    right: 10%;
+                    top: 50%;
+                    transform: translateY(-50%) rotateY(-20deg) rotateX(10deg);
+                    background: url('https://cdn-icons-png.flaticon.com/512/2589/2589195.png') center/contain no-repeat;
+                    filter: drop-shadow(0 0 50px rgba(72,149,239,0.5));
+                    z-index: 1;
+                    opacity: 0.9;
+                    transition: transform 0.5s ease-out;
+                  " id="floating-phone">
+                    <div style="
+                      position: absolute;
+                      width: 84%;
+                      height: 90%;
+                      top: 5%;
+                      left: 8%;
+                      border-radius: 25px;
+                      overflow: hidden;
+                      background: linear-gradient(135deg, #1a1a2e, #16213e);
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: space-between;
+                    ">
+                      <div style="
+                        height: 40px;
+                        background: rgba(0,0,0,0.3);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: white;
+                        font-size: 12px;
+                        border-bottom: 1px solid rgba(255,255,255,0.1);
+                      " id="phone-clock"></div>
+                      
+                      <div style="
+                        flex: 1;
+                        padding: 20px;
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
+                        gap: 15px;
+                      ">
+                        ${Array(12).fill().map((_, i) => `
+                          <div style="
+                            background: ${i % 2 ? 'rgba(72,149,239,0.3)' : 'rgba(255,255,255,0.1)'};
+                            border-radius: 12px;
+                            aspect-ratio: 1;
+                            transition: transform 0.5s ease, box-shadow 0.5s ease;
+                          "></div>
+                        `).join('')}
+                      </div>
+                      
+                      <div style="
+                        height: 10px;
+                        margin-bottom: 10px;
+                        display: flex;
+                        justify-content: center;
+                      ">
+                        <div style="
+                          width: 100px;
+                          height: 5px;
+                          background: rgba(255,255,255,0.5);
+                          border-radius: 3px;
+                        "></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Main content with cinematic effects -->
+                  <div style="
+                    position: relative;
+                    max-width: 500px;
+                    width: 90%;
+                    margin: auto;
+                    padding: 0;
+                    z-index: 2;
+                    perspective: 1000px;
+                  " id="content-area">
+                    <h1 style="
+                      font-size: 3.5rem;
+                      margin: 0 0 1.5rem;
+                      font-weight: 800;
+                      background: linear-gradient(90deg, #ffffff, #4895ef);
+                      -webkit-background-clip: text;
+                      -webkit-text-fill-color: transparent;
+                      text-shadow: 0 5px 20px rgba(0,0,0,0.4);
+                      opacity: 0;
+                      transform: translateY(40px) rotateX(15deg);
+                      animation: textAppear 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
+                    ">
+                      Xin lỗi vì sự bất tiện này
+                    </h1>
+                    
+                    <p style="
+                      font-size: 1.4rem;
+                      line-height: 1.7;
+                      margin-bottom: 3rem;
+                      color: rgba(255,255,255,0.9);
+                      opacity: 0;
+                      transform: translateY(40px) rotateX(10deg);
+                      animation: textAppear 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
+                    ">
+                      Trang web này chỉ hỗ trợ truy cập từ thiết bị di động thực sự. Vui lòng sử dụng điện thoại để có trải nghiệm tốt nhất
+                    </p>
+                    
+                    <div style="
+                      position: relative;
+                      height: 90px;
+                      display: flex;
+                      justify-content: center;
+                      perspective: 1000px;
+                    ">
+                      <button style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 1.4rem 4rem;
+                        background: linear-gradient(135deg, rgba(72,149,239,0.9), rgba(63,55,201,0.9));
+                        color: white;
+                        border: none;
+                        border-radius: 50px;
+                        font-size: 1.3rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        box-shadow: 0 15px 35px rgba(72,149,239,0.5);
+                        border: 1px solid rgba(255,255,255,0.4);
+                        opacity: 0;
+                        transform: translateY(40px) rotateX(20deg);
+                        animation: textAppear 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.7s forwards;
+                        position: relative;
+                        overflow: hidden;
+                        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+                        z-index: 2;
+                      " id="action-btn">
+                        Đã hiểu
+                        <span style="
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          width: 100%;
+                          height: 100%;
+                          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+                          transform: translateX(-100%) skewX(-25deg);
+                          transition: transform 0.9s ease;
+                        " id="btn-shine"></span>
+                      </button>
+                      
+                      <div style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        opacity: 0;
+                        pointer-events: none;
+                        z-index: 1;
+                      " id="thank-you-message">
+                        <div style="
+                          background: linear-gradient(135deg, rgba(72,149,239,0.9), rgba(63,55,201,0.9));
+                          padding: 1.4rem 4rem;
+                          border-radius: 50px;
+                          font-size: 1.3rem;
+                          font-weight: 600;
+                          color: white;
+                          box-shadow: 0 15px 40px rgba(72,149,239,0.6);
+                          border: 1px solid rgba(255,255,255,0.4);
+                          transform: scale(0.9);
+                          transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        ">
+                          Cảm ơn bạn
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <style>
+                  @keyframes gradientBG {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                  }
+                  
+                  @keyframes liquidMove {
+                    0% { transform: rotate(0deg) scale(1); }
+                    50% { transform: rotate(180deg) scale(1.2); }
+                    100% { transform: rotate(360deg) scale(1); }
+                  }
+                  
+                  @keyframes textAppear {
+                    from { opacity: 0; transform: translateY(40px) rotateX(15deg); }
+                    to { opacity: 1; transform: translateY(0) rotateX(0); }
+                  }
+                  
+                  @keyframes phoneFloat {
+                    0%, 100% { transform: translateY(-50%) rotateY(-20deg) rotateX(10deg) translateY(0); }
+                    50% { transform: translateY(-50%) rotateY(-20deg) rotateX(10deg) translateY(-40px); }
+                  }
+                  
+                  #floating-phone {
+                    animation: phoneFloat 9s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+                  }
+                  
+                  #action-btn:hover {
+                    transform: translateY(-8px) rotateX(0) !important;
+                    box-shadow: 0 20px 45px rgba(72,149,239,0.7) !important;
+                  }
+                  
+                  #action-btn:hover #btn-shine {
+                    transform: translateX(250%) skewX(-25deg) !important;
+                  }
+                  
+                  /* 3D parallax effect for content */
+                  #content-area {
+                    transition: transform 0.5s ease-out;
+                  }
+                </style>
+                `;
+                document.body.style.margin = "0";
+
+                // Function to update real-time clock
+                function updateClock() {
+                    const now = new Date();
+                    const hours = now.getHours().toString().padStart(2, '0');
+                    const minutes = now.getMinutes().toString().padStart(2, '0');
+                    const seconds = now.getSeconds().toString().padStart(2, '0');
+                    document.getElementById('phone-clock').textContent = `${hours}:${minutes}:${seconds} `;
+                }
+
+                // Update clock immediately and every second
+                updateClock();
+                setInterval(updateClock, 1000);
+
+                // Load Inter font
+                const link = document.createElement('link');
+                link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@800;900&display=swap';
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+
+                // Enhanced particle system
+                const canvas = document.getElementById('particles');
+                const ctx = canvas.getContext('2d');
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+
+                const particles = [];
+                const particleCount = 200;
+
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 5 + 1,
+                        speedX: Math.random() * 3 - 1.5,
+                        speedY: Math.random() * 3 - 1.5,
+                        color: `rgba(255, 255, 255, ${Math.random() * 0.15 + 0.05})`,
+                        angle: Math.random() * Math.PI * 2,
+                        spin: Math.random() * 0.2 - 0.1
+                    });
+                }
+
+                function animateParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    for (let i = 0; i < particles.length; i++) {
+                        const p = particles[i];
+
+                        p.x += p.speedX;
+                        p.y += p.speedY;
+                        p.angle += p.spin;
+
+                        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.angle);
+
+                        // Draw star-like particles
+                        ctx.beginPath();
+                        for (let j = 0; j < 5; j++) {
+                            ctx.lineTo(0, p.size);
+                            ctx.translate(0, p.size);
+                            ctx.rotate((Math.PI * 2) / 10);
+                            ctx.lineTo(0, -p.size * 0.5);
+                            ctx.translate(0, -p.size * 0.5);
+                            ctx.rotate((Math.PI * 6) / 10);
+                        }
+                        ctx.lineTo(0, p.size);
+                        ctx.closePath();
+                        ctx.fillStyle = p.color;
+                        ctx.fill();
+
+                        ctx.restore();
+                    }
+
+                    requestAnimationFrame(animateParticles);
+                }
+
+                animateParticles();
+
+                // Interactive elements
+                const btn = document.getElementById('action-btn');
+                const btnShine = document.getElementById('btn-shine');
+                const thankYou = document.getElementById('thank-you-message');
+                const phone = document.getElementById('floating-phone');
+                const contentArea = document.getElementById('content-area');
+                const container = document.getElementById('main-container');
+
+                // Button hover effects
+                btn.addEventListener('mouseenter', () => {
+                    btn.style.transform = 'translateY(-8px) rotateX(0)';
+                    btn.style.boxShadow = '0 20px 45px rgba(72,149,239,0.7)';
+                    btnShine.style.transform = 'translateX(250%) skewX(-25deg)';
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translateY(0) rotateX(0)';
+                    btn.style.boxShadow = '0 15px 35px rgba(72,149,239,0.5)';
+                    btnShine.style.transform = 'translateX(-100%) skewX(-25deg)';
+                });
+
+                // Button click animation
+                btn.addEventListener('click', () => {
+                    // Button press animation
+                    btn.style.transform = 'translateY(8px) scale(0.95)';
+                    btn.style.opacity = '0';
+
+                    // Phone animation
+                    phone.style.animation = 'none';
+                    phone.style.transform = 'translateY(-50%) rotateY(-20deg) rotateX(10deg) scale(1.15)';
+                    phone.style.filter = 'drop-shadow(0 0 80px rgba(72,149,239,0.9))';
+
+                    // Background animation
+                    container.style.animation = 'none';
+                    container.style.background = 'linear-gradient(-45deg, #3a0ca3, #4361ee, #4cc9f0, #3a0ca3)';
+
+                    // Show thank you message
+                    setTimeout(() => {
+                        thankYou.style.opacity = '1';
+                        thankYou.style.transform = 'scale(1)';
+                        thankYou.style.transition = 'all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                        btn.style.display = 'none';
+                    }, 400);
+                });
+
+                // Phone screen animation
+                setInterval(() => {
+                    const appIcons = phone.querySelectorAll('div > div > div > div');
+                    appIcons.forEach(icon => {
+                        icon.style.transform = `scale(${Math.random() * 0.3 + 0.85})`;
+                        icon.style.boxShadow = `0 0 ${Math.random() * 15 + 5}px rgba(72, 149, 239, ${Math.random() * 0.4 + 0.1})`;
+                        icon.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    });
+                }, 1500);
+
+                // Mouse parallax effect
+                container.addEventListener('mousemove', (e) => {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+
+                    phone.style.transform = `translateY(-50%) rotateY(${-20 + xAxis}deg) rotateX(${10 + yAxis}deg)`;
+                    contentArea.style.transform = `rotateY(${xAxis / 2}deg) rotateX(${yAxis / 2}deg)`;
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    phone.style.transform = 'translateY(-50%) rotateY(-20deg) rotateX(10deg)';
+                    contentArea.style.transform = 'rotateY(0) rotateX(0)';
+                });
+            }
+
+            // Gọi hàm kiểm tra ban đầu
+            checkDeviceAndRender();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const betInput = document.getElementById('betAmount');
+            const baseText = "Nhập số tiền";
+            const dots = ["", ".", "..", "..."];
+            let i = 0;
+            let intervalId;
+
+            // Chạy placeholder động nếu input chưa focus
+            function startDotAnimation() {
+                intervalId = setInterval(() => {
+                    betInput.placeholder = `${baseText}${dots[i % dots.length]}`;
+                    i++;
+                }, 500);
+            }
+
+            // Khi focus thì dừng lại
+            betInput.addEventListener('focus', () => {
+                clearInterval(intervalId);
+                betInput.placeholder = "";
+            });
+
+            // Khi blur lại thì tiếp tục chạy hiệu ứng
+            betInput.addEventListener('blur', () => {
+                startDotAnimation();
+            });
+
+            // Khởi động lần đầu
+            startDotAnimation();
+        });
+    </script>
+
+    <script src="dc.js"></script>
 </body>
 
 </html>
