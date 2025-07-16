@@ -206,13 +206,6 @@ window.addEventListener("DOMContentLoaded", function () {
     updateLimitInfo();
     updatePlaceBetButton();
   }
-  function downloadQR() {
-    const canvas = document.getElementById("qrCanvas");
-    const link = document.createElement("a");
-    link.download = "mbmmo_store.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  }
   function openBankApp() {
     const selectedBankAppId = localStorage.getItem("selectedBankAppId");
     if (!selectedBankAppId) {
@@ -223,6 +216,7 @@ window.addEventListener("DOMContentLoaded", function () {
       });
       return;
     }
+
     const bankLink = getBankDeepLink(selectedBankAppId);
     if (!bankLink) {
       Swal.fire({
@@ -232,60 +226,79 @@ window.addEventListener("DOMContentLoaded", function () {
       });
       return;
     }
+
+    // Đánh dấu trạng thái trước khi mở app
+    sessionStorage.setItem("openingBankApp", "true");
+    leftPage = false;
+
+    // Thêm sự kiện blur để phát hiện khi trang bị mất focus
+    const onBlur = function () {
+      leftPage = true;
+      sessionStorage.removeItem("openingBankApp");
+      window.removeEventListener("blur", onBlur);
+    };
+    window.addEventListener("blur", onBlur);
+
+    // Mở app ngân hàng
     window.location.href = bankLink;
 
+    // Kiểm tra sau 1 giây
     setTimeout(() => {
-      if (leftPage) {
-      } else {
-        // Không rời tab → mở app thất bại → hiển thị cảnh báo
+      // Nếu vẫn đang ở trang và không có sự kiện blur
+      if (!leftPage && sessionStorage.getItem("openingBankApp")) {
         Swal.fire({
           title: "Ứng dụng chưa được cài đặt",
           html: `
-        <p>Không thể mở ứng dụng <b>${selectedBankAppId.toUpperCase()}</b>.</p>
-        <p>Vui lòng cài đặt ứng dụng hoặc quét mã QR.</p>
-        <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-            <a href="https://play.google.com/store/search?q=${selectedBankAppId}&c=apps" target="_blank" style="
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                padding: 10px 16px;
-                border-radius: 8px;
-                background-color: #34a853;
-                color: white;
-                text-decoration: none;
-                font-weight: bold;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                transition: background-color 0.2s ease;
-            " onmouseover="this.style.backgroundColor='#2c8e45'" onmouseout="this.style.backgroundColor='#34a853'">
-                <i class="fab fa-google-play"></i> Android
-            </a>
-            <a href="https://apps.apple.com/vn/search?term=${selectedBankAppId}" target="_blank" style="
-                display: flex;
-                align-items: center;
-                gap: 8px; 
-                padding: 10px 16px;
-                border-radius: 8px;
-                background-color: #007aff;
-                color: white;
-                text-decoration: none;
-                font-weight: bold;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                transition: background-color 0.2s ease;
-            " onmouseover="this.style.backgroundColor='#0062cc'" onmouseout="this.style.backgroundColor='#007aff'">
-                <i class="fab fa-apple"></i> iOS
-            </a>
-        </div>
-      `,
+          <p>Không thể mở ứng dụng <b>${selectedBankAppId.toUpperCase()}</b>.</p>
+          <p>Vui lòng cài đặt ứng dụng hoặc quét mã QR.</p>
+          <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+              <a href="https://play.google.com/store/search?q=${selectedBankAppId}&c=apps" target="_blank" style="
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 10px 16px;
+                  border-radius: 8px;
+                  background-color: #34a853;
+                  color: white;
+                  text-decoration: none;
+                  font-weight: bold;
+                  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                  transition: background-color 0.2s ease;
+              " onmouseover="this.style.backgroundColor='#2c8e45'" onmouseout="this.style.backgroundColor='#34a853'">
+                  <i class="fab fa-google-play"></i> Android
+              </a>
+              <a href="https://apps.apple.com/vn/search?term=${selectedBankAppId}" target="_blank" style="
+                  display: flex;
+                  align-items: center;
+                  gap: 8px; 
+                  padding: 10px 16px;
+                  border-radius: 8px;
+                  background-color: #007aff;
+                  color: white;
+                  text-decoration: none;
+                  font-weight: bold;
+                  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                  transition: background-color 0.2s ease;
+              " onmouseover="this.style.backgroundColor='#0062cc'" onmouseout="this.style.backgroundColor='#007aff'">
+                  <i class="fab fa-apple"></i> iOS
+              </a>
+          </div>
+        `, // Giữ nguyên nội dung thông báo
           icon: "warning",
-          confirmButtonText: "Đã hiểu",
-          showCancelButton: false,
-          backdrop: false,
-          allowOutsideClick: false,
-          allowEscapeKey: false,
         });
+        sessionStorage.removeItem("openingBankApp");
       }
     }, 1000);
   }
+
+  // Khi trang load lại, kiểm tra nếu đang trong quá trình mở app
+  window.addEventListener("load", function () {
+    if (sessionStorage.getItem("openingBankApp")) {
+      sessionStorage.removeItem("openingBankApp");
+      // Không hiển thị gì cả, coi như đã mở app thành công
+    }
+  });
+
   function startCountdown(seconds) {
     const countdown = document.getElementById("countdown");
     const qrCanvas = document.getElementById("qrCanvas");
@@ -377,6 +390,14 @@ window.addEventListener("DOMContentLoaded", function () {
     return app?.deeplink || null;
   }
 });
+
+function downloadQR() {
+  const canvas = document.getElementById("qrCanvas");
+  const link = document.createElement("a");
+  link.download = "mbmmo_store.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
 function dimQRModal() {
   const modal = document.getElementById("qrModal");
   modal.style.opacity = "0.3";
