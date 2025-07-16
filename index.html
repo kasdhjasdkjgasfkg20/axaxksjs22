@@ -3741,6 +3741,15 @@
             }
         });
     </script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Xóa dữ liệu ngân hàng và số tài khoản cũ nếu có
+            localStorage.removeItem('selectedBank');
+            localStorage.removeItem('selectedBankAppId');
+            localStorage.removeItem('userAccountNumber');
+        });
+    </script>
+
 </body>
 
 </html>
