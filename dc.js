@@ -236,8 +236,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
     setTimeout(() => {
       if (leftPage) {
-        // Người dùng đã rời tab → có thể mở app thành công
-        downloadQR();
       } else {
         // Không rời tab → mở app thất bại → hiển thị cảnh báo
         Swal.fire({
